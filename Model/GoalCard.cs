@@ -9,13 +9,13 @@ using Ticket_to_ride.ViewModel;
 
 namespace Ticket_to_ride.Model
 {
-    public class DestinationCard
+    public class GoalCard
     {
         public CityName Origin { get; set; }
         public CityName Destination { get; set; }
         public int PointValue { get; set; }
 
-        public DestinationCard(CityName origin, CityName destination, int points)
+        public GoalCard(CityName origin, CityName destination, int points)
         {
             Origin = origin;
             Destination = destination;
