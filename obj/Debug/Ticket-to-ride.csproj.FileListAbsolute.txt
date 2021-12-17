@@ -1,0 +1,5 @@
+C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\Ticket-to-ride.csproj.AssemblyReference.cache
+C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\MainWindow.g.cs
+C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\App.g.cs
+C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\Ticket-to-ride_MarkupCompile.cache
+C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\Ticket-to-ride_MarkupCompile.lref
