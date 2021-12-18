@@ -9,7 +9,7 @@ using Ticket_to_ride.ModelNs;
 using Ticket_to_ride.ViewModelNs;
 using Ticket_to_ride.ToolsNs;
 
-namespace Ticket_to_ride.Model
+namespace Ticket_to_ride.ModelNs
 {
     public class Connection
     {
