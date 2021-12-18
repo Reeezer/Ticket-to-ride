@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-using Ticket_to_ride.Enums;
-using Ticket_to_ride.Model;
+using Ticket_to_ride.ModelNs;
+using Ticket_to_ride.EnumsNs;
+using Ticket_to_ride.ToolsNs;
 
-namespace Ticket_to_ride.ViewModel
+namespace Ticket_to_ride.ViewModelNs
 {
     class Class1
     {
