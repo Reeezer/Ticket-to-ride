@@ -39,7 +39,7 @@ namespace Ticket_to_ride.ModelNs
             // TODO
         }
 
-        public void FlipShownCards()
+        public void ChangeAllShownCards()
         {
             while (ShownCards.Count < 5)
             {
@@ -58,7 +58,9 @@ namespace Ticket_to_ride.ModelNs
 
         public void PopulateShownCards()
         {
-            FlipShownCards();
+            ChangeAllShownCards();
+
+            // Verify if there are 3 or more than 3 locomotive in the shown cards: not allowed
 
             int locomotiveCount = ShownCards.Where(x => x.Color == TrainColor.Locomotive).Count();
             while (locomotiveCount >= 3)
@@ -66,7 +68,7 @@ namespace Ticket_to_ride.ModelNs
                 DiscardCards.AddRange(ShownCards);
                 ShownCards = new List<TrainCard>();
 
-                FlipShownCards();
+                ChangeAllShownCards();
                 locomotiveCount = ShownCards.Where(x => x.Color == TrainColor.Locomotive).Count();
             }
         }

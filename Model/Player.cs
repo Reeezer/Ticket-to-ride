@@ -25,7 +25,7 @@ namespace Ticket_to_ride.ModelNs
         public Player(string name, PlayerColor color, Board board)
         {
             Name = name;
-            DestinationCards = Tools<GoalCard>.Pop(board.GoalCards, 3).ToList();
+            DestinationCards = Tools<GoalCard>.Pop(board.GoalCards, 3);
             Color = color;
             Board = board;
         }
