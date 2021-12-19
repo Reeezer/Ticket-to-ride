@@ -63,7 +63,7 @@ Quand la pioche de cartes est épuisée, les cartes défaussées sont soigneusem
 
 Dans le cas peu probable où il n’y aurait plus de cartes disponibles (toutes les cartes sont dans les mains de joueurs), un joueur ne peut alors plus prendre de cartes. Il ne peut donc que prendre  possession d’une route ou tirer de nouvelles cartes Destination.
 
-#### Cartes wagon
+#### Prendre possession des routes
 
 Pour prendre possession d’une route, un joueur doit jouer une série de cartes égale au nombre d’espaces composant la route. La série de cartes doit être composée de cartes  du  même  type.  La  plupart  des  routes  nécessitent  une  série  de  cartes  de  couleur spécifique. Par exemple, les routes bleues sont capturées en posant des cartes Wagon bleues. Certaines routes – en gris sur le plateau - peuvent être capturées en utilisant n’importe quelle série d’une même couleur.
 
@@ -80,6 +80,7 @@ Note importante: Dans une configuration à 2 ou 3 joueurs, seule l’une des rou
 #### Décompte des points
 
 Lorsqu’un  joueur  prend  possession  d’une  route,  il  enregistre  ses points en déplaçant son marqueur de score sur le plateau :
+
 ![](https://i.imgur.com/dmcLw2K.png)
 
 #### Prendre des cartes Destination
