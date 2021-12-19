@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -56,11 +57,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Connection.cs" />
-    <Compile Include="Resource1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource1.resx</DependentUpon>
-    </Compile>
     <Compile Include="Tools\Tools.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\TrainCard.cs" />
@@ -101,10 +97,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resource1.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Resource.resx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -113,6 +106,122 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="images\goal\boston-miami.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\calgary-phoenix.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\calgary-saltlakecity.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\chicago-neworleans.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\chicago-santafe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\dallas-newyork.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\denver-elpaso.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\denver-pittsburgh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\duluth-elpaso.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\duluth-houston.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\helena-losangeles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\kansascity-houston.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\losangeles-chicago.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\losangeles-miami.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\losangeles-newyork.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\montreal-atlanta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\montreal-neworleans.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\newyork-atlanta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\portland-nashville.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\portland-phoenix.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\sanfrancisco-atlanta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\saultstmarie-nashville.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\saultstmarie-oklahomacity.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\seattle-losangeles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\seattle-newyork.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\toronto-miami.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\vancouver-montreal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\vancouver-santafe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\winnipeg-houston.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\goal\winnipeg-littlerock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\train\black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\train\blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\train\green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\train\locomotive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\train\orange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\train\purple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\train\red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\train\white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\train\yellow.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
