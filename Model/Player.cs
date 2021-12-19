@@ -17,15 +17,16 @@ namespace Ticket_to_ride.ModelNs
         public string Name { get; set; }
         public PlayerColor Color { get; set; }
         public int RemainingTrains { get; set; } = 45;
+        public int Score { get; set; } = 0;
 
         public List<TrainCard> Hand { get; set; } = new List<TrainCard>();
 
-        public List<GoalCard> DestinationCards { get; set; } = new List<GoalCard>();
+        public List<GoalCard> GoalCards { get; set; } = new List<GoalCard>();
 
         public Player(string name, PlayerColor color, Board board)
         {
             Name = name;
-            DestinationCards = Tools<GoalCard>.Pop(board.GoalCards, 3).ToList();
+            GoalCards = Tools<GoalCard>.Pop(board.GoalCards, 3); // TODO Player can choose at least 2 of the 3 cards
             Color = color;
             Board = board;
         }

@@ -13,5 +13,10 @@ namespace Ticket_to_ride.ModelNs
     public class TrainCard
     {
         public TrainColor Color { get; set; }
+
+        public TrainCard(TrainColor color)
+        {
+            Color = color;
+        }
     }
 }
