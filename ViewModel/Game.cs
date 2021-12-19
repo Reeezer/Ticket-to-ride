@@ -14,6 +14,7 @@ namespace Ticket_to_ride.ViewModelNs
     {
         public Board Board { get; set; }
         public List<Player> Players { get; set; }
+        public int Turn { get; set; }
 
         public Game()
         {
@@ -23,6 +24,7 @@ namespace Ticket_to_ride.ViewModelNs
         public void Initialize()
         {
             // Has to be done on every game start, before everything !
+            Turn = 0;
             Board = new Board();
             Players = new List<Player>();
         }
@@ -47,9 +49,10 @@ namespace Ticket_to_ride.ViewModelNs
         }
 
         // Summary informations on every players
-        public List<Dictionary<string, string>> PlayersSummaries() // TODO maybe go to JSON ?
+        // TODO maybe go to JSON ?
+        public List<Dictionary<string, string>> PlayersSummaries()
         {
-            List<Dictionary<string, string>> summaries = new List<Dictionary<string, string>>();
+            List<Dictionary<string, string>> playersSummaries = new List<Dictionary<string, string>>();
             
             for (int i = 0; i < Players.Count; i++)
             {
@@ -63,14 +66,15 @@ namespace Ticket_to_ride.ViewModelNs
                 summary.Add("nbCards", player.Hand.Count.ToString());
                 summary.Add("remainnigGoalCards", player.GoalCards.Count.ToString());
 
-                summaries.Add(summary);
+                playersSummaries.Add(summary);
             }
 
-            return summaries;
+            return playersSummaries;
         }
 
         // Real informations for the current playing player
-        public Dictionary<string, string> PlayerInformations(int playerIndex) // TODO maybe go to JSON ?
+        // TODO maybe go to JSON ?
+        public Dictionary<string, string> PlayerInformations(int playerIndex) 
         {
             Dictionary<string, string> informations = new Dictionary<string, string>();
             Player player = Players[playerIndex];
