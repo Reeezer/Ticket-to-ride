@@ -22,6 +22,17 @@ Les aventuriers du rail est un jeu de société de plateau, il contient donc
     - 30 cartes Destination
 - 5 Marqueurs de score en bois (1 pour chaque joueur, bleu, rouge, vert, jaune et noir)
 
+### Préparation du jeu
+
+Mélangez les cartes Wagon et distribuez-en 4 à chacun des joueurs. Placez le reste des cartes près du plateau, face cachée, puis retournez les cinq premières car-
+tes que vous posez à côté, face visible.
+
+Posez la carte Chemin le plus long, face visible, à côté du plateau.
+
+Mélangez les cartes Destination et distribuez-en 3 à chaque joueur. Chaque joueur peut maintenant regarder ses destinations afin de décider lesquelles conserver. Il doit garder au moins 2 cartes, mais peut conserver les 3 s’il le souhaite. Chaque carte rendue est placée sous le talon des cartes Destination. Le paquet de cartes Destination est ensuite placé face cachée à côté du plateau. Les joueurs gardent leurs destinations secrètes jusqu'à la fin du jeu.
+
+Vous êtes maintenant prêts à jouer.
+
 ### But du jeu
 
 Le but du jeu est d’obtenir le plus de points. On gagne des points de la manière suivante :
