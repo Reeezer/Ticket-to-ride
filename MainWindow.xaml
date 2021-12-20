@@ -8,6 +8,6 @@
         Title="Ticket to ride" Height="450" Width="800">
 
     <Grid Margin="16">
-        <views:CreateGameView/>
+        <views:CreateGameView DataContext="{Binding CurrentViewModel}"/>
     </Grid>
 </Window>

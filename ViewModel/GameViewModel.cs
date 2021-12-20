@@ -10,8 +10,10 @@ using Ticket_to_ride.Tools;
 
 namespace Ticket_to_ride.ViewModel
 {
-    public class Game : ViewModelBase
+    public class GameViewModel : ViewModelBase
     {
+        public List<Player> Players { get; set; }
+
         public Board Board
         {
             get => Board;
@@ -19,16 +21,6 @@ namespace Ticket_to_ride.ViewModel
             {
                 Board = value;
                 OnPropertyChanged(nameof(Board));
-            }
-        }
-
-        public List<Player> Players
-        {
-            get => Players;
-            set
-            {
-                Players = value;
-                OnPropertyChanged(nameof(Players));
             }
         }
 
@@ -42,7 +34,7 @@ namespace Ticket_to_ride.ViewModel
             }
         }
 
-        public Game()
+        public GameViewModel()
         {
             Initialize();
         }

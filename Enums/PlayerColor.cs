@@ -16,6 +16,9 @@ namespace Ticket_to_ride.Enums
         Blue,
         Yellow,
         Green,
-        Black
+        Black,
+        Orange,
+        Purple,
+        Lime
     }
 }

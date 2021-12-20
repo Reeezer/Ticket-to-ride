@@ -12,17 +12,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Ticket_to_ride.Enums;
 
 namespace Ticket_to_ride.View
 {
     /// <summary>
-    /// Logique d'interaction pour MainMenuView.xaml
+    /// Logique d'interaction pour PlayerView.xaml
     /// </summary>
-    public partial class MainMenuView : UserControl
+    public partial class PlayerView : UserControl
     {
-        public MainMenuView()
+        public PlayerView()
         {
             InitializeComponent();
+       
+            colorBox.ItemsSource = Enum.GetValues(typeof(PlayerColor)).Cast<PlayerColor>();
         }
     }
 }

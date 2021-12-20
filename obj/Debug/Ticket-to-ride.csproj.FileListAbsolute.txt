@@ -20,3 +20,5 @@ C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\View\MainMenuV
 C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\App.baml
 C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\View\CreateGameView.g.cs
 C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\View\CreateGameView.baml
+C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\View\PlayerView.g.cs
+C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\View\PlayerView.baml
