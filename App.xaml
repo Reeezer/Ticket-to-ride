@@ -4,6 +4,19 @@
              xmlns:local="clr-namespace:Ticket_to_ride"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Padding" Value="8 4"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="3"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+
+        <Style TargetType="{x:Type TextBlock}" x:Key="Title">
+            <Setter Property="FontSize" Value="32"/>
+        </Style>
     </Application.Resources>
 </Application>

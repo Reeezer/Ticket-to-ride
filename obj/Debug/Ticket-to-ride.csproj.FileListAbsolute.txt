@@ -1,11 +1,10 @@
-C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\bin\Debug\Ticket-to-ride.exe.config
-C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\bin\Debug\Ticket-to-ride.exe
-C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\bin\Debug\Ticket-to-ride.pdb
-C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\Ticket-to-ride.csproj.AssemblyReference.cache
 C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\MainWindow.g.cs
 C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\App.g.cs
 C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\Ticket-to-ride_MarkupCompile.cache
 C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\Ticket-to-ride_MarkupCompile.lref
+C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\bin\Debug\Ticket-to-ride.exe.config
+C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\bin\Debug\Ticket-to-ride.exe
+C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\bin\Debug\Ticket-to-ride.pdb
 C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\MainWindow.baml
 C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\Ticket-to-ride.g.resources
 C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\Ticket_to_ride.Properties.Resources.resources
@@ -14,3 +13,10 @@ C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\Ticket-to-ride
 C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\Ticket-to-ride.csproj.CoreCompileInputs.cache
 C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\Ticket-to-ride.exe
 C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\Ticket-to-ride.pdb
+C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\Ticket-to-ride.csproj.AssemblyReference.cache
+C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\View\MainMenuView.g.cs
+C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\View\MainMenuView.baml
+C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\App.baml
+C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\View\CreateGameView.g.cs
+C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\obj\Debug\View\CreateGameView.baml

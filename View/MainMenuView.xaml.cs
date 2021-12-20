@@ -10,13 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Ticket_to_ride.View
 {
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Logique d'interaction pour MainMenuView.xaml
+    /// </summary>
+    public partial class MenuView : UserControl
     {
-        public MainWindow()
+        public MenuView()
         {
             InitializeComponent();
         }

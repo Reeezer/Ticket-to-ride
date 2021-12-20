@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Ticket_to_ride.EnumsNs;
-using Ticket_to_ride.ViewModelNs;
-using Ticket_to_ride.ToolsNs;
+using Ticket_to_ride.Enums;
+using Ticket_to_ride.ViewModel;
+using Ticket_to_ride.Tools;
 
-namespace Ticket_to_ride.ModelNs
+namespace Ticket_to_ride.Model
 {
     public class Player
     {
@@ -26,7 +26,7 @@ namespace Ticket_to_ride.ModelNs
         public Player(string name, PlayerColor color, Board board)
         {
             Name = name;
-            GoalCards = Tools<GoalCard>.Pop(board.GoalCards, 3); // TODO Player can choose at least 2 of the 3 cards
+            GoalCards = ToolBox<GoalCard>.Pop(board.GoalCards, 3); // TODO Player can choose at least 2 of the 3 cards
             Color = color;
             Board = board;
         }

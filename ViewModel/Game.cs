@@ -4,17 +4,43 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Ticket_to_ride.ModelNs;
-using Ticket_to_ride.EnumsNs;
-using Ticket_to_ride.ToolsNs;
+using Ticket_to_ride.Model;
+using Ticket_to_ride.Enums;
+using Ticket_to_ride.Tools;
 
-namespace Ticket_to_ride.ViewModelNs
+namespace Ticket_to_ride.ViewModel
 {
-    class Game
+    public class Game : ViewModelBase
     {
-        public Board Board { get; set; }
-        public List<Player> Players { get; set; }
-        public int Turn { get; set; }
+        public Board Board
+        {
+            get => Board;
+            set
+            {
+                Board = value;
+                OnPropertyChanged(nameof(Board));
+            }
+        }
+
+        public List<Player> Players
+        {
+            get => Players;
+            set
+            {
+                Players = value;
+                OnPropertyChanged(nameof(Players));
+            }
+        }
+
+        public int Turn
+        {
+            get => Turn;
+            set
+            {
+                Turn = value;
+                OnPropertyChanged(nameof(Turn));
+            }
+        }
 
         public Game()
         {
@@ -39,7 +65,7 @@ namespace Ticket_to_ride.ViewModelNs
             // Distribute 4 cards to everyone
             for (int i = 0; i < 4; i++)
             {
-                List<TrainCard> cards = Tools<TrainCard>.Pop(Board.Deck, Players.Count);
+                List<TrainCard> cards = ToolBox<TrainCard>.Pop(Board.Deck, Players.Count);
 
                 for (int j = 0; j < Players.Count; j++)
                 {
