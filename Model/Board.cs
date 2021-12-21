@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Ticket_to_ride.EnumsNs;
-using Ticket_to_ride.ModelNs;
-using Ticket_to_ride.ViewModelNs;
-using Ticket_to_ride.ToolsNs;
+using Ticket_to_ride.Enums;
+using Ticket_to_ride.Model;
+using Ticket_to_ride.ViewModel;
+using Ticket_to_ride.Tools;
 
-namespace Ticket_to_ride.ModelNs
+namespace Ticket_to_ride.Model
 {
     public class Board
     {
@@ -167,7 +167,7 @@ namespace Ticket_to_ride.ModelNs
             GoalCards.Add(new GoalCard(CityName.LosAngeles, CityName.Miami, 20));
             GoalCards.Add(new GoalCard(CityName.Portland, CityName.Phoenix, 11));
 
-            Tools<GoalCard>.Shuffle(GoalCards);
+            ToolBox<GoalCard>.Shuffle(GoalCards);
             #endregion
         }
 
@@ -184,7 +184,7 @@ namespace Ticket_to_ride.ModelNs
             Deck.AddRange(FillColorTrainCards(TrainColor.White, 12));
             Deck.AddRange(FillColorTrainCards(TrainColor.Locomotive, 14));
 
-            Tools<TrainCard>.Shuffle(Deck);
+            ToolBox<TrainCard>.Shuffle(Deck);
             #endregion
         }
 
@@ -202,12 +202,12 @@ namespace Ticket_to_ride.ModelNs
         {
             while (ShownCards.Count < 5)
             {
-                List<TrainCard> newCard = Tools<TrainCard>.Pop(Deck, 1); // only 1 car is popped in the list
+                List<TrainCard> newCard = ToolBox<TrainCard>.Pop(Deck, 1); // only 1 car is popped in the list
                 ShownCards.AddRange(newCard);
 
                 if (Deck.Count == 0)
                 {
-                    Tools<TrainCard>.Shuffle(DiscardCards);
+                    ToolBox<TrainCard>.Shuffle(DiscardCards);
 
                     Deck = DiscardCards;
                     DiscardCards = new List<TrainCard>();

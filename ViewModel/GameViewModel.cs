@@ -4,19 +4,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Ticket_to_ride.ModelNs;
-using Ticket_to_ride.EnumsNs;
-using Ticket_to_ride.ToolsNs;
+using Ticket_to_ride.Model;
+using Ticket_to_ride.Enums;
+using Ticket_to_ride.Tools;
 
-namespace Ticket_to_ride.ViewModelNs
+namespace Ticket_to_ride.ViewModel
 {
-    class Game
+    public class GameViewModel : ViewModelBase
     {
-        public Board Board { get; set; }
         public List<Player> Players { get; set; }
-        public int Turn { get; set; }
 
-        public Game()
+        private Board board;
+        public Board Board
+        {
+            get => board;
+            set
+            {
+                board = value;
+                OnPropertyChanged(nameof(board));
+            }
+        }
+
+        private int turn;
+        public int Turn
+        {
+            get => turn;
+            set
+            {
+                turn = value;
+                OnPropertyChanged(nameof(turn));
+            }
+        }
+
+        public GameViewModel()
         {
             Initialize();
         }
@@ -24,14 +44,14 @@ namespace Ticket_to_ride.ViewModelNs
         public void Initialize()
         {
             // Has to be done on every game start, before everything !
-            Turn = 0;
-            Board = new Board();
+            turn = 0;
+            board = new Board();
             Players = new List<Player>();
         }
 
         public void CreatePlayer(string name, PlayerColor color)
         {
-            Players.Add(new Player(name, color, Board));
+            Players.Add(new Player(name, color, board));
         }
 
         public void DistributeCards()
@@ -39,7 +59,7 @@ namespace Ticket_to_ride.ViewModelNs
             // Distribute 4 cards to everyone
             for (int i = 0; i < 4; i++)
             {
-                List<TrainCard> cards = Tools<TrainCard>.Pop(Board.Deck, Players.Count);
+                List<TrainCard> cards = ToolBox<TrainCard>.Pop(board.Deck, Players.Count);
 
                 for (int j = 0; j < Players.Count; j++)
                 {

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ticket_to_ride.ToolsNs
+namespace Ticket_to_ride.Tools
 {
-    public static class Tools<T>
+    public static class ToolBox<T>
     {
         public static void Shuffle(List<T> list)
         {
