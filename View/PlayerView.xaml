@@ -6,13 +6,13 @@
              xmlns:enums="clr-namespace:Ticket_to_ride.Enums"
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" >
-    <Control.Resources>
+    <!--<Control.Resources>
         <ObjectDataProvider x:Key="playerColors" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
             <ObjectDataProvider.MethodParameters>
                 <x:Type TypeName="enums:PlayerColor"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
-    </Control.Resources>
+    </Control.Resources>-->
     
     <Grid>
         <Grid.ColumnDefinitions>

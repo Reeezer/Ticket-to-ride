@@ -18,9 +18,9 @@ namespace Ticket_to_ride.View
     /// <summary>
     /// Logique d'interaction pour CreateGameView.xaml
     /// </summary>
-    public partial class CreateGameView : UserControl
+    public partial class MenuCreateGameView : UserControl
     {
-        public CreateGameView()
+        public MenuCreateGameView()
         {
             InitializeComponent();
         }

@@ -4,10 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:Ticket_to_ride.View"
+        xmlns:viewmodels="clr-namespace:Ticket_to_ride.ViewModel"
         mc:Ignorable="d"
         Title="Ticket to ride" Height="450" Width="800">
 
     <Grid Margin="16">
-        <views:CreateGameView DataContext="{Binding CurrentViewModel}"/>
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type viewmodels:MenuCreateGameViewModel}">
+                <views:MenuCreateGameView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:MenuViewModel}">
+                <views:MenuView/>
+            </DataTemplate>
+        </Grid.Resources>
+
+        <ContentControl Content="{Binding CurrentViewModel}"/>
     </Grid>
 </Window>

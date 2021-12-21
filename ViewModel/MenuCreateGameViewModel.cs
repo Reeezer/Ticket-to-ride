@@ -10,7 +10,7 @@ using Ticket_to_ride.Model;
 
 namespace Ticket_to_ride.ViewModel
 {
-    public class CreateGameViewModel : ViewModelBase
+    public class MenuCreateGameViewModel : ViewModelBase
     {
         private readonly ObservableCollection<PlayerViewModel> players;
         public IEnumerable<PlayerViewModel> Players => players;
@@ -18,21 +18,22 @@ namespace Ticket_to_ride.ViewModel
         public ICommand StartGameCommand { get; }
         public ICommand CancelCommand { get; }
 
-        public CreateGameViewModel()
+        public MenuCreateGameViewModel()
         {
             players = new ObservableCollection<PlayerViewModel>();
-            StartGameCommand = new StartGameCommand(this);
-        } 
 
-        public void createGame()
-        { 
-            Board board = new Board();
-
+            StartGameCommand = new NavigationCommand(CreateGame);
+            CancelCommand = new NavigationCommand(Cancel);
         }
 
-        public void addPlayer()
+        private GameViewModel CreateGame()
         {
+            return new GameViewModel();
+        }
 
+        private MenuViewModel Cancel()
+        {
+            return new MenuViewModel();
         }
     }
 }

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\leon.muller\Desktop\3257.1 .NET\Ticket-to-ride\App.xaml
-4-379046769
+4-1230447034
 
-25-2053892402
+28459669661
 141183416626
-MainWindow.xaml;View\CreateGameView.xaml;View\MainMenuView.xaml;View\PlayerView.xaml;
+MainWindow.xaml;View\MenuCreateGameView.xaml;View\MenuView.xaml;View\PlayerView.xaml;
 
-True
+False
 

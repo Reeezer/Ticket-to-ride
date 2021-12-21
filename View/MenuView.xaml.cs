@@ -18,9 +18,9 @@ namespace Ticket_to_ride.View
     /// <summary>
     /// Logique d'interaction pour MainMenuView.xaml
     /// </summary>
-    public partial class MainMenuView : UserControl
+    public partial class MenuView : UserControl
     {
-        public MainMenuView()
+        public MenuView()
         {
             InitializeComponent();
         }

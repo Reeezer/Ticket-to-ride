@@ -56,13 +56,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\ExitCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
-    <Compile Include="Commands\StartGameCommand.cs" />
+    <Compile Include="Commands\NavigationCommand.cs" />
     <Compile Include="Model\Connection.cs" />
+    <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="Tools\Tools.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\TrainCard.cs" />
-    <Compile Include="ViewModel\CreateGameViewModel.cs" />
+    <Compile Include="ViewModel\MenuViewModel.cs" />
+    <Compile Include="ViewModel\MenuCreateGameViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\PlayerViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
@@ -77,11 +80,11 @@
     <Compile Include="Enums\CityName.cs" />
     <Compile Include="Enums\TrainColor.cs" />
     <Compile Include="Enums\PlayerColor.cs" />
-    <Compile Include="View\CreateGameView.xaml.cs">
-      <DependentUpon>CreateGameView.xaml</DependentUpon>
+    <Compile Include="View\MenuCreateGameView.xaml.cs">
+      <DependentUpon>MenuCreateGameView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainMenuView.xaml.cs">
-      <DependentUpon>MainMenuView.xaml</DependentUpon>
+    <Compile Include="View\MenuView.xaml.cs">
+      <DependentUpon>MenuView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PlayerView.xaml.cs">
       <DependentUpon>PlayerView.xaml</DependentUpon>
@@ -90,11 +93,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\CreateGameView.xaml">
+    <Page Include="View\MenuCreateGameView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MainMenuView.xaml">
+    <Page Include="View\MenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

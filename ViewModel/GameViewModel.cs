@@ -14,23 +14,25 @@ namespace Ticket_to_ride.ViewModel
     {
         public List<Player> Players { get; set; }
 
+        private Board board;
         public Board Board
         {
-            get => Board;
+            get => board;
             set
             {
-                Board = value;
-                OnPropertyChanged(nameof(Board));
+                board = value;
+                OnPropertyChanged(nameof(board));
             }
         }
 
+        private int turn;
         public int Turn
         {
-            get => Turn;
+            get => turn;
             set
             {
-                Turn = value;
-                OnPropertyChanged(nameof(Turn));
+                turn = value;
+                OnPropertyChanged(nameof(turn));
             }
         }
 
@@ -42,14 +44,14 @@ namespace Ticket_to_ride.ViewModel
         public void Initialize()
         {
             // Has to be done on every game start, before everything !
-            Turn = 0;
-            Board = new Board();
+            turn = 0;
+            board = new Board();
             Players = new List<Player>();
         }
 
         public void CreatePlayer(string name, PlayerColor color)
         {
-            Players.Add(new Player(name, color, Board));
+            Players.Add(new Player(name, color, board));
         }
 
         public void DistributeCards()
@@ -57,7 +59,7 @@ namespace Ticket_to_ride.ViewModel
             // Distribute 4 cards to everyone
             for (int i = 0; i < 4; i++)
             {
-                List<TrainCard> cards = ToolBox<TrainCard>.Pop(Board.Deck, Players.Count);
+                List<TrainCard> cards = ToolBox<TrainCard>.Pop(board.Deck, Players.Count);
 
                 for (int j = 0; j < Players.Count; j++)
                 {
