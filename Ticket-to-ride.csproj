@@ -144,121 +144,127 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\boston-miami.png" />
+    <Resource Include="images\goal\boston-miami.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\calgary-phoenix.png" />
+    <Resource Include="images\goal\calgary-phoenix.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\calgary-saltlakecity.png" />
+    <Resource Include="images\goal\calgary-saltlakecity.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\chicago-neworleans.png" />
+    <Resource Include="images\goal\chicago-neworleans.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\chicago-santafe.png" />
+    <Resource Include="images\goal\chicago-santafe.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\dallas-newyork.png" />
+    <Resource Include="images\goal\dallas-newyork.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\denver-elpaso.png" />
+    <Resource Include="images\goal\denver-elpaso.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\denver-pittsburgh.png" />
+    <Resource Include="images\goal\denver-pittsburgh.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\duluth-elpaso.png" />
+    <Resource Include="images\goal\duluth-elpaso.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\duluth-houston.png" />
+    <Resource Include="images\goal\duluth-houston.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\helena-losangeles.png" />
+    <Resource Include="images\goal\helena-losangeles.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\kansascity-houston.png" />
+    <Resource Include="images\goal\kansascity-houston.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\losangeles-chicago.png" />
+    <Resource Include="images\goal\losangeles-chicago.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\losangeles-miami.png" />
+    <Resource Include="images\goal\losangeles-miami.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\losangeles-newyork.png" />
+    <Resource Include="images\goal\losangeles-newyork.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\montreal-atlanta.png" />
+    <Resource Include="images\goal\montreal-atlanta.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\montreal-neworleans.png" />
+    <Resource Include="images\goal\montreal-neworleans.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\newyork-atlanta.png" />
+    <Resource Include="images\goal\newyork-atlanta.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\portland-nashville.png" />
+    <Resource Include="images\goal\portland-nashville.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\portland-phoenix.png" />
+    <Resource Include="images\goal\portland-phoenix.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\sanfrancisco-atlanta.png" />
+    <Resource Include="images\goal\sanfrancisco-atlanta.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\saultstmarie-nashville.png" />
+    <Resource Include="images\goal\saultstmarie-nashville.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\saultstmarie-oklahomacity.png" />
+    <Resource Include="images\goal\saultstmarie-oklahomacity.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\seattle-losangeles.png" />
+    <Resource Include="images\goal\seattle-losangeles.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\seattle-newyork.png" />
+    <Resource Include="images\goal\seattle-newyork.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\toronto-miami.png" />
+    <Resource Include="images\goal\toronto-miami.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\vancouver-montreal.png" />
+    <Resource Include="images\goal\vancouver-montreal.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\vancouver-santafe.png" />
+    <Resource Include="images\goal\vancouver-santafe.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\winnipeg-houston.png" />
+    <Resource Include="images\goal\winnipeg-houston.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\goal\winnipeg-littlerock.png" />
+    <Resource Include="images\goal\winnipeg-littlerock.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\train\black.png" />
+    <Resource Include="images\train\black.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\train\blue.png" />
+    <Resource Include="images\train\blue.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\train\green.png" />
+    <Resource Include="images\train\green.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\train\locomotive.png" />
+    <Resource Include="images\train\locomotive.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\train\orange.png" />
+    <Resource Include="images\train\orange.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\train\purple.png" />
+    <Resource Include="images\train\purple.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\train\red.png" />
+    <Resource Include="images\train\red.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\train\white.png" />
+    <Resource Include="images\train\white.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\train\yellow.png" />
+    <Resource Include="images\train\yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\map\USA-map.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\USA-map.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

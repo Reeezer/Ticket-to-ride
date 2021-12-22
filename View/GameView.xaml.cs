@@ -23,6 +23,7 @@ namespace Ticket_to_ride.View
         public GameView()
         {
             InitializeComponent();
+            //Purple_train_card.Source = Ticket_to_ride.Properties.Resources
         }
     }
 }

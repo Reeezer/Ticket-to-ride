@@ -217,6 +217,9 @@
   <data name="toronto-miami" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\goal\toronto-miami.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="USA-map" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\map\USA-map.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="vancouver-montreal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\goal\vancouver-montreal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
