@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Ticket_to_ride.Commands;
+using Ticket_to_ride.Enums;
 using Ticket_to_ride.Model;
 
 namespace Ticket_to_ride.ViewModel
@@ -18,6 +19,7 @@ namespace Ticket_to_ride.ViewModel
         private readonly Board board;
 
         public ICommand AddPlayerCommand { get; }
+        public ICommand RemovePlayerCommand { get; }
         public ICommand StartGameCommand { get; }
         public ICommand CancelCommand { get; }
 
@@ -33,6 +35,7 @@ namespace Ticket_to_ride.ViewModel
             StartGameCommand = new NavigationCommand(CreateGame);
             CancelCommand = new NavigationCommand(Cancel);
             AddPlayerCommand = new FunctionCommand(CreatePlayer);
+            RemovePlayerCommand = new FunctionCommand(RemovePlayer);
         }
 
         private GameViewModel CreateGame()
@@ -47,7 +50,18 @@ namespace Ticket_to_ride.ViewModel
 
         private void CreatePlayer()
         {
-            players.Add(new Player(board));
+            if (players.Count < 6)
+            {
+                players.Add(new Player(board));
+            }
+        }
+
+        private void RemovePlayer()
+        {
+            if (players.Count > 2)
+            {
+                _ = players.Remove(players[players.Count - 1]);
+            }
         }
     }
 }

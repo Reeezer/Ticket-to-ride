@@ -31,11 +31,8 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                
-                <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Stretch">
-                    <TextBlock HorizontalAlignment="Center" FontSize="20" Text="{Binding CurrentPlayer.Name}"/>
-                    <TextBlock HorizontalAlignment="Center" FontSize="16" Text="{Binding CurrentPlayer.Color}"/>
-                </StackPanel>
+
+                <TextBlock Grid.Row="0" HorizontalAlignment="Center" FontSize="20" Text="{Binding CurrentPlayer.Name}"/>
 
                 <Grid Grid.Row="1" Margin="0 12 0 0">
                     <Grid.RowDefinitions>
@@ -77,7 +74,6 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
-                        <GridViewColumn Header="Color" DisplayMemberBinding="{Binding Color}" />
                         <GridViewColumn Header="Score" DisplayMemberBinding="{Binding Score}" />
                         <GridViewColumn Header="Trains" DisplayMemberBinding="{Binding RemainingTrains}" />
                         <GridViewColumn Header="Cards" DisplayMemberBinding="{Binding Hand.Count}" />
