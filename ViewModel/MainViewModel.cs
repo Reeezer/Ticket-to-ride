@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Ticket_to_ride.Stores;
 
+/// <summary>
+/// VueModel pour la mainWindow
+/// </summary>
 namespace Ticket_to_ride.ViewModel
 {
     public class MainViewModel : ViewModelBase

@@ -12,6 +12,10 @@ namespace Ticket_to_ride.Commands
     {
         private readonly Func<ViewModelBase> targetedViewModel;
 
+        /// <summary>
+        /// On lui passe une fonction qui lui permet de changer la vue. (faire des appels ou cherger des données avant de changer la vue.)
+        /// </summary>
+        /// <param name="targetedViewModel"></param>
         public NavigationCommand(Func<ViewModelBase> targetedViewModel)
         {
             this.targetedViewModel = targetedViewModel;

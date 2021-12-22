@@ -16,8 +16,10 @@
             <DataTemplate DataType="{x:Type viewmodels:MenuViewModel}">
                 <views:MenuView/>
             </DataTemplate>
+            <!--pout chaque vue à ajouter, il faut mettre une nouvelle balise "DataTemplate" avec le controller correspondant-->
         </Grid.Resources>
 
         <ContentControl Content="{Binding CurrentViewModel}"/>
+        <!-- C'est le currentvuemodel qui vérifie quel controlleur est en charge à un moment donné-->
     </Grid>
 </Window>

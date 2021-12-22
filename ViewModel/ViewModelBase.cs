@@ -5,6 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Toutes les vueModels héritent de cette vuemodel.
+/// Permet de faire le binding avec INotifyPropertyChanged
+/// </summary>
 namespace Ticket_to_ride.ViewModel
 {
     public class ViewModelBase : INotifyPropertyChanged
