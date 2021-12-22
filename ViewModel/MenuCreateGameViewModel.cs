@@ -17,6 +17,7 @@ namespace Ticket_to_ride.ViewModel
         public IEnumerable<Player> Players => players;
 
         private readonly Board board;
+        private int nbPlayer = 1;
 
         public ICommand AddPlayerCommand { get; }
         public ICommand RemovePlayerCommand { get; }
@@ -26,11 +27,9 @@ namespace Ticket_to_ride.ViewModel
         public MenuCreateGameViewModel()
         {
             board = new Board();
-            players = new ObservableCollection<Player>
-            {
-                new Player(board),
-                new Player(board)
-            };
+            players = new ObservableCollection<Player>();
+            CreatePlayer();
+            CreatePlayer();
 
             StartGameCommand = new NavigationCommand(CreateGame);
             CancelCommand = new NavigationCommand(Cancel);
@@ -52,7 +51,7 @@ namespace Ticket_to_ride.ViewModel
         {
             if (players.Count < 6)
             {
-                players.Add(new Player(board));
+                players.Add(new Player($"Player {nbPlayer++}", board));
             }
         }
 
@@ -60,7 +59,15 @@ namespace Ticket_to_ride.ViewModel
         {
             if (players.Count > 2)
             {
-                _ = players.Remove(players[players.Count - 1]);
+                Player playerRemoved = players[players.Count - 1];
+                _ = players.Remove(playerRemoved);
+                nbPlayer--;
+
+                // On a player instantiation, we give him goalCards, so we have to take them back when player is going out
+                foreach (GoalCard goalCard in playerRemoved.GoalCards)
+                {
+                    board.GoalCards.Add(goalCard);
+                }
             }
         }
     }
