@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Ticket_to_ride.View"
+             xmlns:view="clr-namespace:Ticket_to_ride.View" 
+             xmlns:viewmodel="clr-namespace:Ticket_to_ride.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MenuCreateGameViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     
@@ -35,18 +36,36 @@
                 Text="Color"/>
         </Grid>
 
-        <StackPanel Grid.Row="2" Orientation="Vertical">
-            <local:PlayerView 
+        <ListView Grid.Row="2" ItemsSource="{Binding Players}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="150" DisplayMemberBinding="{Binding Name}">
+                        <TextBlock/>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Color}">
+                        <ComboBox/>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <!--<StackPanel Grid.Row="2" Orientation="Vertical">
+            <view:PlayerView 
+                x:Name="player1"
                 Margin="0 8 0 0"/>
-            <local:PlayerView 
+            <view:PlayerView 
+                x:Name="player2"
                 Margin="0 8 0 0"/>
-            <local:PlayerView 
+            <view:PlayerView 
+                x:Name="player3"
                 Margin="0 8 0 0"/>
-            <local:PlayerView 
-                Margin="0 8 0 0"/>
-        </StackPanel>
+        </StackPanel>-->
 
         <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" Margin="0 32 0 0">
+            <Button 
+                Margin="32 0 0 0"
+                Command="{Binding AddPlayerCommand}"
+                Content="Add player"/>
             <Button 
                 Margin="32 0 0 0"
                 Command="{Binding StartGameCommand}"

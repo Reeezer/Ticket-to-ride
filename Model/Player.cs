@@ -32,5 +32,7 @@ namespace Ticket_to_ride.Model
             RemainingTrains = 45;
             Score = 0;
         }
+
+        public Player(Board board) : this("", PlayerColor.Black, board) { }
     }
 }

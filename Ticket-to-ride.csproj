@@ -58,6 +58,7 @@
     </ApplicationDefinition>
     <Compile Include="Commands\ExitCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\FunctionCommand.cs" />
     <Compile Include="Commands\NavigationCommand.cs" />
     <Compile Include="Model\Connection.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
@@ -80,6 +81,9 @@
     <Compile Include="Enums\CityName.cs" />
     <Compile Include="Enums\TrainColor.cs" />
     <Compile Include="Enums\PlayerColor.cs" />
+    <Compile Include="View\GameView.xaml.cs">
+      <DependentUpon>GameView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MenuCreateGameView.xaml.cs">
       <DependentUpon>MenuCreateGameView.xaml</DependentUpon>
     </Compile>
@@ -90,6 +94,10 @@
       <DependentUpon>PlayerView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GameView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

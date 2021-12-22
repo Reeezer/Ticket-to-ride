@@ -12,29 +12,42 @@ namespace Ticket_to_ride.ViewModel
 {
     public class MenuCreateGameViewModel : ViewModelBase
     {
-        private readonly ObservableCollection<PlayerViewModel> players;
-        public IEnumerable<PlayerViewModel> Players => players;
+        private readonly ObservableCollection<Player> players;
+        public IEnumerable<Player> Players => players;
 
+        private readonly Board board;
+
+        public ICommand AddPlayerCommand { get; }
         public ICommand StartGameCommand { get; }
         public ICommand CancelCommand { get; }
 
         public MenuCreateGameViewModel()
         {
-            players = new ObservableCollection<PlayerViewModel>();
+            board = new Board();
+            players = new ObservableCollection<Player>
+            {
+                new Player(board),
+                new Player(board)
+            };
 
             StartGameCommand = new NavigationCommand(CreateGame);
             CancelCommand = new NavigationCommand(Cancel);
+            AddPlayerCommand = new FunctionCommand(CreatePlayer);
         }
 
         private GameViewModel CreateGame()
         {
-            return new GameViewModel();
+            return new GameViewModel(board, Players.ToList());
         }
 
         private MenuViewModel Cancel()
         {
             return new MenuViewModel();
         }
+
+        private void CreatePlayer()
+        {
+            players.Add(new Player(board));
+        }
     }
 }
- 

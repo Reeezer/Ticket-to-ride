@@ -7,11 +7,15 @@ using System.Threading.Tasks;
 using Ticket_to_ride.Model;
 using Ticket_to_ride.Enums;
 using Ticket_to_ride.Tools;
+using System.Windows.Input;
+using Ticket_to_ride.Commands;
 
 namespace Ticket_to_ride.ViewModel
 {
     public class GameViewModel : ViewModelBase
     {
+        public ICommand NextTurnCommand { get; }
+
         public List<Player> Players { get; set; }
 
         private Board board;
@@ -36,22 +40,33 @@ namespace Ticket_to_ride.ViewModel
             }
         }
 
-        public GameViewModel()
+        private Player currentPlayer;
+        public Player CurrentPlayer
         {
+            get => currentPlayer;
+            set
+            {
+                currentPlayer = value;
+                OnPropertyChanged(nameof(currentPlayer));
+            }
+        }
+
+        public GameViewModel(Board board, List<Player> players)
+        {
+            Board = board;
+            Players = players;
+            NextTurnCommand = new FunctionCommand(NextTurn);
+
             Initialize();
         }
 
         public void Initialize()
         {
             // Has to be done on every game start, before everything !
-            turn = 0;
-            board = new Board();
-            Players = new List<Player>();
-        }
+            Turn = 0;
+            CurrentPlayer = Players[Turn];
 
-        public void CreatePlayer(string name, PlayerColor color)
-        {
-            Players.Add(new Player(name, color, board));
+            DistributeCards();
         }
 
         public void DistributeCards()
@@ -59,7 +74,7 @@ namespace Ticket_to_ride.ViewModel
             // Distribute 4 cards to everyone
             for (int i = 0; i < 4; i++)
             {
-                List<TrainCard> cards = ToolBox<TrainCard>.Pop(board.Deck, Players.Count);
+                List<TrainCard> cards = ToolBox<TrainCard>.Pop(Board.Deck, Players.Count);
 
                 for (int j = 0; j < Players.Count; j++)
                 {
@@ -68,55 +83,14 @@ namespace Ticket_to_ride.ViewModel
             }
         }
 
-        // Summary informations on every players
-        // TODO maybe go to JSON ?
-        public List<Dictionary<string, string>> PlayersSummaries()
+        private void NextTurn()
         {
-            List<Dictionary<string, string>> playersSummaries = new List<Dictionary<string, string>>();
-            
-            for (int i = 0; i < Players.Count; i++)
+            Turn += 1;
+            if (Turn == Players.Count)
             {
-                Dictionary<string, string> summary = new Dictionary<string, string>();
-                Player player = Players[i];
-
-                summary.Add("name", player.Name);
-                summary.Add("color", player.Color.ToString());
-                summary.Add("score", player.Score.ToString());
-                summary.Add("remainingTrains", player.RemainingTrains.ToString());
-                summary.Add("nbCards", player.Hand.Count.ToString());
-                summary.Add("remainnigGoalCards", player.GoalCards.Count.ToString());
-
-                playersSummaries.Add(summary);
+                Turn = 0;
             }
-
-            return playersSummaries;
-        }
-
-        // Real informations for the current playing player
-        // TODO maybe go to JSON ?
-        public Dictionary<string, string> PlayerInformations(int playerIndex) 
-        {
-            Dictionary<string, string> informations = new Dictionary<string, string>();
-            Player player = Players[playerIndex];
-
-            informations.Add("name", player.Name);
-            informations.Add("color", player.Color.ToString());
-            informations.Add("score", player.Score.ToString());
-            informations.Add("remainingTrains", player.RemainingTrains.ToString());
-
-            // Display all train cards
-            for (int i = 0; i < player.Hand.Count; i++)
-            {
-                informations.Add("trainCard" + i, player.Hand[i].ToString());
-            }
-
-            // Display all goal cards
-            for (int i = 0; i < player.GoalCards.Count; i++)
-            {
-                informations.Add("goalCard" + i, player.GoalCards[i].ToString());
-            }
-
-            return informations;
+            CurrentPlayer = Players[Turn];
         }
     }
 }

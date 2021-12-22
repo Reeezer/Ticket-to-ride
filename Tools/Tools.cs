@@ -15,7 +15,7 @@ namespace Ticket_to_ride.Tools
 
             for (int i = 0; i < n; ++i)
             {
-                int k = random.Next(n + 1);
+                int k = random.Next(n);
 
                 T temp = list[i];
                 list[i] = list[k];
