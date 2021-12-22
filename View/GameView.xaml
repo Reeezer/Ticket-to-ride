@@ -1,11 +1,11 @@
 ﻿<UserControl x:Class="Ticket_to_ride.View.GameView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:Ticket_to_ride.View"
              xmlns:viewmodels="clr-namespace:Ticket_to_ride.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodels:GameViewModel}"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="700" d:DesignWidth="1200">
 
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -32,10 +32,9 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Stretch">
-                    <TextBlock HorizontalAlignment="Center" FontSize="20" Text="{Binding CurrentPlayer.Name}"/>
-                    <TextBlock HorizontalAlignment="Center" FontSize="16" Text="{Binding CurrentPlayer.Color}"/>
-                </StackPanel>
+
+                <TextBlock Grid.Row="0" HorizontalAlignment="Center" FontSize="20" Text="{Binding CurrentPlayer.Name}"/>
+
 
                 <Grid Grid.Row="1" Margin="0 12 0 0">
                     <Grid.RowDefinitions>
@@ -73,7 +72,6 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
-                        <GridViewColumn Header="Color" DisplayMemberBinding="{Binding Color}" />
                         <GridViewColumn Header="Score" DisplayMemberBinding="{Binding Score}" />
                         <GridViewColumn Header="Trains" DisplayMemberBinding="{Binding RemainingTrains}" />
                         <GridViewColumn Header="Cards" DisplayMemberBinding="{Binding Hand.Count}" />

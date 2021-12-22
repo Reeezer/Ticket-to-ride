@@ -15,7 +15,6 @@ namespace Ticket_to_ride.Model
         public Board Board { get; set; }
 
         public string Name { get; set; }
-        public PlayerColor Color { get; set; }
         public int RemainingTrains { get; set; }
         public int Score { get; set; }
 
@@ -23,16 +22,13 @@ namespace Ticket_to_ride.Model
 
         public List<GoalCard> GoalCards { get; set; } = new List<GoalCard>();
 
-        public Player(string name, PlayerColor color, Board board)
+        public Player(string name, Board board)
         {
             Name = name;
             GoalCards = ToolBox<GoalCard>.Pop(board.GoalCards, 3); // TODO Player can choose at least 2 of the 3 cards
-            Color = color;
             Board = board;
             RemainingTrains = 45;
             Score = 0;
         }
-
-        public Player(Board board) : this("", PlayerColor.Black, board) { }
     }
 }
