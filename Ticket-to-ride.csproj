@@ -60,8 +60,11 @@
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\FunctionCommand.cs" />
     <Compile Include="Commands\NavigationCommand.cs" />
+    <Compile Include="Model\City.cs" />
+    <Compile Include="Model\PlayerColor.cs" />
     <Compile Include="Model\Connection.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
+    <Compile Include="Tools\MathConverter.cs" />
     <Compile Include="Tools\Tools.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\TrainCard.cs" />

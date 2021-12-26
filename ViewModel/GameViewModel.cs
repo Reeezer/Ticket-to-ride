@@ -9,6 +9,7 @@ using Ticket_to_ride.Enums;
 using Ticket_to_ride.Tools;
 using System.Windows.Input;
 using Ticket_to_ride.Commands;
+using System.Windows.Data;
 
 namespace Ticket_to_ride.ViewModel
 {
@@ -17,6 +18,8 @@ namespace Ticket_to_ride.ViewModel
         public ICommand NextTurnCommand { get; }
 
         public List<Player> Players { get; set; }
+        public List<City> Cities => board.Cities;
+        public List<Connection> Connections => board.Connections;
 
         private Board board;
         public Board Board
@@ -91,6 +94,14 @@ namespace Ticket_to_ride.ViewModel
                 Turn = 0;
             }
             CurrentPlayer = Players[Turn];
+        }
+
+        private void DrawCities()
+        {
+            foreach (City city in Board.Cities)
+            {
+                
+            }
         }
     }
 }

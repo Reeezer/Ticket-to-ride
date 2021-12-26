@@ -23,7 +23,20 @@ namespace Ticket_to_ride.View
         public GameView()
         {
             InitializeComponent();
-            //Purple_train_card.Source = Ticket_to_ride.Properties.Resources
+
+            //DrawRectangle(10.0, 10.0, -10.0, -10.0);
+        }
+
+        // https://stackoverflow.com/questions/7854043/drawing-rectangle-between-two-points-with-arbitrary-width
+        private void DrawRectangle(double x1, double y1, double x2, double y2)
+        {
+            Polyline polyline = new Polyline();
+            polyline.Points.Add(new Point(x1, y1));
+            polyline.Points.Add(new Point(x2, y2));
+            polyline.Stroke = Brushes.Blue;
+            polyline.StrokeThickness = 10.0;
+
+            //CanvasConnections.Children.Add(polyline);
         }
     }
 }

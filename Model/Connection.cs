@@ -13,35 +13,36 @@ namespace Ticket_to_ride.Model
 {
     public class Connection
     {
-        public CityName Origin { get; set; }
-        public CityName Destination { get; set; }
-        public TrainColor Color { get; set; }
-        public int Length { get; set; }
+        public City Origin { get; }
+        public City Destination { get; }
+        public TrainColor Color { get; }
+        public PlayerColor PlayerColor { get; set; } = PlayerColor.None;
+        public int Length { get; }
         public bool IsEmpty { get; set; } = true;
-        
+
         public int Points
-        { 
+        {
             get
             {
                 switch (Length)
-                { 
-                    case 2: 
+                {
+                    case 2:
                         return 2;
-                    case 3: 
+                    case 3:
                         return 4;
-                    case 4: 
+                    case 4:
                         return 7;
-                    case 5: 
+                    case 5:
                         return 10;
-                    case 6: 
+                    case 6:
                         return 15;
-                    default: 
+                    default:
                         return 1;
                 }
             }
         }
 
-        public Connection(CityName origin, CityName destination, TrainColor color, int length)
+        public Connection(City origin, City destination, TrainColor color, int length)
         {
             Origin = origin;
             Destination = destination;
