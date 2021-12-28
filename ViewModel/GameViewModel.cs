@@ -10,6 +10,7 @@ using Ticket_to_ride.Tools;
 using System.Windows.Input;
 using Ticket_to_ride.Commands;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace Ticket_to_ride.ViewModel
 {
@@ -106,16 +107,27 @@ namespace Ticket_to_ride.ViewModel
                 Turn = 0;
             }
             CurrentPlayer = Players[Turn];
+            SelectedConnection = null;
         }
 
         public void SelectConnection(City origin, City destination)
         {
-            if (selectedConnection != null && SelectedConnection.Cities[0].Name == origin.Name && SelectedConnection.Cities[1].Name == destination.Name)
+            // Check if not already the current selected
+            if (selectedConnection != null && SelectedConnection.Cities[0].Equals(origin) && SelectedConnection.Cities[1].Equals(destination))
             {
                 return;
             }
 
-            SelectedConnection = Connections.First(c => c.Cities[0].Name == origin.Name && c.Cities[1].Name == destination.Name);
+            Connection connectionToBeSelected = Connections.First(c => c.Cities[0].Equals(origin) && c.Cities[1].Equals(destination));
+
+            // Can't select if already claimed by a player
+            if (!connectionToBeSelected.IsEmpty)
+            {
+                return;
+            }
+
+            SelectedConnection = connectionToBeSelected;
+            Console.WriteLine($"[{CurrentPlayer}] Select: {SelectedConnection}");
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Ticket_to_ride.Model
     {
         public List<City> Cities { get; }
         public SolidColorBrush TrainColor { get; }
-        public SolidColorBrush PlayerColor { get; set; } = new SolidColorBrush(Colors.Black);
+        public SolidColorBrush PlayerColor { get; set; } = null;
         public int Length { get; }
         public bool IsEmpty { get; set; } = true;
 
@@ -52,6 +52,26 @@ namespace Ticket_to_ride.Model
 
             TrainColor = new SolidColorBrush(color);
             Length = length;
+        }
+
+        public override string ToString()
+        {
+            return $"{Cities[0]} - {Cities[1]}";
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Connection);
+        }
+
+        public bool Equals(Connection connection2)
+        {
+            return connection2 != null && Cities[0].Equals(connection2.Cities[0]) && Cities[1].Equals(connection2.Cities[1]) && TrainColor.Color == connection2.TrainColor.Color && Length == connection2.Length;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Cities, TrainColor, PlayerColor, Length, IsEmpty);
         }
     }
 }

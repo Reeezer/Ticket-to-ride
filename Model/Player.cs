@@ -30,5 +30,10 @@ namespace Ticket_to_ride.Model
             RemainingTrains = 45;
             Score = 0;
         }
+
+        public override string ToString()
+        {
+            return $"{Name}";
+        }
     }
 }

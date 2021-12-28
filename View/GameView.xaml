@@ -72,7 +72,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <!--<Image Grid.Column="0" x:Name="MapImage" Source="/Ticket-to-ride;component/images/map/USA-map.png -->
+                <!--<Image Grid.Column="0" x:Name="MapImage" Source="/Ticket-to-ride;component/images/map/USA-map.png" Width="800" Height="500"/>-->
                 <!-- Connections between cities -->
                 <ItemsControl Grid.Column="0" ItemsSource="{Binding Connections}" Width="800" Height="500">
                     <ItemsControl.ItemsPanel>
@@ -86,7 +86,8 @@
                                   X1="{Binding Cities[0].X}" Y1="{Binding Cities[0].Y}"
                                   X2="{Binding Cities[1].X}" Y2="{Binding Cities[1].Y}"
                                   Stroke="{Binding TrainColor}" StrokeThickness="10"
-                                  MouseUp="LineClicked"/>
+                                  MouseUp="LineClicked">
+                            </Line>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
