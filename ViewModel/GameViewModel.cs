@@ -9,6 +9,8 @@ using Ticket_to_ride.Enums;
 using Ticket_to_ride.Tools;
 using System.Windows.Input;
 using Ticket_to_ride.Commands;
+using System.Windows.Data;
+using System.Windows.Media;
 
 namespace Ticket_to_ride.ViewModel
 {
@@ -17,6 +19,8 @@ namespace Ticket_to_ride.ViewModel
         public ICommand NextTurnCommand { get; }
 
         public List<Player> Players { get; set; }
+        public List<City> Cities => board.Cities;
+        public List<Connection> Connections => board.Connections;
 
         private Board board;
         public Board Board
@@ -51,6 +55,17 @@ namespace Ticket_to_ride.ViewModel
             }
         }
 
+        private Connection selectedConnection;
+        public Connection SelectedConnection
+        {
+            get => selectedConnection;
+            set
+            {
+                selectedConnection = value;
+                OnPropertyChanged(nameof(selectedConnection));
+            }
+        }
+
         public GameViewModel(Board board, List<Player> players)
         {
             Board = board;
@@ -65,6 +80,7 @@ namespace Ticket_to_ride.ViewModel
             // Has to be done on every game start, before everything !
             Turn = 0;
             CurrentPlayer = Players[Turn];
+            SelectedConnection = null;
 
             DistributeCards();
         }
@@ -91,6 +107,27 @@ namespace Ticket_to_ride.ViewModel
                 Turn = 0;
             }
             CurrentPlayer = Players[Turn];
+            SelectedConnection = null;
+        }
+
+        public void SelectConnection(City origin, City destination)
+        {
+            // Check if not already the current selected
+            if (selectedConnection != null && SelectedConnection.Cities[0].Equals(origin) && SelectedConnection.Cities[1].Equals(destination))
+            {
+                return;
+            }
+
+            Connection connectionToBeSelected = Connections.First(c => c.Cities[0].Equals(origin) && c.Cities[1].Equals(destination));
+
+            // Can't select if already claimed by a player
+            if (!connectionToBeSelected.IsEmpty)
+            {
+                return;
+            }
+
+            SelectedConnection = connectionToBeSelected;
+            Console.WriteLine($"[{CurrentPlayer}] Select: {SelectedConnection}");
         }
     }
 }

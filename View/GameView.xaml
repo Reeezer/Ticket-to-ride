@@ -4,9 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:Ticket_to_ride.View"
+             xmlns:tools="clr-namespace:Ticket_to_ride.Tools"
              xmlns:viewmodels="clr-namespace:Ticket_to_ride.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodels:GameViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="700" d:DesignWidth="1200">
+
+    <UserControl.Resources>
+        <tools:MathConverter x:Key="MathConverter" />
+    </UserControl.Resources>
 
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.RowDefinitions>
@@ -16,6 +21,11 @@
         </Grid.RowDefinitions>
 
         <!-- Cards to pick up -->
+        <Button
+            Grid.Row="0"
+            Content="Turn"
+            Command="{Binding NextTurnCommand}"
+            Margin="0 24 0 0"/>
 
         <!-- Center pane -->
         <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 24 0 24">
@@ -32,9 +42,7 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-
                 <TextBlock Grid.Row="0" HorizontalAlignment="Center" FontSize="20" Text="{Binding CurrentPlayer.Name}"/>
-
 
                 <Grid Grid.Row="1" Margin="0 12 0 0">
                     <Grid.RowDefinitions>
@@ -63,12 +71,68 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Image x:Name="MapImage" Source="/Ticket-to-ride;component/images/map/USA-map.png"/>
 
+                <!--<Image Grid.Column="0" x:Name="MapImage" Source="/Ticket-to-ride;component/images/map/USA-map.png" Width="800" Height="500"/>-->
+                <!-- Connections between cities -->
+                <ItemsControl Grid.Column="0" ItemsSource="{Binding Connections}" Width="800" Height="500">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Canvas/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Line Tag="{Binding Cities}"
+                                  X1="{Binding Cities[0].X}" Y1="{Binding Cities[0].Y}"
+                                  X2="{Binding Cities[1].X}" Y2="{Binding Cities[1].Y}"
+                                  Stroke="{Binding TrainColor}" StrokeThickness="10"
+                                  MouseUp="LineClicked">
+                            </Line>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <!-- Cities points -->
+                <ItemsControl Grid.Column="0" ItemsSource="{Binding Cities}" Width="800" Height="500">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Canvas/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemContainerStyle>
+                        <Style TargetType="ContentPresenter">
+                            <Setter Property="Canvas.Left" Value="{Binding Path=X, Converter={StaticResource MathConverter}, ConverterParameter=@VALUE-8}"/>
+                            <Setter Property="Canvas.Top" Value="{Binding Path=Y, Converter={StaticResource MathConverter}, ConverterParameter=@VALUE-8}"/>
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Ellipse Width="15" Height="15" Fill="Red" Stroke="Black" StrokeThickness="1"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <!-- Cities names -->
+                <ItemsControl Grid.Column="0" ItemsSource="{Binding Cities}" Width="800" Height="500">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Canvas/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemContainerStyle>
+                        <Style TargetType="ContentPresenter">
+                            <Setter Property="Canvas.Left" Value="{Binding X, Converter={StaticResource MathConverter}, ConverterParameter=@VALUE-20}"/>
+                            <Setter Property="Canvas.Top" Value="{Binding Y, Converter={StaticResource MathConverter}, ConverterParameter=@VALUE+5}"/>
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </Grid>
 
             <!-- Players summaries -->
-            <ListView Grid.Column="2" ItemsSource="{Binding Players}" Margin="0,0,0,29">
+            <ListView Grid.Column="2" ItemsSource="{Binding Players}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
@@ -82,7 +146,7 @@
         </Grid>
 
         <!-- Hand cards -->
-        <Grid Grid.Row="2" Margin="0,24" HorizontalAlignment="Center">
+        <Grid Grid.Row="2" Margin="0 24 0 0" HorizontalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -97,6 +161,7 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
+
             <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" AutomationProperties.Name="Orange_train_counter" Content="1" />
             <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" AutomationProperties.Name="Purple_train_counter" Content="1" />
             <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" AutomationProperties.Name="Blue_train_counter" Content="1" />
@@ -107,7 +172,7 @@
             <Label Grid.Row="0" Grid.Column="7" HorizontalAlignment="Center" AutomationProperties.Name="Yellow_train_counter" Content="1" />
             <Label Grid.Row="0" Grid.Column="8" HorizontalAlignment="Center" AutomationProperties.Name="locomotive_train_counter" Content="1" />
 
-            <Image Grid.Row="1" Grid.Column="0" x:Name="Orange_train_card" Source="/Ticket-to-ride;component/images/train/orange.png" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0,24,0,0">
+            <Image Grid.Row="1" Grid.Column="0" x:Name="Orange_train_card" Source="/Ticket-to-ride;component/images/train/orange.png" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0 24 0 0">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -117,7 +182,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Image Grid.Row="1" Grid.Column="1" x:Name="Purple_train_card" Source="/Ticket-to-ride;component/images/train/purple.png" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0,24,0,0">
+            <Image Grid.Row="1" Grid.Column="1" x:Name="Purple_train_card" Source="/Ticket-to-ride;component/images/train/purple.png" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0 24 0 0">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -126,17 +191,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Image Grid.Row="1" Grid.Column="2" x:Name="Blue_train_card" Source="/Ticket-to-ride;component/images/train/blue.png" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0,24,0,0">
-                <Image.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="90"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Image.RenderTransform>
-            </Image>
-            <Image Grid.Row="1" Grid.Column="3" x:Name="Red_train_card" Source="/Ticket-to-ride;component/images/train/red.png" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0,24,0,0">
+            <Image Grid.Row="1" Grid.Column="2" x:Name="Blue_train_card" Source="/Ticket-to-ride;component/images/train/blue.png" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0 24 0 0">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -146,7 +201,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Image Grid.Row="1" Grid.Column="4" x:Name="Green_train_card" Source="/Ticket-to-ride;component/images/train/green.png" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0,24,0,0">
+            <Image Grid.Row="1" Grid.Column="3" x:Name="Red_train_card" Source="/Ticket-to-ride;component/images/train/red.png" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0 24 0 0">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -156,7 +211,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Image Grid.Row="1" Grid.Column="5" x:Name="Black_train_card" Source="/Ticket-to-ride;component/images/train/black.png" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0,24,0,0">
+            <Image Grid.Row="1" Grid.Column="4" x:Name="Green_train_card" Source="/Ticket-to-ride;component/images/train/green.png" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0 24 0 0">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -166,7 +221,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Image Grid.Row="1" Grid.Column="6" x:Name="White_train_card" Source="/Ticket-to-ride;component/images/train/white.png" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0,24,0,0">
+            <Image Grid.Row="1" Grid.Column="5" x:Name="Black_train_card" Source="/Ticket-to-ride;component/images/train/black.png" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0 24 0 0">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -176,7 +231,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Image Grid.Row="1" Grid.Column="7" x:Name="Yellow_train_card" Source="/Ticket-to-ride;component/images/train/yellow.png" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0,24,0,0">
+            <Image Grid.Row="1" Grid.Column="6" x:Name="White_train_card" Source="/Ticket-to-ride;component/images/train/white.png" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0 24 0 0">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -186,7 +241,17 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Image Grid.Row="1" Grid.Column="8" x:Name="Locomotive_train_card" Source="/Ticket-to-ride;component/images/train/locomotive.png" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0,24,0,0">
+            <Image Grid.Row="1" Grid.Column="7" x:Name="Yellow_train_card" Source="/Ticket-to-ride;component/images/train/yellow.png" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0 24 0 0">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Image Grid.Row="1" Grid.Column="8" x:Name="Locomotive_train_card" Source="/Ticket-to-ride;component/images/train/locomotive.png" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0 24 0 0">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -197,11 +262,5 @@
                 </Image.RenderTransform>
             </Image>
         </Grid>
-
-        <Button
-                    Grid.Row="0"
-                    Content="Turn"
-                    Command="{Binding NextTurnCommand}"
-                    Margin="0 24 0 0"/>
     </Grid>
 </UserControl>

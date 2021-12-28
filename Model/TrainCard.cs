@@ -7,16 +7,17 @@ using System.Threading.Tasks;
 using Ticket_to_ride.Enums;
 using Ticket_to_ride.ViewModel;
 using Ticket_to_ride.Tools;
+using System.Windows.Media;
 
 namespace Ticket_to_ride.Model
 {
     public class TrainCard
     {
-        public TrainColor Color { get; set; }
+        public SolidColorBrush Color { get; set; }
 
-        public TrainCard(TrainColor color)
+        public TrainCard(Color color)
         {
-            Color = color;
+            Color = new SolidColorBrush(color);
         }
     }
 }

@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Ticket_to_ride.Model;
+using Ticket_to_ride.ViewModel;
 
 namespace Ticket_to_ride.View
 {
@@ -23,7 +25,14 @@ namespace Ticket_to_ride.View
         public GameView()
         {
             InitializeComponent();
-            //Purple_train_card.Source = Ticket_to_ride.Properties.Resources
+        }
+
+        public void LineClicked(object sender, MouseEventArgs e)
+        {
+            Line line = (Line)sender;
+            List<City> cities = (List<City>)line.Tag;
+            GameViewModel gameVM = (GameViewModel)DataContext;
+            gameVM.SelectConnection(cities[0], cities[1]);
         }
     }
 }
