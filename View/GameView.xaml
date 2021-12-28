@@ -82,9 +82,11 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Line X1="{Binding Origin.X}" Y1="{Binding Origin.Y}"
-                                  X2="{Binding Destination.X}" Y2="{Binding Destination.Y}"
-                                  Stroke="BlanchedAlmond" StrokeThickness="10"/>
+                            <Line Tag="{Binding Cities}"
+                                  X1="{Binding Cities[0].X}" Y1="{Binding Cities[0].Y}"
+                                  X2="{Binding Cities[1].X}" Y2="{Binding Cities[1].Y}"
+                                  Stroke="{Binding TrainColor}" StrokeThickness="10"
+                                  MouseUp="LineClicked"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -103,7 +105,7 @@
                     </ItemsControl.ItemContainerStyle>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Ellipse Width="15" Height="15" Fill="Red"/>
+                            <Ellipse Width="15" Height="15" Fill="Red" Stroke="Black" StrokeThickness="1"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

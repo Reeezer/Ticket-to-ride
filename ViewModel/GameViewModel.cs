@@ -54,6 +54,17 @@ namespace Ticket_to_ride.ViewModel
             }
         }
 
+        private Connection selectedConnection;
+        public Connection SelectedConnection
+        {
+            get => selectedConnection;
+            set
+            {
+                selectedConnection = value;
+                OnPropertyChanged(nameof(selectedConnection));
+            }
+        }
+
         public GameViewModel(Board board, List<Player> players)
         {
             Board = board;
@@ -68,6 +79,7 @@ namespace Ticket_to_ride.ViewModel
             // Has to be done on every game start, before everything !
             Turn = 0;
             CurrentPlayer = Players[Turn];
+            SelectedConnection = null;
 
             DistributeCards();
         }
@@ -96,12 +108,14 @@ namespace Ticket_to_ride.ViewModel
             CurrentPlayer = Players[Turn];
         }
 
-        private void DrawCities()
+        public void SelectConnection(City origin, City destination)
         {
-            foreach (City city in Board.Cities)
+            if (selectedConnection != null && SelectedConnection.Cities[0].Name == origin.Name && SelectedConnection.Cities[1].Name == destination.Name)
             {
-                
+                return;
             }
+
+            SelectedConnection = Connections.First(c => c.Cities[0].Name == origin.Name && c.Cities[1].Name == destination.Name);
         }
     }
 }

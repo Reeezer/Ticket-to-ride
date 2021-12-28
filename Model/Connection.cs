@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 using Ticket_to_ride.Enums;
 using Ticket_to_ride.Model;
@@ -13,10 +14,9 @@ namespace Ticket_to_ride.Model
 {
     public class Connection
     {
-        public City Origin { get; }
-        public City Destination { get; }
-        public TrainColor Color { get; }
-        public PlayerColor PlayerColor { get; set; } = PlayerColor.None;
+        public List<City> Cities { get; }
+        public SolidColorBrush TrainColor { get; }
+        public SolidColorBrush PlayerColor { get; set; } = new SolidColorBrush(Colors.Black);
         public int Length { get; }
         public bool IsEmpty { get; set; } = true;
 
@@ -42,11 +42,15 @@ namespace Ticket_to_ride.Model
             }
         }
 
-        public Connection(City origin, City destination, TrainColor color, int length)
+        public Connection(City origin, City destination, Color color, int length)
         {
-            Origin = origin;
-            Destination = destination;
-            Color = color;
+            Cities = new List<City>
+            {
+                origin,
+                destination
+            };
+
+            TrainColor = new SolidColorBrush(color);
             Length = length;
         }
     }

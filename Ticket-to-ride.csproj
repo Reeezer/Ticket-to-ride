@@ -61,7 +61,6 @@
     <Compile Include="Commands\FunctionCommand.cs" />
     <Compile Include="Commands\NavigationCommand.cs" />
     <Compile Include="Model\City.cs" />
-    <Compile Include="Model\PlayerColor.cs" />
     <Compile Include="Model\Connection.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="Tools\MathConverter.cs" />
@@ -81,7 +80,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Enums\CityName.cs" />
-    <Compile Include="Enums\TrainColor.cs" />
     <Compile Include="View\GameView.xaml.cs">
       <DependentUpon>GameView.xaml</DependentUpon>
     </Compile>
