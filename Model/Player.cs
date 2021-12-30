@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Ticket_to_ride.Enums;
 using Ticket_to_ride.ViewModel;
 using Ticket_to_ride.Tools;
+using System.Collections.ObjectModel;
 
 namespace Ticket_to_ride.Model
 {
@@ -18,14 +19,14 @@ namespace Ticket_to_ride.Model
         public int RemainingTrains { get; set; }
         public int Score { get; set; }
 
-        public List<TrainCard> Hand { get; set; } = new List<TrainCard>();
+        public ObservableCollection<TrainCard> Hand { get; set; } = new ObservableCollection<TrainCard>();
 
         public List<GoalCard> GoalCards { get; set; } = new List<GoalCard>();
 
         public Player(string name, Board board)
         {
             Name = name;
-            GoalCards = ToolBox<GoalCard>.Pop(board.GoalCards, 3); // TODO Player can choose at least 2 of the 3 cards
+            GoalCards = ToolBox.Pop<GoalCard>(board.GoalCards, 3); // TODO Player can choose at least 2 of the 3 cards
             Board = board;
             RemainingTrains = 45;
             Score = 0;
@@ -34,6 +35,11 @@ namespace Ticket_to_ride.Model
         public override string ToString()
         {
             return $"{Name}";
+        }
+    
+        public void SortCards()
+        {
+            Hand = new ObservableCollection<TrainCard>(Hand.OrderBy(i => i));
         }
     }
 }

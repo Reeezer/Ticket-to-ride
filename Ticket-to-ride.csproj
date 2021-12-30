@@ -67,7 +67,7 @@
     <Compile Include="Model\Connection.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="Tools\MathConverter.cs" />
-    <Compile Include="Tools\Tools.cs" />
+    <Compile Include="Tools\ToolBox.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\TrainCard.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
@@ -130,6 +130,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resource.resx" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

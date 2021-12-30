@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Ticket_to_ride.Tools
 {
-    public static class ToolBox<T>
+    public static class ToolBox
     {
-        public static void Shuffle(List<T> list)
+        public static void Shuffle<T>(List<T> list)
         {
             Random random = new Random();
             int n = list.Count;
@@ -23,7 +24,7 @@ namespace Ticket_to_ride.Tools
             }
         }
 
-        public static List<T> Pop(List<T> list, int count)
+        public static List<T> Pop<T>(List<T> list, int count)
         {
             List<T> poppedElements = new List<T>();
 
@@ -40,6 +41,13 @@ namespace Ticket_to_ride.Tools
             }
 
             return poppedElements;
+        }
+
+        public static void Sort<T>(this ObservableCollection<T> collection) where T : IComparable
+        {
+            List<T> sorted = collection.OrderBy(x => x).ToList();
+            for (int i = 0; i < sorted.Count(); i++)
+                collection.Move(collection.IndexOf(sorted[i]), i);
         }
     }
 }

@@ -215,36 +215,37 @@ namespace Ticket_to_ride.Model
             GoalCards.Add(new GoalCard(CityName.LosAngeles, CityName.Miami, 20));
             GoalCards.Add(new GoalCard(CityName.Portland, CityName.Phoenix, 11));
 
-            ToolBox<GoalCard>.Shuffle(GoalCards);
+            ToolBox.Shuffle<GoalCard>(GoalCards);
             #endregion
         }
 
         private void InitDeck()
         {
             #region Create train cards
-            Deck.AddRange(FillColorTrainCards(Colors.Red, 12));
-            Deck.AddRange(FillColorTrainCards(Colors.Purple, 12));
-            Deck.AddRange(FillColorTrainCards(Colors.Blue, 12));
-            Deck.AddRange(FillColorTrainCards(Colors.Green, 12));
-            Deck.AddRange(FillColorTrainCards(Colors.Yellow, 12));
-            Deck.AddRange(FillColorTrainCards(Colors.Orange, 12));
-            Deck.AddRange(FillColorTrainCards(Colors.Black, 12));
-            Deck.AddRange(FillColorTrainCards(Colors.White, 12));
-            Deck.AddRange(FillColorTrainCards(Colors.FloralWhite, 14));
+            Deck.AddRange(FillColorTrainCards(Colors.Red, "red", 12));
+            Deck.AddRange(FillColorTrainCards(Colors.Purple, "purple", 12));
+            Deck.AddRange(FillColorTrainCards(Colors.Blue, "blue", 12));
+            Deck.AddRange(FillColorTrainCards(Colors.Green, "green", 12));
+            Deck.AddRange(FillColorTrainCards(Colors.Yellow, "yellow", 12));
+            Deck.AddRange(FillColorTrainCards(Colors.Orange, "orange", 12));
+            Deck.AddRange(FillColorTrainCards(Colors.Black, "black", 12));
+            Deck.AddRange(FillColorTrainCards(Colors.White, "white", 12));
+            Deck.AddRange(FillColorTrainCards(Colors.FloralWhite, "locomotive", 14));
 
-            ToolBox<TrainCard>.Shuffle(Deck);
+            ToolBox.Shuffle<TrainCard>(Deck);
             #endregion
         }
 
-        private List<TrainCard> FillColorTrainCards(Color color, int count)
+        private List<TrainCard> FillColorTrainCards(Color color, string sourcePathColor, int count)
         {
             List<TrainCard> cards = new List<TrainCard>();
             for (int i = 0; i < count; i++)
             {
-                cards.Add(new TrainCard(color));
+                cards.Add(new TrainCard(color, $"/Ticket-to-ride;component/images/train/{sourcePathColor}.png"));
             }
             return cards;
         }
+
 
         private Connection CreateConnection(CityName origin, CityName destination, Color color, int length)
         {
@@ -260,12 +261,12 @@ namespace Ticket_to_ride.Model
         {
             while (ShownCards.Count < 5)
             {
-                List<TrainCard> newCard = ToolBox<TrainCard>.Pop(Deck, 1); // only 1 car is popped in the list
+                List<TrainCard> newCard = ToolBox.Pop<TrainCard>(Deck, 1); // only 1 car is popped in the list
                 ShownCards.AddRange(newCard);
 
                 if (Deck.Count == 0)
                 {
-                    ToolBox<TrainCard>.Shuffle(DiscardCards);
+                    ToolBox.Shuffle<TrainCard>(DiscardCards);
 
                     Deck = DiscardCards;
                     DiscardCards = new List<TrainCard>();
