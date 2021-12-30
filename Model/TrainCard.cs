@@ -13,13 +13,22 @@ namespace Ticket_to_ride.Model
 {
     public class TrainCard : IComparable<TrainCard>
     {
+        private static int ID = 0;
+
         public SolidColorBrush Color { get; set; }
         public string SourcePath { get; set; }
+        public int Id { get; set; }
 
         public TrainCard(Color color, string sourcePath)
         {
             Color = new SolidColorBrush(color);
             SourcePath = sourcePath;
+            Id = ID++;
+        }
+
+        public override string ToString()
+        {
+            return $"[{Id}] {SourcePath}";
         }
 
         public int CompareTo(TrainCard other)
