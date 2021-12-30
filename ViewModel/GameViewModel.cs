@@ -11,6 +11,7 @@ using System.Windows.Input;
 using Ticket_to_ride.Commands;
 using System.Windows.Data;
 using System.Windows.Media;
+using System.Collections.ObjectModel;
 
 namespace Ticket_to_ride.ViewModel
 {
@@ -18,9 +19,9 @@ namespace Ticket_to_ride.ViewModel
     {
         public ICommand NextTurnCommand { get; }
 
-        public List<Player> Players { get; set; }
-        public List<City> Cities => board.Cities;
-        public List<Connection> Connections => board.Connections;
+        public List<Player> Players { get; }
+        private int cardsToTakeLeft;
+        private int turn;
 
         private Board board;
         public Board Board
@@ -30,17 +31,6 @@ namespace Ticket_to_ride.ViewModel
             {
                 board = value;
                 OnPropertyChanged(nameof(board));
-            }
-        }
-
-        private int turn;
-        public int Turn
-        {
-            get => turn;
-            set
-            {
-                turn = value;
-                OnPropertyChanged(nameof(turn));
             }
         }
 
@@ -69,7 +59,10 @@ namespace Ticket_to_ride.ViewModel
         public GameViewModel(Board board, List<Player> players)
         {
             Board = board;
+            board.PopulateShownCards();
+
             Players = players;
+
             NextTurnCommand = new FunctionCommand(NextTurn);
 
             Initialize();
@@ -78,8 +71,9 @@ namespace Ticket_to_ride.ViewModel
         public void Initialize()
         {
             // Has to be done on every game start, before everything !
-            Turn = 0;
-            CurrentPlayer = Players[Turn];
+            turn = 0;
+            cardsToTakeLeft = 2;
+            CurrentPlayer = Players[turn];
             SelectedConnection = null;
 
             DistributeCards();
@@ -101,13 +95,14 @@ namespace Ticket_to_ride.ViewModel
 
         private void NextTurn()
         {
-            Turn += 1;
-            if (Turn == Players.Count)
+            turn += 1;
+            if (turn == Players.Count)
             {
-                Turn = 0;
+                turn = 0;
             }
-            CurrentPlayer = Players[Turn];
+            CurrentPlayer = Players[turn];
             SelectedConnection = null;
+            cardsToTakeLeft = 2;
         }
 
         public void SelectConnection(City origin, City destination)
@@ -118,7 +113,7 @@ namespace Ticket_to_ride.ViewModel
                 return;
             }
 
-            Connection connectionToBeSelected = Connections.First(c => c.Cities[0].Equals(origin) && c.Cities[1].Equals(destination));
+            Connection connectionToBeSelected = Board.Connections.First(c => c.Cities[0].Equals(origin) && c.Cities[1].Equals(destination));
 
             // Can't select if already claimed by a player
             if (!connectionToBeSelected.IsEmpty)
@@ -128,6 +123,47 @@ namespace Ticket_to_ride.ViewModel
 
             SelectedConnection = connectionToBeSelected;
             Console.WriteLine($"[{CurrentPlayer}] Select: {SelectedConnection}");
+        }
+
+        public void TakeCardFromStack(int trainCardId)
+        {
+            if (cardsToTakeLeft <= 0)
+            {
+                return;
+            }
+
+            for (int i = 0; i < Board.ShownCards.Count; i++)
+            {
+                if (Board.ShownCards[i].Id == trainCardId)
+                {
+                    TrainCard cardToTake = Board.ShownCards[i];
+
+                    if (cardToTake.Color.Color == Colors.FloralWhite && cardsToTakeLeft <= 1)
+                    {
+                        return;
+                    }
+
+                    CurrentPlayer.Hand.Add(cardToTake);
+                    Console.WriteLine($"{currentPlayer} - {cardToTake}");
+                    Board.ShownCards.RemoveAt(i);
+
+                    if (cardToTake.Color.Color == Colors.FloralWhite)
+                    {
+                        cardsToTakeLeft -= 2;
+                    }
+                    else
+                    {
+                        cardsToTakeLeft--;
+                    }
+                }
+            }
+
+            Board.AddAShownCard();
+
+            if (cardsToTakeLeft <= 0)
+            {
+                NextTurn();
+            }
         }
     }
 }

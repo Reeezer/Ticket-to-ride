@@ -8,6 +8,7 @@ using Ticket_to_ride.Enums;
 using Ticket_to_ride.Model;
 using Ticket_to_ride.ViewModel;
 using Ticket_to_ride.Tools;
+using System.Collections.ObjectModel;
 
 // Train colors: Gray (all), White, Black, Blue, Yellow, Purple, Orange, Green, Red, FloralWhite (Locomotive)
 
@@ -18,7 +19,7 @@ namespace Ticket_to_ride.Model
         public List<GoalCard> GoalCards { get; set; } = new List<GoalCard>();
         public List<TrainCard> Deck { get; set; } = new List<TrainCard>();
         public List<TrainCard> DiscardCards { get; set; } = new List<TrainCard>();
-        public List<TrainCard> ShownCards { get; set; } = new List<TrainCard>();
+        public ObservableCollection<TrainCard> ShownCards { get; set; } = new ObservableCollection<TrainCard>();
 
         public List<Connection> Connections { get; set; } = new List<Connection>();
         public List<City> Cities { get; set; } = new List<City>();
@@ -56,7 +57,7 @@ namespace Ticket_to_ride.Model
             Cities.Add(CreateCity(CityName.NewYork, 55, 5));
             Cities.Add(CreateCity(CityName.OklahomaCity, 32, 25));
             Cities.Add(CreateCity(CityName.Omaha, 32, 13));
-            Cities.Add(CreateCity(CityName.Phoenix, 10, 30));
+            Cities.Add(CreateCity(CityName.Phoenix, 10, 28));
             Cities.Add(CreateCity(CityName.Pittsburgh, 47, 10));
             Cities.Add(CreateCity(CityName.Portland, 1, 4));
             Cities.Add(CreateCity(CityName.Raleigh, 50, 17));
@@ -222,26 +223,26 @@ namespace Ticket_to_ride.Model
         private void InitDeck()
         {
             #region Create train cards
-            Deck.AddRange(FillColorTrainCards(Colors.Red, 12));
-            Deck.AddRange(FillColorTrainCards(Colors.Purple, 12));
-            Deck.AddRange(FillColorTrainCards(Colors.Blue, 12));
-            Deck.AddRange(FillColorTrainCards(Colors.Green, 12));
-            Deck.AddRange(FillColorTrainCards(Colors.Yellow, 12));
-            Deck.AddRange(FillColorTrainCards(Colors.Orange, 12));
-            Deck.AddRange(FillColorTrainCards(Colors.Black, 12));
-            Deck.AddRange(FillColorTrainCards(Colors.White, 12));
-            Deck.AddRange(FillColorTrainCards(Colors.FloralWhite, 14));
+            Deck.AddRange(FillColorTrainCards(Colors.Red, "red", 12));
+            Deck.AddRange(FillColorTrainCards(Colors.Purple, "purple", 12));
+            Deck.AddRange(FillColorTrainCards(Colors.Blue, "blue", 12));
+            Deck.AddRange(FillColorTrainCards(Colors.Green, "green", 12));
+            Deck.AddRange(FillColorTrainCards(Colors.Yellow, "yellow", 12));
+            Deck.AddRange(FillColorTrainCards(Colors.Orange, "orange", 12));
+            Deck.AddRange(FillColorTrainCards(Colors.Black, "black", 12));
+            Deck.AddRange(FillColorTrainCards(Colors.White, "white", 12));
+            Deck.AddRange(FillColorTrainCards(Colors.FloralWhite, "locomotive", 14));
 
             ToolBox<TrainCard>.Shuffle(Deck);
             #endregion
         }
 
-        private List<TrainCard> FillColorTrainCards(Color color, int count)
+        private List<TrainCard> FillColorTrainCards(Color color, string sourcePathColor, int count)
         {
             List<TrainCard> cards = new List<TrainCard>();
             for (int i = 0; i < count; i++)
             {
-                cards.Add(new TrainCard(color));
+                cards.Add(new TrainCard(color, $"/Ticket-to-ride;component/images/train/{sourcePathColor}.png"));
             }
             return cards;
         }
@@ -256,12 +257,12 @@ namespace Ticket_to_ride.Model
             return new City(name, x * 12, y * 13);
         }
 
-        public void ChangeAllShownCards()
+        private void ChangeAllShownCards()
         {
             while (ShownCards.Count < 5)
             {
                 List<TrainCard> newCard = ToolBox<TrainCard>.Pop(Deck, 1); // only 1 car is popped in the list
-                ShownCards.AddRange(newCard);
+                ShownCards.Add(newCard[0]);
 
                 if (Deck.Count == 0)
                 {
@@ -273,21 +274,38 @@ namespace Ticket_to_ride.Model
             }
         }
 
-        public void PopulateShownCards()
+        private void CheckShownCards()
         {
-            ChangeAllShownCards();
-
             // Verify if there are 3 or more than 3 locomotive in the shown cards: not allowed
 
             int locomotiveCount = ShownCards.Where(x => x.Color.Color == Colors.FloralWhite).Count();
             while (locomotiveCount >= 3)
             {
                 DiscardCards.AddRange(ShownCards);
-                ShownCards = new List<TrainCard>();
+                ShownCards = new ObservableCollection<TrainCard>();
 
                 ChangeAllShownCards();
                 locomotiveCount = ShownCards.Where(x => x.Color.Color == Colors.FloralWhite).Count();
             }
+        }
+
+        public void PopulateShownCards()
+        {
+            ChangeAllShownCards();
+            CheckShownCards();
+        }
+
+        public void AddAShownCard()
+        {
+            if (ShownCards.Count >= 5)
+            {
+                return;
+            }
+
+            ShownCards.Add(Deck[0]);
+            Deck.RemoveAt(0);
+
+            CheckShownCards();
         }
     }
 }

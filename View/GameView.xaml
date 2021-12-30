@@ -21,11 +21,24 @@
         </Grid.RowDefinitions>
 
         <!-- Cards to pick up -->
-        <Button
+        <!--<Button
             Grid.Row="0"
             Content="Turn"
             Command="{Binding NextTurnCommand}"
-            Margin="0 24 0 0"/>
+            Margin="0 24 0 0"/>-->
+        <ItemsControl Grid.Row="0" ItemsSource="{Binding Board.ShownCards}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding SourcePath}" HorizontalAlignment="Center" Margin="12 0 12 0" Tag="{Binding Id}" MouseLeftButtonDown="ShownCardClicked"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
 
         <!-- Center pane -->
         <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 24 0 24">
@@ -74,7 +87,7 @@
 
                 <!--<Image Grid.Column="0" x:Name="MapImage" Source="/Ticket-to-ride;component/images/map/USA-map.png" Width="800" Height="500"/>-->
                 <!-- Connections between cities -->
-                <ItemsControl Grid.Column="0" ItemsSource="{Binding Connections}" Width="800" Height="500">
+                <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.Connections}" Width="800" Height="500">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <Canvas/>
@@ -92,7 +105,7 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
                 <!-- Cities points -->
-                <ItemsControl Grid.Column="0" ItemsSource="{Binding Cities}" Width="800" Height="500">
+                <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.Cities}" Width="800" Height="500">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <Canvas/>

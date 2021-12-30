@@ -29,10 +29,20 @@ namespace Ticket_to_ride.View
 
         public void LineClicked(object sender, MouseEventArgs e)
         {
-            Line line = (Line)sender;
-            List<City> cities = (List<City>)line.Tag;
-            GameViewModel gameVM = (GameViewModel)DataContext;
+            Line line = sender as Line;
+            List<City> cities = line.Tag as List<City>;
+            GameViewModel gameVM = DataContext as GameViewModel;
+
             gameVM.SelectConnection(cities[0], cities[1]);
+        }
+
+        public void ShownCardClicked(object sender, MouseEventArgs e)
+        {
+            Image image = sender as Image;
+            int cardId = (int)image.Tag;
+            GameViewModel gameVM = DataContext as GameViewModel;
+
+            gameVM.TakeCardFromStack(cardId);
         }
     }
 }
