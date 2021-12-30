@@ -64,10 +64,10 @@ namespace Ticket_to_ride.ViewModel
             Players = players;
 
             NextTurnCommand = new FunctionCommand(NextTurn);
-
+            
             Initialize();
         }
-
+        
         public void Initialize()
         {
             // Has to be done on every game start, before everything !
@@ -81,16 +81,26 @@ namespace Ticket_to_ride.ViewModel
 
         public void DistributeCards()
         {
+            const int startCards = 30;
             // Distribute 4 cards to everyone
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < startCards; i++)
             {
-                List<TrainCard> cards = ToolBox<TrainCard>.Pop(Board.Deck, Players.Count);
+                List<TrainCard> cards = ToolBox.Pop<TrainCard>(Board.Deck, Players.Count);
 
                 for (int j = 0; j < Players.Count; j++)
                 {
                     Players[j].Hand.Add(cards[j]);
+                    Players[j].SortCards();
                 }
             }
+
+            //Sort the cards of each player
+            for (int i = 0; i < Players.Count; i++)
+            {
+                Players[i].SortCards();
+            }
+
+
         }
 
         private void NextTurn()

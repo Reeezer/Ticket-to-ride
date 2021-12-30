@@ -216,7 +216,7 @@ namespace Ticket_to_ride.Model
             GoalCards.Add(new GoalCard(CityName.LosAngeles, CityName.Miami, 20));
             GoalCards.Add(new GoalCard(CityName.Portland, CityName.Phoenix, 11));
 
-            ToolBox<GoalCard>.Shuffle(GoalCards);
+            ToolBox.Shuffle<GoalCard>(GoalCards);
             #endregion
         }
 
@@ -233,7 +233,7 @@ namespace Ticket_to_ride.Model
             Deck.AddRange(FillColorTrainCards(Colors.White, "white", 12));
             Deck.AddRange(FillColorTrainCards(Colors.FloralWhite, "locomotive", 14));
 
-            ToolBox<TrainCard>.Shuffle(Deck);
+            ToolBox.Shuffle<TrainCard>(Deck);
             #endregion
         }
 
@@ -246,6 +246,7 @@ namespace Ticket_to_ride.Model
             }
             return cards;
         }
+
 
         private Connection CreateConnection(CityName origin, CityName destination, Color color, int length)
         {
@@ -266,7 +267,7 @@ namespace Ticket_to_ride.Model
 
                 if (Deck.Count == 0)
                 {
-                    ToolBox<TrainCard>.Shuffle(DiscardCards);
+                    ToolBox.Shuffle<TrainCard>(DiscardCards);
 
                     Deck = DiscardCards;
                     DiscardCards = new List<TrainCard>();
