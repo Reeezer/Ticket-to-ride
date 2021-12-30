@@ -26,7 +26,7 @@ namespace Ticket_to_ride.Model
         public Player(string name, Board board)
         {
             Name = name;
-            GoalCards = ToolBox.Pop<GoalCard>(board.GoalCards, 3); // TODO Player can choose at least 2 of the 3 cards
+            GoalCards = ToolBox.Pop(board.GoalCards, 3); // TODO Player can choose at least 2 of the 3 cards
             Board = board;
             RemainingTrains = 45;
             Score = 0;
@@ -36,10 +36,10 @@ namespace Ticket_to_ride.Model
         {
             return $"{Name}";
         }
-    
+
         public void SortCards()
         {
-            Hand = new ObservableCollection<TrainCard>(Hand.OrderBy(i => i));
+            ToolBox.Sort(Hand);
         }
     }
 }

@@ -43,11 +43,13 @@ namespace Ticket_to_ride.Tools
             return poppedElements;
         }
 
-        public static void Sort<T>(this ObservableCollection<T> collection) where T : IComparable
+        public static void Sort<T>(ObservableCollection<T> collection) where T : IComparable
         {
             List<T> sorted = collection.OrderBy(x => x).ToList();
             for (int i = 0; i < sorted.Count(); i++)
+            {
                 collection.Move(collection.IndexOf(sorted[i]), i);
+            }
         }
     }
 }

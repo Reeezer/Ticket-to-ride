@@ -20,11 +20,6 @@
         </Grid.RowDefinitions>
 
         <!-- Cards to pick up -->
-        <!--<Button
-            Grid.Row="0"
-            Content="Turn"
-            Command="{Binding NextTurnCommand}"
-            Margin="0 24 0 0"/>-->
         <ItemsControl Grid.Row="0" ItemsSource="{Binding Board.ShownCards}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -123,7 +118,7 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
                 <!-- Cities names -->
-                <ItemsControl Grid.Column="0" ItemsSource="{Binding Cities}" Width="800" Height="500">
+                <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.Cities}" Width="800" Height="500">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <Canvas/>
@@ -161,7 +156,7 @@
         <ItemsControl Grid.Row="2" ItemsSource="{Binding CurrentPlayer.Hand}" HorizontalAlignment="Center" VerticalAlignment="Top"  Margin="0 0 0 0">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="auto" Height="180" ItemWidth="75" ItemHeight="75"/>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" ItemWidth="75" ItemHeight="75"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>

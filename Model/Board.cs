@@ -262,12 +262,12 @@ namespace Ticket_to_ride.Model
         {
             while (ShownCards.Count < 5)
             {
-                List<TrainCard> newCard = ToolBox<TrainCard>.Pop(Deck, 1); // only 1 car is popped in the list
+                List<TrainCard> newCard = ToolBox.Pop(Deck, 1); // only 1 car is popped in the list
                 ShownCards.Add(newCard[0]);
 
                 if (Deck.Count == 0)
                 {
-                    ToolBox.Shuffle<TrainCard>(DiscardCards);
+                    ToolBox.Shuffle(DiscardCards);
 
                     Deck = DiscardCards;
                     DiscardCards = new List<TrainCard>();
@@ -278,15 +278,14 @@ namespace Ticket_to_ride.Model
         private void CheckShownCards()
         {
             // Verify if there are 3 or more than 3 locomotive in the shown cards: not allowed
-
-            int locomotiveCount = ShownCards.Where(x => x.Color.Color == Colors.FloralWhite).Count();
+            int locomotiveCount = ShownCards.Count(x => x.Color.Color == Colors.FloralWhite);
             while (locomotiveCount >= 3)
             {
                 DiscardCards.AddRange(ShownCards);
-                ShownCards = new ObservableCollection<TrainCard>();
+                ShownCards.Clear();
 
                 ChangeAllShownCards();
-                locomotiveCount = ShownCards.Where(x => x.Color.Color == Colors.FloralWhite).Count();
+                locomotiveCount = ShownCards.Count(x => x.Color.Color == Colors.FloralWhite);
             }
         }
 
@@ -298,7 +297,7 @@ namespace Ticket_to_ride.Model
 
         public void AddAShownCard()
         {
-            if (ShownCards.Count >= 5)
+            if (ShownCards.Count >= 5 || Deck.Count <= 0)
             {
                 return;
             }

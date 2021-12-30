@@ -11,7 +11,7 @@ using System.Windows.Media;
 
 namespace Ticket_to_ride.Model
 {
-    public class TrainCard : IComparable<TrainCard>
+    public class TrainCard : IComparable
     {
         private static int ID = 0;
 
@@ -31,9 +31,10 @@ namespace Ticket_to_ride.Model
             return $"[{Id}] {SourcePath}";
         }
 
-        public int CompareTo(TrainCard other)
+        public int CompareTo(object obj)
         {
-            return string.Compare(this.Color.Color.ToString(), other.Color.Color.ToString());
+            TrainCard card = obj as TrainCard;
+            return string.Compare(Color.Color.ToString(), card.Color.Color.ToString());
         }
     }
 }

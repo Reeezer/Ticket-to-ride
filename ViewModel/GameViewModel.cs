@@ -81,11 +81,11 @@ namespace Ticket_to_ride.ViewModel
 
         public void DistributeCards()
         {
-            const int startCards = 30;
+            const int startCards = 4;
             // Distribute 4 cards to everyone
             for (int i = 0; i < startCards; i++)
             {
-                List<TrainCard> cards = ToolBox.Pop<TrainCard>(Board.Deck, Players.Count);
+                List<TrainCard> cards = ToolBox.Pop(Board.Deck, Players.Count);
 
                 for (int j = 0; j < Players.Count; j++)
                 {
@@ -99,8 +99,6 @@ namespace Ticket_to_ride.ViewModel
             {
                 Players[i].SortCards();
             }
-
-
         }
 
         private void NextTurn()
@@ -154,7 +152,6 @@ namespace Ticket_to_ride.ViewModel
                     }
 
                     CurrentPlayer.Hand.Add(cardToTake);
-                    Console.WriteLine($"{currentPlayer} - {cardToTake}");
                     Board.ShownCards.RemoveAt(i);
 
                     if (cardToTake.Color.Color == Colors.FloralWhite)
@@ -165,10 +162,13 @@ namespace Ticket_to_ride.ViewModel
                     {
                         cardsToTakeLeft--;
                     }
+
+                    break;
                 }
             }
 
             Board.AddAShownCard();
+            CurrentPlayer.SortCards();
 
             if (cardsToTakeLeft <= 0)
             {
