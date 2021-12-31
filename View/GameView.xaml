@@ -51,7 +51,7 @@
 
                 <TextBlock Grid.Row="0" HorizontalAlignment="Center" FontSize="20" Text="{Binding CurrentPlayer.Name}"/>
 
-                <Grid Grid.Row="1" Margin="0 12 0 0">
+                <Grid x:Name="PlayerResumeGrid" Grid.Row="1" Margin="0 12 0 0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
@@ -71,6 +71,19 @@
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="Goal cards:" Margin="0 0 8 0"/>
                     <TextBlock Grid.Row="2" Grid.Column="1" Text="TODO"/>
                 </Grid>
+
+                <ItemsControl Grid.Row="2" ItemsSource="{Binding CurrentPlayer.GoalCards}" HorizontalAlignment="Center" VerticalAlignment="Top"  Margin="0 0 0 0">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin=" 0 100 0 0"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Image Height="90" Source="{Binding SourcePath}" HorizontalAlignment="Center" Margin="0 0 0 0"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </Grid>
 
             <!-- Board -->

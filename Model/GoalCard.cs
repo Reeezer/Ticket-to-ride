@@ -14,13 +14,16 @@ namespace Ticket_to_ride.Model
     {
         public CityName Origin { get; set; }
         public CityName Destination { get; set; }
+        public string SourcePath { get; set; }
         public int PointValue { get; set; }
 
-        public GoalCard(CityName origin, CityName destination, int points)
+        public GoalCard(CityName origin, CityName destination, int points, string sourcePath)
         {
             Origin = origin;
             Destination = destination;
             PointValue = points;
+            SourcePath = sourcePath;
         }
+
     }
 }
