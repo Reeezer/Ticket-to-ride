@@ -44,5 +44,14 @@ namespace Ticket_to_ride.View
 
             gameVM.TakeCardFromStack(cardId);
         }
+
+        public void HandCardClicked(object sender, MouseEventArgs e)
+        {
+            Image image = sender as Image;
+            int cardId = (int)image.Tag;
+            GameViewModel gameVM = DataContext as GameViewModel;
+
+            gameVM.HandCardSelect(cardId, image);
+        }
     }
 }

@@ -12,7 +12,7 @@
         <tools:MathConverter x:Key="MathConverter" />
     </UserControl.Resources>
 
-    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="824" Margin="16,0,16,-127">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
@@ -153,7 +153,7 @@
         </Grid>
 
         <!-- Hand cards -->
-        <ItemsControl Grid.Row="2" ItemsSource="{Binding CurrentPlayer.Hand}" HorizontalAlignment="Center" VerticalAlignment="Top"  Margin="0 0 0 0">
+        <ItemsControl Grid.Row="2" ItemsSource="{Binding CurrentPlayer.Hand}" HorizontalAlignment="Center" VerticalAlignment="Top">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" ItemWidth="75" ItemHeight="75"/>
@@ -161,10 +161,9 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Image Source="{Binding SourcePath}" HorizontalAlignment="Center" Margin="-20 0 0 0"/>
+                    <Image Source="{Binding SourcePath}" HorizontalAlignment="Center" Margin="-20 0 0 0" Tag="{Binding Id}" MouseLeftButtonDown="HandCardClicked"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-
     </Grid>
 </UserControl>

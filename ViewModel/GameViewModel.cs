@@ -12,6 +12,8 @@ using Ticket_to_ride.Commands;
 using System.Windows.Data;
 using System.Windows.Media;
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
+using System.Windows.Media.Effects;
 
 namespace Ticket_to_ride.ViewModel
 {
@@ -22,6 +24,7 @@ namespace Ticket_to_ride.ViewModel
         public List<Player> Players { get; }
         private int cardsToTakeLeft;
         private int turn;
+        private List<TrainCard> selectedHandCards;
 
         private Board board;
         public Board Board
@@ -63,20 +66,16 @@ namespace Ticket_to_ride.ViewModel
 
             Players = players;
 
-            NextTurnCommand = new FunctionCommand(NextTurn);
-            
-            Initialize();
-        }
-        
-        public void Initialize()
-        {
-            // Has to be done on every game start, before everything !
             turn = 0;
             cardsToTakeLeft = 2;
             CurrentPlayer = Players[turn];
             SelectedConnection = null;
 
             DistributeCards();
+
+            selectedHandCards = new List<TrainCard>();
+
+            NextTurnCommand = new FunctionCommand(NextTurn);
         }
 
         public void DistributeCards()
@@ -173,6 +172,47 @@ namespace Ticket_to_ride.ViewModel
             if (cardsToTakeLeft <= 0)
             {
                 NextTurn();
+            }
+        }
+
+        public void HandCardSelect(int trainCardId, Image image)
+        {
+            for (int i = 0; i < CurrentPlayer.Hand.Count; i++)
+            {
+                if (CurrentPlayer.Hand[i].Id == trainCardId)
+                {
+                    TrainCard cardClicked = CurrentPlayer.Hand[i];
+
+                    bool isAlreadySelected = false;
+
+                    foreach (TrainCard card in selectedHandCards)
+                    {
+                        if (cardClicked.Equals(card))
+                        {
+                            isAlreadySelected = true;
+                            break;
+                        }
+                    }
+
+                    if (isAlreadySelected)
+                    {
+                        selectedHandCards.Remove(cardClicked);
+                        image.Opacity = 1;
+                    }
+                    else
+                    {
+                        selectedHandCards.Add(cardClicked);
+                        image.Opacity = 0.5;
+                    }
+
+                    break;
+                }
+            }
+
+            Console.WriteLine("selectedHandCards");
+            foreach (TrainCard card in selectedHandCards)
+            {
+                Console.WriteLine(card);
             }
         }
     }
