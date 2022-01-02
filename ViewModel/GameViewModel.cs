@@ -289,7 +289,7 @@ namespace Ticket_to_ride.ViewModel
 
         private EndGameViewModel EndGame()
         {
-            return new EndGameViewModel();
+            return new EndGameViewModel(Players);
         }
     }
 }

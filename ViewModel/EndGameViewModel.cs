@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Ticket_to_ride.Commands;
+using Ticket_to_ride.Model;
 
 namespace Ticket_to_ride.ViewModel
 {
@@ -12,8 +13,11 @@ namespace Ticket_to_ride.ViewModel
     {
         public ICommand MainMenuCommand { get; }
 
-        public EndGameViewModel()
+        public List<Player> Players { get; set; }
+
+        public EndGameViewModel(List<Player> players)
         {
+            Players = players.OrderBy(p => -p.Score).ToList();
             MainMenuCommand = new NavigationCommand(Menu);
         }
 
