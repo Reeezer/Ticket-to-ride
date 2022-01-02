@@ -14,15 +14,23 @@ namespace Ticket_to_ride.ViewModel
         public ICommand NewGameCommand { get; }
         public ICommand ExitCommand { get; }
 
+        public ICommand RulesCommand { get; }
+
         public MenuViewModel()
         {
             NewGameCommand = new NavigationCommand(NewGame);
             ExitCommand = new ExitCommand();
+            RulesCommand = new NavigationCommand(openRules);
         }
 
         private MenuCreateGameViewModel NewGame()
         {
             return new MenuCreateGameViewModel();
+        }
+
+        private RulesViewModel openRules()
+        {
+            return new RulesViewModel();
         }
     }
 }
