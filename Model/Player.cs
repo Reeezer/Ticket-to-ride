@@ -11,17 +11,37 @@ using System.Collections.ObjectModel;
 
 namespace Ticket_to_ride.Model
 {
-    public class Player
+    // FIXME: Not supposed to implement "ViewModelBase" in a model to be able to notify the view
+    public class Player : ViewModelBase
     {
         public Board Board { get; set; }
 
         public string Name { get; set; }
-        public int RemainingTrains { get; set; }
-        public int Score { get; set; }
 
         public ObservableCollection<TrainCard> Hand { get; set; } = new ObservableCollection<TrainCard>();
-
         public ObservableCollection<GoalCard> GoalCards { get; set; } = new ObservableCollection<GoalCard>();
+
+        private int remainingTrains;
+        public int RemainingTrains
+        {
+            get => remainingTrains;
+            set
+            {
+                remainingTrains = value;
+                OnPropertyChanged(nameof(remainingTrains));
+            }
+        }
+
+        private int score;
+        public int Score
+        {
+            get => score;
+            set
+            {
+                score = value;
+                OnPropertyChanged(nameof(score));
+            }
+        }
 
         public Player(string name, Board board)
         {

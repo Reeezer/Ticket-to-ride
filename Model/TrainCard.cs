@@ -11,7 +11,7 @@ using System.Windows.Media;
 
 namespace Ticket_to_ride.Model
 {
-    public class TrainCard : IComparable
+    public class TrainCard : IComparable, IEquatable<TrainCard>
     {
         private static int ID = 0;
 
@@ -35,6 +35,21 @@ namespace Ticket_to_ride.Model
         {
             TrainCard card = obj as TrainCard;
             return string.Compare(Color.Color.ToString(), card.Color.Color.ToString());
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as TrainCard);
+        }
+
+        public bool Equals(TrainCard card2)
+        {
+            return card2 != null && Id == card2.Id;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, Color.Color);
         }
     }
 }
