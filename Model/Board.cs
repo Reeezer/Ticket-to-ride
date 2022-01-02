@@ -247,7 +247,6 @@ namespace Ticket_to_ride.Model
             return cards;
         }
 
-
         private Connection CreateConnection(CityName origin, CityName destination, Color color, int length)
         {
             return new Connection(Cities.First(c => c.Name == origin), Cities.First(c => c.Name == destination), color, length);
