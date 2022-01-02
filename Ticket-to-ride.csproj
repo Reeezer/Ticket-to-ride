@@ -270,5 +270,8 @@
   <ItemGroup>
     <Resource Include="View\USA-map.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="images\train\back.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -53,6 +53,13 @@ namespace Ticket_to_ride.View
             gameVM.TakeCardFromStack(cardId);
         }
 
+        public void DeckClicked(object sender, MouseEventArgs e)
+        {
+            GameViewModel gameVM = DataContext as GameViewModel;
+
+            gameVM.TakeCardFromDeck();
+        }
+
         public void HandCardClicked(object sender, MouseEventArgs e)
         {
             Image image = sender as Image;

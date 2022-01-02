@@ -287,6 +287,20 @@ namespace Ticket_to_ride.ViewModel
             }
         }
 
+        public void TakeCardFromDeck()
+        {
+            if (Board.Deck.Count > 0)
+            {
+                CurrentPlayer.Hand.Add(Board.Deck[0]);
+                Board.Deck.RemoveAt(0);
+                CurrentPlayer.SortCards();
+                pickingCards = true;
+
+                cardsToTakeLeft--;
+                NextTurn();
+            }
+        }
+
         private EndGameViewModel EndGame()
         {
             return new EndGameViewModel(Players);

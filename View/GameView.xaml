@@ -20,19 +20,27 @@
         </Grid.RowDefinitions>
 
         <!-- Cards to pick up -->
-        <ItemsControl Grid.Row="0" ItemsSource="{Binding Board.ShownCards}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
+        <Grid Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
 
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Image Source="{Binding SourcePath}" HorizontalAlignment="Center" Margin="12 0 12 0" Tag="{Binding Id}" MouseLeftButtonDown="ShownCardClicked"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+            <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.ShownCards}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding SourcePath}" HorizontalAlignment="Center" Margin="12 0 12 0" Tag="{Binding Id}" MouseLeftButtonDown="ShownCardClicked"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <Image Grid.Column="1" Source="/Ticket-to-ride;component/images/train/back.png" Margin="12 0 12 0" HorizontalAlignment="Center" MouseLeftButtonDown="DeckClicked"/>
+        </Grid>
 
         <!-- Center pane -->
         <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 24 0 24">
@@ -69,7 +77,6 @@
                     <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CurrentPlayer.RemainingTrains}"/>
 
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="Goal cards:" Margin="0 0 8 0"/>
-                    <TextBlock Grid.Row="2" Grid.Column="1" Text="TODO"/>
                 </Grid>
 
                 <ItemsControl Grid.Row="2" ItemsSource="{Binding CurrentPlayer.GoalCards}" HorizontalAlignment="Center" VerticalAlignment="Top"  Margin="0 0 0 0">
