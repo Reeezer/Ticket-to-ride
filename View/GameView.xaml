@@ -138,18 +138,34 @@
                 </ItemsControl>
             </Grid>
 
-            <!-- Players summaries -->
-            <ListView Grid.Column="2" ItemsSource="{Binding Players}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
-                        <GridViewColumn Header="Score" DisplayMemberBinding="{Binding Score}" />
-                        <GridViewColumn Header="Trains" DisplayMemberBinding="{Binding RemainingTrains}" />
-                        <GridViewColumn Header="Cards" DisplayMemberBinding="{Binding Hand.Count}" />
-                        <GridViewColumn Header="Goals" DisplayMemberBinding="{Binding GoalCards.Count}" />
-                    </GridView>
-                </ListView.View>
-            </ListView>
+            <!-- Right Pane -->
+            <Grid Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Players summaries -->
+                <ListView Grid.Row="0" ItemsSource="{Binding Players}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                            <GridViewColumn Header="Score" DisplayMemberBinding="{Binding Score}" />
+                            <GridViewColumn Header="Trains" DisplayMemberBinding="{Binding RemainingTrains}" />
+                            <GridViewColumn Header="Cards" DisplayMemberBinding="{Binding Hand.Count}" />
+                            <GridViewColumn Header="Goals" DisplayMemberBinding="{Binding GoalCards.Count}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <!-- Buttons -->
+                <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center" Margin="0 24 0 0">
+                    <Button
+                        Content="Claim"
+                        Command="{Binding ClaimCommand}"
+                        Margin="0 8 0 0"/>
+                </StackPanel>
+            </Grid>
         </Grid>
 
         <!-- Hand cards -->

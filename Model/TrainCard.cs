@@ -39,7 +39,7 @@ namespace Ticket_to_ride.Model
 
         public override bool Equals(object obj)
         {
-            return Equals(obj as City);
+            return Equals(obj as TrainCard);
         }
 
         public bool Equals(TrainCard card2)

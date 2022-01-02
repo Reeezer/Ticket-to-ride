@@ -21,11 +21,12 @@ namespace Ticket_to_ride.ViewModel
 {
     public class GameViewModel : ViewModelBase
     {
-        public ICommand NextTurnCommand { get; }
+        public ICommand ClaimCommand { get; }
 
         public List<Player> Players { get; }
         private int cardsToTakeLeft;
         private int turn;
+        private bool pickingCards;
         private List<TrainCard> selectedHandCards;
 
         private Board board;
@@ -70,6 +71,7 @@ namespace Ticket_to_ride.ViewModel
 
             turn = 0;
             cardsToTakeLeft = 2;
+            pickingCards = false;
             CurrentPlayer = Players[turn];
             SelectedConnection = null;
 
@@ -77,7 +79,7 @@ namespace Ticket_to_ride.ViewModel
 
             selectedHandCards = new List<TrainCard>();
 
-            NextTurnCommand = new FunctionCommand(NextTurn);
+            ClaimCommand = new FunctionCommand(TryToClaim);
         }
 
         public void DistributeCards()
@@ -111,7 +113,50 @@ namespace Ticket_to_ride.ViewModel
             }
             CurrentPlayer = Players[turn];
             SelectedConnection = null;
+            selectedHandCards = new List<TrainCard>();
             cardsToTakeLeft = 2;
+            pickingCards = false;
+        }
+
+        private void TryToClaim()
+        {
+            if (selectedConnection == null || selectedHandCards.Count <= 0 || pickingCards)
+            {
+                return;
+            }
+
+            List<TrainCard> usefullCards = new List<TrainCard>();
+            foreach (TrainCard card in selectedHandCards)
+            {
+                if (selectedConnection.Length > usefullCards.Count)
+                {
+                    if (card.Color.Color == selectedConnection.TrainColor.Color || card.Color.Color == Colors.FloralWhite || selectedConnection.TrainColor.Color == Colors.Gray)
+                    {
+                        usefullCards.Add(card);
+                    }
+                }
+            }
+
+            if (selectedConnection.Length == usefullCards.Count)
+            {
+                Console.WriteLine($"[{CurrentPlayer}] Claiming {selectedConnection}");
+
+                foreach (TrainCard card in usefullCards)
+                {
+                    _ = CurrentPlayer.Hand.Remove(card);
+                }
+
+                selectedConnection.IsEmpty = false;
+                //selectedConnection.PlayerColor = CurrentPlayer.Color.Color; // TODO
+                CurrentPlayer.Score += selectedConnection.Points;
+                CurrentPlayer.RemainingTrains -= selectedConnection.Length;
+
+                NextTurn();
+            }
+            else
+            {
+                Console.WriteLine($"[{CurrentPlayer}] Can't claim this connection");
+            }
         }
 
         public void SelectConnection(City origin, City destination, Line line)
@@ -161,6 +206,7 @@ namespace Ticket_to_ride.ViewModel
 
                     CurrentPlayer.Hand.Add(cardToTake);
                     Board.ShownCards.RemoveAt(i);
+                    pickingCards = true;
 
                     if (cardToTake.Color.Color == Colors.FloralWhite)
                     {
@@ -205,7 +251,7 @@ namespace Ticket_to_ride.ViewModel
 
                     if (isAlreadySelected)
                     {
-                        selectedHandCards.Remove(cardClicked);
+                        _ = selectedHandCards.Remove(cardClicked);
                         image.Opacity = 1;
                     }
                     else
@@ -218,7 +264,7 @@ namespace Ticket_to_ride.ViewModel
                 }
             }
 
-            Console.WriteLine("selectedHandCards");
+            Console.WriteLine("Selected hand cards:");
             foreach (TrainCard card in selectedHandCards)
             {
                 Console.WriteLine(card);
