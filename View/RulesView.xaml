@@ -1,0 +1,143 @@
+﻿<UserControl x:Class="Ticket_to_ride.View.RulesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:views="clr-namespace:Ticket_to_ride.View"
+             xmlns:tools="clr-namespace:Ticket_to_ride.Tools"
+             xmlns:viewmodel="clr-namespace:Ticket_to_ride.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:RulesViewModel}"
+            mc:Ignorable="d" Height="802" Width="1431.625">
+    <Grid Margin="10,32,168,0" Width="1198" HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock 
+            Grid.Row="0"
+            HorizontalAlignment="Center"
+            Style="{StaticResource Title}"
+            Text="Rules"/>
+
+        <Grid Grid.Row="1" HorizontalAlignment="Left" Margin="0 32 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock 
+            Grid.Row="0"
+            HorizontalAlignment="Left"
+            Text="1. Object of the game:" FontWeight="Bold"/>
+
+            <TextBlock 
+            Grid.Row="1"
+            HorizontalAlignment="Left"
+            Text="The object of the game is to score points by:&#x0d;
+- Claiming a route between two adjacent cities on the map.&#x0d;
+- Completing a continuous path of routes between two cities listed on your Destination Tickets.&#x0d;
+- Completing the Longest Continuous Path of routes.&#x0d;
+Note: Points are lost if you don't complete the route given on the Destination Tickets you kept."/>
+
+            <TextBlock 
+            Grid.Row="2"
+            HorizontalAlignment="Left"
+            Text="2. Start setup:"/>
+
+            <TextBlock 
+            Grid.Row="3"
+            HorizontalAlignment="Left"
+            Text="Each player starts with 4 train cards and 3 destination cards."/>
+
+            <TextBlock 
+            Grid.Row="4"
+            HorizontalAlignment="Left"
+            Text="3. Game play:"/>
+
+            <TextBlock 
+            Grid.Row="5"
+            HorizontalAlignment="Left"
+            Text="On his turn each player must choose to perform one of the following actions:&#x0d;
+- draw Train Car Cards&#x0d;
+- claim a route&#x0d;
+- draw Destination Tickets&#x0d;
+The player can perform only one of those actions."/>
+
+            <TextBlock 
+            Grid.Row="6"
+            HorizontalAlignment="Left"
+            Text="4. Draw Train Car Cards:"/>
+
+            <TextBlock 
+            Grid.Row="7"
+            HorizontalAlignment="Left"
+            Text="The player can draw two Train Car cards. He may choose between the face-up cards or he draws the top card from the deck.&#x0d;
+If he takes a face-up card, he must turn a replacement card face-up from the deck.&#x0d;
+Then the player draws his second card, either from the face-up cards or from the top of the deck. But when he picks a locomotive card from the face-up cards, he can't.&#x0d;
+It's allowed to have any number of cards in your hand at any time.&#x0d;
+There are 8 types of regular Train Car cards, plus Locomotive cars and their colors match various routes between cities on the board.&#x0d;
+Locomotives are multi-colored and act as a wild card that can be part of any set of cards.&#x0d;
+If a replacement card is a locomotive, the player can't take it immediately. If at any time, 3 of the 5 face-up cards are Locomotives, all 5 cards are immediately discarded and 5 new ones are turned face-up to replace them.&#x0d;
+When the deck is exhausted, the discards are reshuffled good and become a new draw pile deck.&#x0d;
+When the deck gets empty and no discards are available, the player can't draw another Train car card anymore. Instead he may only claim a route or draw Destination Ticket cards."/>
+
+            <TextBlock 
+            Grid.Row="8"
+            HorizontalAlignment="Left"
+            Text="5. Claiming Routes:"/>
+
+            <TextBlock 
+            Grid.Row="9"
+            HorizontalAlignment="Left"
+            Text="A player must play a set of cards equal to the number of spaces in that route to be able to claim it. The set of cards must be of the same specific type.&#x0d;
+When a route is claimed, the player can place one of his plastic trains on each of the spaces of the route and all cards used to claim the route are discarded.&#x0d;
+A player can claim any open route on the board and they don't need to connect to any of his previously played routes.&#x0d;
+Player can claim maximum one route on his turn. When cities are connected by double-routes, then the player can't claim both routes to the same cities."/>
+
+            <TextBlock 
+            Grid.Row="10"
+            HorizontalAlignment="Left"
+            Text="6. Destination Ticket Cards:"/>
+
+            <TextBlock 
+            Grid.Row="11"
+            HorizontalAlignment="Left"
+            Text="A player can draw more Destination Ticket cards if he wants by drawing 3 new cards from the top of the Destination Ticket Deck.&#x0d;
+He keeps at least one of the cards, but may also keep 2 or all 3. The returned cards are placed on the bottom of the Destination Ticket Deck.&#x0d;
+Each Destination Ticket includes the name of two cities on the map and a point value and when the player can complete a connection between these two cities, he will score those points at the end of the game.&#x0d;
+If the player fails to connect the cities, then the indicated amount of points will be deducted.&#x0d;
+Destination Tickets are kept secret and a player may have as many cards as he wants."/>
+
+            <TextBlock 
+            Grid.Row="12"
+            HorizontalAlignment="Left"
+            Text="7. End of the Game:"/>
+
+            <TextBlock 
+            Grid.Row="13"
+            HorizontalAlignment="Left"
+            Text="When a player's stock of colored plastic trains gets down to 2 or fewer trains at the end of his turn, the final turn will start.&#x0d;
+After that turn, the game will end and players must calculate their final scores."/>
+
+        </Grid>
+
+    </Grid>
+</UserControl>

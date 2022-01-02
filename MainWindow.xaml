@@ -23,6 +23,9 @@
                 <views:EndGameView/>
             </DataTemplate>
             <!--pout chaque vue à ajouter, il faut mettre une nouvelle balise "DataTemplate" avec le controller correspondant-->
+            <DataTemplate DataType="{x:Type viewmodels:RulesViewModel}">
+                <views:RulesView/>
+            </DataTemplate>
         </Grid.Resources>
 
         <ContentControl Content="{Binding CurrentViewModel}"/>

@@ -32,6 +32,7 @@
         <Button
             Grid.Row="3"
             Content="Rules"
+            Command="{Binding RulesCommand}"
             Margin="0 8 0 0"/>
         <Button
             Grid.Row="4"

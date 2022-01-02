@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>TickettoRide.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
@@ -74,6 +77,7 @@
     <Compile Include="ViewModel\MenuViewModel.cs" />
     <Compile Include="ViewModel\MenuCreateGameViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\RulesViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\GameViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -96,6 +100,9 @@
     <Compile Include="View\MenuView.xaml.cs">
       <DependentUpon>MenuView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\RulesView.xaml.cs">
+      <DependentUpon>RulesView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -113,6 +120,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RulesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -269,6 +280,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\USA-map.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TickettoRide.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="images\train\back.png" />
