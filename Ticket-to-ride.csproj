@@ -287,5 +287,8 @@
   <ItemGroup>
     <None Include="images\train\back.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\back.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
