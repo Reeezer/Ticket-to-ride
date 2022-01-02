@@ -46,7 +46,7 @@
             <TextBlock 
             Grid.Row="0"
             HorizontalAlignment="Left"
-            Text="1. Object of the game:"/>
+            Text="1. Object of the game:" FontWeight="Bold"/>
 
             <TextBlock 
             Grid.Row="1"
