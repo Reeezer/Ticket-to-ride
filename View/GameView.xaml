@@ -79,9 +79,10 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <!--<Image Grid.Column="0" x:Name="MapImage" Source="/Ticket-to-ride;component/images/map/USA-map.png" Width="800" Height="500"/>-->
+                <!--<Image Grid.Column="0" x:Name="MapImage" Source="/Ticket-to-ride;component/images/map/USA-map.png" Width="800" Height="650"/>-->
+                
                 <!-- Connections between cities -->
-                <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.Connections}" Name="ConnectionsLines" Width="800" Height="500">
+                <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.Connections}" Name="ConnectionsLines" Width="800" Height="650">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <Canvas/>
@@ -98,8 +99,27 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <!-- Cities points -->
-                <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.Cities}" Width="800" Height="500">
+                <!-- Connections length -->
+                <!--<ItemsControl Grid.Column="0" ItemsSource="{Binding Board.Connections}" Width="800" Height="650">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Canvas/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemContainerStyle>
+                        <Style TargetType="ContentPresenter">
+                            <Setter Property="Canvas.Left" Value="{Binding X, Converter={StaticResource MathConverter}, ConverterParameter=@VALUE-20}"/>
+                            <Setter Property="Canvas.Top" Value="{Binding Y, Converter={StaticResource MathConverter}, ConverterParameter=@VALUE+5}"/>
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Length}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>-->
+                <!-- Cities circle -->
+                <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.Cities}" Width="800" Height="650">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <Canvas/>
@@ -118,7 +138,7 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
                 <!-- Cities names -->
-                <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.Cities}" Width="800" Height="500">
+                <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.Cities}" Width="800" Height="650">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <Canvas/>
@@ -139,7 +159,7 @@
             </Grid>
 
             <!-- Right Pane -->
-            <Grid Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -160,10 +180,7 @@
 
                 <!-- Buttons -->
                 <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center" Margin="0 24 0 0">
-                    <Button
-                        Content="Claim"
-                        Command="{Binding ClaimCommand}"
-                        Margin="0 8 0 0"/>
+                    <Button Content="Claim" Command="{Binding ClaimCommand}" Margin="0 8 0 0"/>
                 </StackPanel>
             </Grid>
         </Grid>

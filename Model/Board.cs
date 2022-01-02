@@ -255,7 +255,7 @@ namespace Ticket_to_ride.Model
 
         private City CreateCity(CityName name, double x, double y)
         {
-            return new City(name, x * 12, y * 13);
+            return new City(name, (x * 12) + 10, (y * 13) + 10);
         }
 
         private void ChangeAllShownCards()

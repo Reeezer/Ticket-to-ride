@@ -48,7 +48,7 @@ namespace Ticket_to_ride.Model
             Name = name;
             GoalCards = ToolBox.Pop(board.GoalCards, 3); // TODO Player can choose at least 2 of the 3 cards
             Board = board;
-            RemainingTrains = 45;
+            RemainingTrains = 2;
             Score = 0;
         }
 

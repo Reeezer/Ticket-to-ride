@@ -19,6 +19,9 @@
             <DataTemplate DataType="{x:Type viewmodels:GameViewModel}">
                 <views:GameView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:EndGameViewModel}">
+                <views:EndGameView/>
+            </DataTemplate>
             <!--pout chaque vue à ajouter, il faut mettre une nouvelle balise "DataTemplate" avec le controller correspondant-->
         </Grid.Resources>
 

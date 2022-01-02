@@ -22,10 +22,12 @@ namespace Ticket_to_ride.ViewModel
     public class GameViewModel : ViewModelBase
     {
         public ICommand ClaimCommand { get; }
+        public ICommand EndGameCommand { get; }
 
         public List<Player> Players { get; }
         private int cardsToTakeLeft;
         private int turn;
+        private int turnsLeft;
         private bool pickingCards;
         private List<TrainCard> selectedHandCards;
 
@@ -68,6 +70,7 @@ namespace Ticket_to_ride.ViewModel
             board.PopulateShownCards();
 
             Players = players;
+            turnsLeft = -1;
 
             turn = 0;
             cardsToTakeLeft = 2;
@@ -80,6 +83,7 @@ namespace Ticket_to_ride.ViewModel
             selectedHandCards = new List<TrainCard>();
 
             ClaimCommand = new FunctionCommand(TryToClaim);
+            EndGameCommand = new NavigationCommand(EndGame);
         }
 
         public void DistributeCards()
@@ -116,6 +120,13 @@ namespace Ticket_to_ride.ViewModel
             selectedHandCards = new List<TrainCard>();
             cardsToTakeLeft = 2;
             pickingCards = false;
+
+            turnsLeft -= 1;
+            Console.WriteLine(turnsLeft);
+            if (turnsLeft == 0)
+            {
+                EndGameCommand.Execute(null);
+            }
         }
 
         private void TryToClaim()
@@ -150,6 +161,11 @@ namespace Ticket_to_ride.ViewModel
                 //selectedConnection.PlayerColor = CurrentPlayer.Color.Color; // TODO
                 CurrentPlayer.Score += selectedConnection.Points;
                 CurrentPlayer.RemainingTrains -= selectedConnection.Length;
+
+                if (CurrentPlayer.RemainingTrains <= 2)
+                {
+                    turnsLeft = Players.Count + 1;
+                }
 
                 NextTurn();
             }
@@ -269,6 +285,11 @@ namespace Ticket_to_ride.ViewModel
             {
                 Console.WriteLine(card);
             }
+        }
+
+        private EndGameViewModel EndGame()
+        {
+            return new EndGameViewModel();
         }
     }
 }

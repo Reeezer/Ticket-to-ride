@@ -25,7 +25,7 @@ namespace Ticket_to_ride.Stores
         public static NavigationStore GetInstance()
         {
             if (instance == null)
-            { 
+            {
                 instance = new NavigationStore();
             }
             return instance;
