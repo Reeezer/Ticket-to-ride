@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="Ticket_to_ride.View.EndGameView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ticket_to_ride.View" 
+             xmlns:viewmodel="clr-namespace:Ticket_to_ride.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:EndGameViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            HorizontalAlignment="Center"
+            Grid.Row="0"
+            Style="{StaticResource Title}"
+            Text="End of the game"/>
+
+        <ListView Grid.Row="1" ItemsSource="{Binding Players}" Margin="0 32 0 0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Score" DisplayMemberBinding="{Binding Score}" />
+                    <GridViewColumn Header="Goals" DisplayMemberBinding="{Binding GoalCards.Count}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+        <Button Grid.Row="2" Margin="0 16 0 0" Content="Back to menu" Command="{Binding MainMenuCommand}"/>
+    </Grid>
+</UserControl>

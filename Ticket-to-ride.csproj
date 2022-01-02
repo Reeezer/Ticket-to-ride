@@ -70,6 +70,7 @@
     <Compile Include="Tools\ToolBox.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\TrainCard.cs" />
+    <Compile Include="ViewModel\EndGameViewModel.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
     <Compile Include="ViewModel\MenuCreateGameViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -83,6 +84,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Enums\CityName.cs" />
+    <Compile Include="View\EndGameView.xaml.cs">
+      <DependentUpon>EndGameView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GameView.xaml.cs">
       <DependentUpon>GameView.xaml</DependentUpon>
     </Compile>
@@ -93,6 +97,10 @@
       <DependentUpon>MenuView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EndGameView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
