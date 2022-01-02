@@ -43,6 +43,24 @@ namespace Ticket_to_ride.Tools
             return poppedElements;
         }
 
+        public static ObservableCollection<T> PopOnCollection<T>(List<T> collection, int count)
+        {
+            ObservableCollection<T> poppedElements = new ObservableCollection<T>();
+
+            for (int i = 0; i < count; ++i)
+            {
+                T selectedCard = collection[0];
+                collection.RemoveAt(0);
+                poppedElements.Add(selectedCard);
+
+                if (!collection.Any())
+                {
+                    break;
+                }
+            }
+
+            return poppedElements;
+        }
         public static void Sort<T>(ObservableCollection<T> collection) where T : IComparable
         {
             List<T> sorted = collection.OrderBy(x => x).ToList();

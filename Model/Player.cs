@@ -19,7 +19,7 @@ namespace Ticket_to_ride.Model
         public string Name { get; set; }
 
         public ObservableCollection<TrainCard> Hand { get; set; } = new ObservableCollection<TrainCard>();
-        public List<GoalCard> GoalCards { get; set; } = new List<GoalCard>();
+        public ObservableCollection<GoalCard> GoalCards { get; set; } = new ObservableCollection<GoalCard>();
 
         private int remainingTrains;
         public int RemainingTrains
@@ -46,7 +46,7 @@ namespace Ticket_to_ride.Model
         public Player(string name, Board board)
         {
             Name = name;
-            GoalCards = ToolBox.Pop(board.GoalCards, 3); // TODO Player can choose at least 2 of the 3 cards
+            GoalCards = ToolBox.PopOnCollection<GoalCard>(board.GoalCards, 3); // TODO Player can choose at least 2 of the 3 cards
             Board = board;
             RemainingTrains = 45;
             Score = 0;
