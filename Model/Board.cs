@@ -185,36 +185,36 @@ namespace Ticket_to_ride.Model
         private void InitGoalCards()
         {
             #region Create goal cards
-            GoalCards.Add(new GoalCard(CityName.NewYork, CityName.Atlanta, 6));
-            GoalCards.Add(new GoalCard(CityName.Winnipeg, CityName.LittleRock, 11));
-            GoalCards.Add(new GoalCard(CityName.Boston, CityName.Miami, 12));
-            GoalCards.Add(new GoalCard(CityName.LosAngeles, CityName.Chicago, 16));
-            GoalCards.Add(new GoalCard(CityName.Montreal, CityName.Atlanta, 9));
-            GoalCards.Add(new GoalCard(CityName.Seattle, CityName.LosAngeles, 9));
-            GoalCards.Add(new GoalCard(CityName.KansasCity, CityName.Houston, 5));
-            GoalCards.Add(new GoalCard(CityName.Chicago, CityName.NewOrleans, 7));
-            GoalCards.Add(new GoalCard(CityName.Seattle, CityName.NewYork, 22));
-            GoalCards.Add(new GoalCard(CityName.Portland, CityName.Nashville, 17));
-            GoalCards.Add(new GoalCard(CityName.SaultSaintMarie, CityName.OklahomaCity, 9));
-            GoalCards.Add(new GoalCard(CityName.Vancouver, CityName.SantaFe, 13));
-            GoalCards.Add(new GoalCard(CityName.SanFrancisco, CityName.Atlanta, 17));
-            GoalCards.Add(new GoalCard(CityName.Vancouver, CityName.Montreal, 20));
-            GoalCards.Add(new GoalCard(CityName.Montreal, CityName.NewOrleans, 13));
-            GoalCards.Add(new GoalCard(CityName.LosAngeles, CityName.NewYork, 21));
-            GoalCards.Add(new GoalCard(CityName.Calgary, CityName.SaltLakeCity, 7));
-            GoalCards.Add(new GoalCard(CityName.Denver, CityName.Pittsburgh, 11));
-            GoalCards.Add(new GoalCard(CityName.Helena, CityName.LosAngeles, 8));
-            GoalCards.Add(new GoalCard(CityName.Calgary, CityName.Phoenix, 13));
-            GoalCards.Add(new GoalCard(CityName.Chicago, CityName.SantaFe, 9));
-            GoalCards.Add(new GoalCard(CityName.Toronto, CityName.Miami, 10)); ;
-            GoalCards.Add(new GoalCard(CityName.Dallas, CityName.NewYork, 11));
-            GoalCards.Add(new GoalCard(CityName.Duluth, CityName.Houston, 8));
-            GoalCards.Add(new GoalCard(CityName.SaultSaintMarie, CityName.Nashville, 8));
-            GoalCards.Add(new GoalCard(CityName.Duluth, CityName.ElPaso, 10));
-            GoalCards.Add(new GoalCard(CityName.Winnipeg, CityName.Houston, 12));
-            GoalCards.Add(new GoalCard(CityName.Denver, CityName.ElPaso, 4));
-            GoalCards.Add(new GoalCard(CityName.LosAngeles, CityName.Miami, 20));
-            GoalCards.Add(new GoalCard(CityName.Portland, CityName.Phoenix, 11));
+            GoalCards.Add(new GoalCard(CityName.NewYork, CityName.Atlanta, 6, $"/Ticket-to-ride;component/images/goal/newyork-atlanta.png"));
+            GoalCards.Add(new GoalCard(CityName.Winnipeg, CityName.LittleRock, 11, $"/Ticket-to-ride;component/images/goal/winnipeg-littlerock.png"));
+            GoalCards.Add(new GoalCard(CityName.Boston, CityName.Miami, 12, $"/Ticket-to-ride;component/images/goal/boston-miami.png"));
+            GoalCards.Add(new GoalCard(CityName.LosAngeles, CityName.Chicago, 16, $"/Ticket-to-ride;component/images/goal/losangeles-chicago.png"));
+            GoalCards.Add(new GoalCard(CityName.Montreal, CityName.Atlanta, 9, $"/Ticket-to-ride;component/images/goal/montreal-atlanta.png"));
+            GoalCards.Add(new GoalCard(CityName.Seattle, CityName.LosAngeles, 9, $"/Ticket-to-ride;component/images/goal/seattle-losangeles.png"));
+            GoalCards.Add(new GoalCard(CityName.KansasCity, CityName.Houston, 5, $"/Ticket-to-ride;component/images/goal/kansascity-houston.png"));
+            GoalCards.Add(new GoalCard(CityName.Chicago, CityName.NewOrleans, 7, $"/Ticket-to-ride;component/images/goal/chicago-neworleans.png"));
+            GoalCards.Add(new GoalCard(CityName.Seattle, CityName.NewYork, 22, $"/Ticket-to-ride;component/images/goal/seattle-newyork.png"));
+            GoalCards.Add(new GoalCard(CityName.Portland, CityName.Nashville, 17, $"/Ticket-to-ride;component/images/goal/portland-nashville.png"));
+            GoalCards.Add(new GoalCard(CityName.SaultSaintMarie, CityName.OklahomaCity, 9, $"/Ticket-to-ride;component/images/goal/saultstmarie-oklahomacity.png"));
+            GoalCards.Add(new GoalCard(CityName.Vancouver, CityName.SantaFe, 13, $"/Ticket-to-ride;component/images/goal/vancouver-santafe.png"));
+            GoalCards.Add(new GoalCard(CityName.SanFrancisco, CityName.Atlanta, 17, $"/Ticket-to-ride;component/images/goal/sanfrancisco-atlanta.png"));
+            GoalCards.Add(new GoalCard(CityName.Vancouver, CityName.Montreal, 20, $"/Ticket-to-ride;component/images/goal/vancouver-montreal.png"));
+            GoalCards.Add(new GoalCard(CityName.Montreal, CityName.NewOrleans, 13, $"/Ticket-to-ride;component/images/goal/montreal-neworleans.png"));
+            GoalCards.Add(new GoalCard(CityName.LosAngeles, CityName.NewYork, 21, $"/Ticket-to-ride;component/images/goal/losangeles-newyork.png"));
+            GoalCards.Add(new GoalCard(CityName.Calgary, CityName.SaltLakeCity, 7, $"/Ticket-to-ride;component/images/goal/calgary-saltlakecity.png"));
+            GoalCards.Add(new GoalCard(CityName.Denver, CityName.Pittsburgh, 11, $"/Ticket-to-ride;component/images/goal/denver-pittsburgh.png"));
+            GoalCards.Add(new GoalCard(CityName.Helena, CityName.LosAngeles, 8, $"/Ticket-to-ride;component/images/goal/helena-losangeles.png"));
+            GoalCards.Add(new GoalCard(CityName.Calgary, CityName.Phoenix, 13, $"/Ticket-to-ride;component/images/goal/calgary-phoenix.png"));
+            GoalCards.Add(new GoalCard(CityName.Chicago, CityName.SantaFe, 9, $"/Ticket-to-ride;component/images/goal/chicago-santafe.png"));
+            GoalCards.Add(new GoalCard(CityName.Toronto, CityName.Miami, 10, $"/Ticket-to-ride;component/images/goal/toronto-miami.png")); ;
+            GoalCards.Add(new GoalCard(CityName.Dallas, CityName.NewYork, 11, $"/Ticket-to-ride;component/images/goal/dallas-newyork.png"));
+            GoalCards.Add(new GoalCard(CityName.Duluth, CityName.Houston, 8, $"/Ticket-to-ride;component/images/goal/duluth-houston.png"));
+            GoalCards.Add(new GoalCard(CityName.SaultSaintMarie, CityName.Nashville, 8, $"/Ticket-to-ride;component/images/goal/saultstmarie-nashville.png"));
+            GoalCards.Add(new GoalCard(CityName.Duluth, CityName.ElPaso, 10, $"/Ticket-to-ride;component/images/goal/duluth-elpaso.png"));
+            GoalCards.Add(new GoalCard(CityName.Winnipeg, CityName.Houston, 12, $"/Ticket-to-ride;component/images/goal/winnipeg-houston.png"));
+            GoalCards.Add(new GoalCard(CityName.Denver, CityName.ElPaso, 4, $"/Ticket-to-ride;component/images/goal/denver-elpaso.png"));
+            GoalCards.Add(new GoalCard(CityName.LosAngeles, CityName.Miami, 20, $"/Ticket-to-ride;component/images/goal/losangeles-miami.png"));
+            GoalCards.Add(new GoalCard(CityName.Portland, CityName.Phoenix, 11, $"/Ticket-to-ride;component/images/goal/portland-phoenix.png"));
 
             ToolBox.Shuffle<GoalCard>(GoalCards);
             #endregion
