@@ -81,7 +81,7 @@
 
                 <!--<Image Grid.Column="0" x:Name="MapImage" Source="/Ticket-to-ride;component/images/map/USA-map.png" Width="800" Height="500"/>-->
                 <!-- Connections between cities -->
-                <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.Connections}" Width="800" Height="500">
+                <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.Connections}" Name="ConnectionsLines" Width="800" Height="500">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <Canvas/>

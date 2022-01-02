@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Media.Effects;
+using System.Windows.Shapes;
+using System.Windows;
 
 namespace Ticket_to_ride.ViewModel
 {
@@ -112,7 +114,7 @@ namespace Ticket_to_ride.ViewModel
             cardsToTakeLeft = 2;
         }
 
-        public void SelectConnection(City origin, City destination)
+        public void SelectConnection(City origin, City destination, Line line)
         {
             // Check if not already the current selected
             if (selectedConnection != null && SelectedConnection.Cities[0].Equals(origin) && SelectedConnection.Cities[1].Equals(destination))
@@ -130,6 +132,13 @@ namespace Ticket_to_ride.ViewModel
 
             SelectedConnection = connectionToBeSelected;
             Console.WriteLine($"[{CurrentPlayer}] Select: {SelectedConnection}");
+
+            //foreach (UIElement l in lines)
+            //{
+            //    l.Opacity = 0.1;
+            //    Console.WriteLine(l);
+            //}
+            //line.Opacity = 1;
         }
 
         public void TakeCardFromStack(int trainCardId)

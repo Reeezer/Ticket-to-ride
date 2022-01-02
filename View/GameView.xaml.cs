@@ -29,11 +29,19 @@ namespace Ticket_to_ride.View
 
         public void LineClicked(object sender, MouseEventArgs e)
         {
+            //List<UIElement> lines = new List<UIElement>();
+            //for (int i = 0; i < ConnectionsLines.Items.Count; i++)
+            //{
+            //    ContentPresenter uiElement = (ContentPresenter)ConnectionsLines.ItemContainerGenerator.ContainerFromIndex(i);
+            //    Line line = uiElement.ContentTemplate.
+            //    uiElement.Opacity = 0.1;
+            //}
+
             Line line = sender as Line;
             List<City> cities = line.Tag as List<City>;
             GameViewModel gameVM = DataContext as GameViewModel;
 
-            gameVM.SelectConnection(cities[0], cities[1]);
+            gameVM.SelectConnection(cities[0], cities[1], line);
         }
 
         public void ShownCardClicked(object sender, MouseEventArgs e)
