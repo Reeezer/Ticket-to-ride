@@ -208,6 +208,7 @@ namespace Ticket_to_ride.ViewModel
             SelectedConnection = connectionToBeSelected;
             Console.WriteLine($"[{CurrentPlayer}] Select: {SelectedConnection}");
 
+            // TODO change connection opacity on selection
             //foreach (UIElement l in lines)
             //{
             //    l.Opacity = 0.1;
@@ -259,6 +260,8 @@ namespace Ticket_to_ride.ViewModel
 
         private void TakeCard(TrainCard cardToTake, bool fromDeck)
         {
+            // TODO change hand card opacity (to 1) on card taking
+
             CurrentPlayer.Hand.Add(cardToTake);
             CurrentPlayer.SortCards();
             NotPickingCards = false;
