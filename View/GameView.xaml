@@ -200,7 +200,8 @@
 
                 <!-- Buttons -->
                 <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center" Margin="0 24 0 0">
-                    <Button Content="Claim" Command="{Binding ClaimCommand}" Margin="0 8 0 0"/>
+                    <Button Content="Claim connection" Command="{Binding ClaimCommand}"/>
+                    <Button Content="Take Goal card" Command="{Binding GoalCardCommand}" Margin="0 8 0 0"/>
                 </StackPanel>
             </Grid>
         </Grid>

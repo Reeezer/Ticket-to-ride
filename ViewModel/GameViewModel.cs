@@ -23,6 +23,7 @@ namespace Ticket_to_ride.ViewModel
     {
         public ICommand ClaimCommand { get; }
         public ICommand EndGameCommand { get; }
+        public ICommand GoalCardCommand { get; }
 
         public List<Player> Players { get; }
         private int cardsToTakeLeft;
@@ -83,6 +84,7 @@ namespace Ticket_to_ride.ViewModel
             selectedHandCards = new List<TrainCard>();
 
             ClaimCommand = new FunctionCommand(TryToClaim);
+            GoalCardCommand = new FunctionCommand(TakeGoalCard);
             EndGameCommand = new NavigationCommand(EndGame);
         }
 
@@ -262,6 +264,18 @@ namespace Ticket_to_ride.ViewModel
                     NextTurn();
                 }
             }
+        }
+
+        private void TakeGoalCard()
+        {
+            if (Board.GoalCards.Count <= 0)
+            {
+                return;
+            }
+
+            // TODO make the same thing that hand cards, because we actually can't see more than 4 goal cards
+            CurrentPlayer.GoalCards.Add(ToolBox.PopOnCollection(Board.GoalCards, 1)[0]);
+            NextTurn();
         }
 
         public void HandCardSelect(int trainCardId, Image image)
