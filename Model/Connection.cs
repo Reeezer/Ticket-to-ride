@@ -45,6 +45,8 @@ namespace Ticket_to_ride.Model
         }
 
         public string FullInformations => $"{Cities[0]} - {Cities[1]}\n({Length} {colorName} trains)";
+        public double LengthPosX => (Cities[0].X + Cities[1].X) / 2;
+        public double LengthPosY => (Cities[0].Y + Cities[1].Y) / 2;
 
         public Connection(City origin, City destination, Color color, int length)
         {
