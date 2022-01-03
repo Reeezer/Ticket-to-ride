@@ -6,7 +6,7 @@
              xmlns:views="clr-namespace:Ticket_to_ride.View"
              xmlns:tools="clr-namespace:Ticket_to_ride.Tools"
              xmlns:viewmodels="clr-namespace:Ticket_to_ride.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodels:GameViewModel}"
-             mc:Ignorable="d" Height="697.249" Width="1198.624">
+             mc:Ignorable="d">
 
     <UserControl.Resources>
         <tools:MathConverter x:Key="MathConverter" />
@@ -179,9 +179,10 @@
             </Grid>
 
             <!-- Right Pane -->
-            <Grid Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Grid Grid.Column="2" HorizontalAlignment="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
@@ -199,12 +200,15 @@
                 </ListView>
 
                 <!-- Buttons -->
-                <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center" Margin="0 24 0 0">
-                    <Button Content="Claim connection" Command="{Binding ClaimCommand}"/>
-                    <Button Content="Take Goal card" Command="{Binding GoalCardCommand}" Margin="0 8 0 0"/>
+                <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0 24 0 0">
+                    <Button IsEnabled="{Binding NotPickingCards}" Content="Claim connection" Command="{Binding ClaimCommand}"/>
+                    <Button IsEnabled="{Binding NotPickingCards}" Content="Take Goal card" Command="{Binding GoalCardCommand}" Margin="0 8 0 0"/>
                     <TextBlock Text="Selected connection:" Margin="0 32 0 0" VerticalAlignment="Center"/>
                     <TextBlock Text="{Binding SelectedConnection.FullInformations}" Margin="0 4 0 0" VerticalAlignment="Center"/>
                 </StackPanel>
+
+                <!-- Exit -->
+                <Button Grid.Row="2" Content="Exit" Command="{Binding ExitCommand}"/>
             </Grid>
         </Grid>
 

@@ -20,7 +20,7 @@ namespace Ticket_to_ride.ViewModel
         {
             NewGameCommand = new NavigationCommand(NewGame);
             ExitCommand = new ExitCommand();
-            RulesCommand = new NavigationCommand(openRules);
+            RulesCommand = new NavigationCommand(OpenRules);
         }
 
         private MenuCreateGameViewModel NewGame()
@@ -28,7 +28,7 @@ namespace Ticket_to_ride.ViewModel
             return new MenuCreateGameViewModel();
         }
 
-        private RulesViewModel openRules()
+        private RulesViewModel OpenRules()
         {
             return new RulesViewModel();
         }
