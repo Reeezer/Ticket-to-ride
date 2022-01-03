@@ -36,17 +36,17 @@ namespace Ticket_to_ride.Model
         {
             #region Create cities
             Cities.Add(CreateCity(CityName.Atlanta, 45, 23));
-            Cities.Add(CreateCity(CityName.Boston, 55, 2));
+            Cities.Add(CreateCity(CityName.Boston, 55, 1));
             Cities.Add(CreateCity(CityName.Calgary, 10, 0));
             Cities.Add(CreateCity(CityName.Charleston, 53, 20));
             Cities.Add(CreateCity(CityName.Chicago, 40, 11));
-            Cities.Add(CreateCity(CityName.Dallas, 32, 33));
+            Cities.Add(CreateCity(CityName.Dallas, 33, 32));
             Cities.Add(CreateCity(CityName.Denver, 22, 19));
             Cities.Add(CreateCity(CityName.Duluth, 33, 6));
             Cities.Add(CreateCity(CityName.ElPaso, 22, 33));
             Cities.Add(CreateCity(CityName.Helena, 18, 6));
             Cities.Add(CreateCity(CityName.Houston, 34, 35));
-            Cities.Add(CreateCity(CityName.KansasCity, 33, 18));
+            Cities.Add(CreateCity(CityName.KansasCity, 30, 18));
             Cities.Add(CreateCity(CityName.LasVegas, 7, 25));
             Cities.Add(CreateCity(CityName.LittleRock, 38, 25));
             Cities.Add(CreateCity(CityName.LosAngeles, 5, 30));
@@ -55,18 +55,18 @@ namespace Ticket_to_ride.Model
             Cities.Add(CreateCity(CityName.Nashville, 42, 16));
             Cities.Add(CreateCity(CityName.NewOrleans, 40, 35));
             Cities.Add(CreateCity(CityName.NewYork, 55, 5));
-            Cities.Add(CreateCity(CityName.OklahomaCity, 32, 25));
+            Cities.Add(CreateCity(CityName.OklahomaCity, 31, 25));
             Cities.Add(CreateCity(CityName.Omaha, 32, 13));
             Cities.Add(CreateCity(CityName.Phoenix, 10, 28));
             Cities.Add(CreateCity(CityName.Pittsburgh, 47, 10));
-            Cities.Add(CreateCity(CityName.Portland, 1, 4));
+            Cities.Add(CreateCity(CityName.Portland, 1, 8));
             Cities.Add(CreateCity(CityName.Raleigh, 50, 17));
             Cities.Add(CreateCity(CityName.SaintLouis, 35, 18));
             Cities.Add(CreateCity(CityName.SaltLakeCity, 10, 18));
-            Cities.Add(CreateCity(CityName.SanFrancisco, 0, 20));
+            Cities.Add(CreateCity(CityName.SanFrancisco, 1, 20));
             Cities.Add(CreateCity(CityName.SantaFe, 22, 26));
-            Cities.Add(CreateCity(CityName.SaultSaintMarie, 40, 5));
-            Cities.Add(CreateCity(CityName.Seattle, 2, 2));
+            Cities.Add(CreateCity(CityName.SaultSaintMarie, 40, 3));
+            Cities.Add(CreateCity(CityName.Seattle, 2, 5));
             Cities.Add(CreateCity(CityName.Toronto, 47, 6));
             Cities.Add(CreateCity(CityName.Vancouver, 3, 0));
             Cities.Add(CreateCity(CityName.Washington, 55, 12));

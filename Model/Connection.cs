@@ -9,6 +9,7 @@ using Ticket_to_ride.Enums;
 using Ticket_to_ride.Model;
 using Ticket_to_ride.ViewModel;
 using Ticket_to_ride.Tools;
+using System.Reflection;
 
 namespace Ticket_to_ride.Model
 {
@@ -19,6 +20,7 @@ namespace Ticket_to_ride.Model
         public SolidColorBrush PlayerColor { get; set; } = null;
         public int Length { get; }
         public bool IsEmpty { get; set; } = true;
+        private string colorName;
 
         public int Points
         {
@@ -42,6 +44,8 @@ namespace Ticket_to_ride.Model
             }
         }
 
+        public string FullInformations => $"{Cities[0]} - {Cities[1]}\n({Length} {colorName} trains)";
+
         public Connection(City origin, City destination, Color color, int length)
         {
             Cities = new List<City>
@@ -52,6 +56,9 @@ namespace Ticket_to_ride.Model
 
             TrainColor = new SolidColorBrush(color);
             Length = length;
+
+            PropertyInfo colorProperty = typeof(Colors).GetProperties().FirstOrDefault(p => Color.AreClose((Color)p.GetValue(null), TrainColor.Color));
+            colorName = colorProperty != null ? colorProperty.Name : "Unnamed color";
         }
 
         public override string ToString()

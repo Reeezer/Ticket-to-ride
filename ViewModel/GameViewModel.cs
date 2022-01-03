@@ -224,7 +224,6 @@ namespace Ticket_to_ride.ViewModel
 
                     CurrentPlayer.Hand.Add(cardToTake);
                     Board.ShownCards.RemoveAt(i);
-                    pickingCards = true;
 
                     if (cardToTake.Color.Color == Colors.FloralWhite)
                     {
@@ -241,6 +240,7 @@ namespace Ticket_to_ride.ViewModel
 
             Board.AddAShownCard();
             CurrentPlayer.SortCards();
+            pickingCards = true;
 
             if (cardsToTakeLeft <= 0)
             {
@@ -268,7 +268,7 @@ namespace Ticket_to_ride.ViewModel
 
         private void TakeGoalCard()
         {
-            if (Board.GoalCards.Count <= 0)
+            if (Board.GoalCards.Count <= 0 || pickingCards)
             {
                 return;
             }
