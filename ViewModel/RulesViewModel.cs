@@ -11,7 +11,18 @@ using Ticket_to_ride.Model;
 
 namespace Ticket_to_ride.ViewModel
 {
-    class RulesViewModel : ViewModelBase
+    public class RulesViewModel : ViewModelBase
     {
+        public ICommand MenuCommand { get; }
+
+        public RulesViewModel()
+        {
+            MenuCommand = new NavigationCommand(Menu);
+        }
+
+        private MenuViewModel Menu()
+        {
+            return new MenuViewModel();
+        }
     }
 }

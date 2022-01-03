@@ -23,12 +23,13 @@ namespace Ticket_to_ride.ViewModel
     {
         public ICommand ClaimCommand { get; }
         public ICommand EndGameCommand { get; }
+        public ICommand ExitCommand { get; }
+        public ICommand GoalCardCommand { get; }
 
         public List<Player> Players { get; }
         private int cardsToTakeLeft;
         private int turn;
         private int turnsLeft;
-        private bool pickingCards;
         private List<TrainCard> selectedHandCards;
 
         private Board board;
@@ -64,6 +65,17 @@ namespace Ticket_to_ride.ViewModel
             }
         }
 
+        private bool notPickingCards; // This way to be able to disable buttons using binding
+        public bool NotPickingCards
+        {
+            get => notPickingCards;
+            set
+            {
+                notPickingCards = value;
+                OnPropertyChanged(nameof(notPickingCards));
+            }
+        }
+
         public GameViewModel(Board board, List<Player> players)
         {
             Board = board;
@@ -74,7 +86,7 @@ namespace Ticket_to_ride.ViewModel
 
             turn = 0;
             cardsToTakeLeft = 2;
-            pickingCards = false;
+            NotPickingCards = true;
             CurrentPlayer = Players[turn];
             SelectedConnection = null;
 
@@ -83,7 +95,9 @@ namespace Ticket_to_ride.ViewModel
             selectedHandCards = new List<TrainCard>();
 
             ClaimCommand = new FunctionCommand(TryToClaim);
+            GoalCardCommand = new FunctionCommand(TakeGoalCard);
             EndGameCommand = new NavigationCommand(EndGame);
+            ExitCommand = new NavigationCommand(Exit);
         }
 
         public void DistributeCards()
@@ -119,7 +133,7 @@ namespace Ticket_to_ride.ViewModel
             SelectedConnection = null;
             selectedHandCards = new List<TrainCard>();
             cardsToTakeLeft = 2;
-            pickingCards = false;
+            NotPickingCards = true;
 
             turnsLeft -= 1;
             Console.WriteLine(turnsLeft);
@@ -131,7 +145,7 @@ namespace Ticket_to_ride.ViewModel
 
         private void TryToClaim()
         {
-            if (selectedConnection == null || selectedHandCards.Count <= 0 || pickingCards)
+            if (selectedConnection == null || selectedHandCards.Count <= 0 || !NotPickingCards)
             {
                 return;
             }
@@ -194,6 +208,7 @@ namespace Ticket_to_ride.ViewModel
             SelectedConnection = connectionToBeSelected;
             Console.WriteLine($"[{CurrentPlayer}] Select: {SelectedConnection}");
 
+            // TODO change connection opacity on selection
             //foreach (UIElement l in lines)
             //{
             //    l.Opacity = 0.1;
@@ -220,25 +235,45 @@ namespace Ticket_to_ride.ViewModel
                         return;
                     }
 
-                    CurrentPlayer.Hand.Add(cardToTake);
+                    TakeCard(cardToTake, true);
                     Board.ShownCards.RemoveAt(i);
-                    pickingCards = true;
-
-                    if (cardToTake.Color.Color == Colors.FloralWhite)
-                    {
-                        cardsToTakeLeft -= 2;
-                    }
-                    else
-                    {
-                        cardsToTakeLeft--;
-                    }
+                    Board.AddAShownCard();
 
                     break;
                 }
             }
+        }
 
-            Board.AddAShownCard();
+        public void TakeCardFromDeck()
+        {
+            if (cardsToTakeLeft <= 0)
+            {
+                return;
+            }
+
+            if (Board.Deck.Count > 0)
+            {
+                TakeCard(Board.Deck[0], true);
+                Board.Deck.RemoveAt(0);
+            }
+        }
+
+        private void TakeCard(TrainCard cardToTake, bool fromDeck)
+        {
+            // TODO change hand card opacity (to 1) on card taking
+
+            CurrentPlayer.Hand.Add(cardToTake);
             CurrentPlayer.SortCards();
+            NotPickingCards = false;
+
+            if (!fromDeck && cardToTake.Color.Color == Colors.FloralWhite)
+            {
+                cardsToTakeLeft -= 2;
+            }
+            else
+            {
+                cardsToTakeLeft--;
+            }
 
             if (cardsToTakeLeft <= 0)
             {
@@ -246,26 +281,25 @@ namespace Ticket_to_ride.ViewModel
             }
         }
 
-        public void TakeCardFromDeck()
+        private void TakeGoalCard()
         {
-            if (Board.Deck.Count > 0)
+            if (Board.GoalCards.Count <= 0 || !NotPickingCards)
             {
-                CurrentPlayer.Hand.Add(Board.Deck[0]);
-                Board.Deck.RemoveAt(0);
-                CurrentPlayer.SortCards();
-                pickingCards = true;
-
-                cardsToTakeLeft--;
-
-                if (cardsToTakeLeft <= 0)
-                {
-                    NextTurn();
-                }
+                return;
             }
+
+            // TODO make the same thing that hand cards, because we actually can't see more than 4 goal cards
+            CurrentPlayer.GoalCards.Add(ToolBox.PopOnCollection(Board.GoalCards, 1)[0]);
+            NextTurn();
         }
 
         public void HandCardSelect(int trainCardId, Image image)
         {
+            if (!NotPickingCards)
+            {
+                return;
+            }
+
             for (int i = 0; i < CurrentPlayer.Hand.Count; i++)
             {
                 if (CurrentPlayer.Hand[i].Id == trainCardId)
@@ -308,6 +342,11 @@ namespace Ticket_to_ride.ViewModel
         private EndGameViewModel EndGame()
         {
             return new EndGameViewModel(Players);
+        }
+
+        private MenuViewModel Exit()
+        {
+            return new MenuViewModel();
         }
     }
 }

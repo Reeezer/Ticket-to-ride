@@ -6,7 +6,7 @@
              xmlns:views="clr-namespace:Ticket_to_ride.View"
              xmlns:tools="clr-namespace:Ticket_to_ride.Tools"
              xmlns:viewmodels="clr-namespace:Ticket_to_ride.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodels:GameViewModel}"
-             mc:Ignorable="d" Height="697.249" Width="1198.624">
+             mc:Ignorable="d">
 
     <UserControl.Resources>
         <tools:MathConverter x:Key="MathConverter" />
@@ -120,7 +120,7 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
                 <!-- Connections length -->
-                <!--<ItemsControl Grid.Column="0" ItemsSource="{Binding Board.Connections}" Width="800" Height="650">
+                <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.Connections}" Width="800" Height="650">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <Canvas/>
@@ -128,8 +128,8 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemContainerStyle>
                         <Style TargetType="ContentPresenter">
-                            <Setter Property="Canvas.Left" Value="{Binding X, Converter={StaticResource MathConverter}, ConverterParameter=@VALUE-20}"/>
-                            <Setter Property="Canvas.Top" Value="{Binding Y, Converter={StaticResource MathConverter}, ConverterParameter=@VALUE+5}"/>
+                            <Setter Property="Canvas.Left" Value="{Binding LengthPosX}"/>
+                            <Setter Property="Canvas.Top" Value="{Binding LengthPosY}"/>
                         </Style>
                     </ItemsControl.ItemContainerStyle>
                     <ItemsControl.ItemTemplate>
@@ -137,7 +137,7 @@
                             <TextBlock Text="{Binding Length}"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
-                </ItemsControl>-->
+                </ItemsControl>
                 <!-- Cities circle -->
                 <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.Cities}" Width="800" Height="650">
                     <ItemsControl.ItemsPanel>
@@ -179,9 +179,10 @@
             </Grid>
 
             <!-- Right Pane -->
-            <Grid Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Grid Grid.Column="2" HorizontalAlignment="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
@@ -199,9 +200,15 @@
                 </ListView>
 
                 <!-- Buttons -->
-                <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center" Margin="0 24 0 0">
-                    <Button Content="Claim" Command="{Binding ClaimCommand}" Margin="0 8 0 0"/>
+                <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0 24 0 0">
+                    <Button IsEnabled="{Binding NotPickingCards}" Content="Claim connection" Command="{Binding ClaimCommand}"/>
+                    <Button IsEnabled="{Binding NotPickingCards}" Content="Take Goal card" Command="{Binding GoalCardCommand}" Margin="0 8 0 0"/>
+                    <TextBlock Text="Selected connection:" Margin="0 32 0 0" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding SelectedConnection.FullInformations}" Margin="0 4 0 0" VerticalAlignment="Center"/>
                 </StackPanel>
+
+                <!-- Exit -->
+                <Button Grid.Row="2" Content="Exit" Command="{Binding ExitCommand}"/>
             </Grid>
         </Grid>
 
