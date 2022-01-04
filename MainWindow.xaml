@@ -6,7 +6,7 @@
         xmlns:views="clr-namespace:Ticket_to_ride.View"
         xmlns:viewmodels="clr-namespace:Ticket_to_ride.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         mc:Ignorable="d"
-        Title="Ticket to ride" Height="450" Width="800">
+        Title="Ticket to ride" Height="850" Width="1250">
 
     <Grid Margin="16">
         <Grid.Resources>

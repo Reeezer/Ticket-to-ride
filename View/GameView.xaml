@@ -20,27 +20,31 @@
         </Grid.RowDefinitions>
 
         <!-- Cards to pick up -->
-        <Grid Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Center">
+            <TextBlock HorizontalAlignment="Center" Text="Cards to pick up" Style="{StaticResource Big}" Margin="0 0 8 0"/>
+            
+            <Grid Margin="0 8 0 0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
 
-            <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.ShownCards}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Image Source="{Binding SourcePath}" HorizontalAlignment="Center" Margin="12 0 12 0" Tag="{Binding Id}" MouseLeftButtonDown="ShownCardClicked"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.ShownCards}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding SourcePath}" HorizontalAlignment="Center" Margin="12 0 12 0" Tag="{Binding Id}" MouseLeftButtonDown="ShownCardClicked"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
-            <Image Grid.Column="1" Source="back.png" Margin="12 0 12 0" HorizontalAlignment="Center" MouseLeftButtonDown="DeckClicked"/>
-        </Grid>
+                <Image Grid.Column="1" Source="back.png" Margin="12 0 12 0" HorizontalAlignment="Center" MouseLeftButtonDown="DeckClicked"/>
+            </Grid>
+        </StackPanel>
 
         <!-- Center pane -->
         <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 24 0 24">
@@ -55,9 +59,10 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" HorizontalAlignment="Center" FontSize="20" Text="{Binding CurrentPlayer.Name}"/>
+                <TextBlock Grid.Row="0" HorizontalAlignment="Center" Style="{StaticResource Big}" Text="{Binding CurrentPlayer.Name}"/>
 
                 <Grid x:Name="PlayerResumeGrid" Grid.Row="1" Margin="0 12 0 0">
                     <Grid.RowDefinitions>
@@ -76,13 +81,13 @@
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="Remaining trains:" Margin="0 0 8 0"/>
                     <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CurrentPlayer.RemainingTrains}"/>
 
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Goal cards:" Margin="0 0 8 0"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Goal cards:" Margin="0 8 8 8"/>
                 </Grid>
 
-                <ItemsControl Grid.Row="2" ItemsSource="{Binding CurrentPlayer.GoalCards}" HorizontalAlignment="Center" VerticalAlignment="Top"  Margin="0 0 0 0">
+                <ItemsControl Grid.Row="2" ItemsSource="{Binding CurrentPlayer.GoalCards}" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin=" 0 100 0 0"/>
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
@@ -94,89 +99,95 @@
             </Grid>
 
             <!-- Board -->
-            <Grid Grid.Column="1" Margin="24 0 24 0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+            <Border Grid.Column="1" Margin="24 0 24 0" Background="LightBlue" CornerRadius="8">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-                <!--<Image Grid.Column="0" x:Name="MapImage" Source="/Ticket-to-ride;component/images/map/USA-map.png" Width="800" Height="650"/>-->
+                    <!--<Image Grid.Column="0" x:Name="MapImage" Source="/Ticket-to-ride;component/images/map/USA-map.png" Width="800" Height="650"/>-->
                 
-                <!-- Connections between cities -->
-                <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.Connections}" Name="ConnectionsLines" Width="800" Height="650">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <Canvas/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Line Tag="{Binding Cities}"
-                                  X1="{Binding Cities[0].X}" Y1="{Binding Cities[0].Y}"
-                                  X2="{Binding Cities[1].X}" Y2="{Binding Cities[1].Y}"
-                                  Stroke="{Binding TrainColor}" StrokeThickness="10"
-                                  MouseUp="LineClicked">
-                            </Line>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-                <!-- Connections length -->
-                <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.Connections}" Width="800" Height="650">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <Canvas/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemContainerStyle>
-                        <Style TargetType="ContentPresenter">
-                            <Setter Property="Canvas.Left" Value="{Binding LengthPosX}"/>
-                            <Setter Property="Canvas.Top" Value="{Binding LengthPosY}"/>
-                        </Style>
-                    </ItemsControl.ItemContainerStyle>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Length}"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-                <!-- Cities circle -->
-                <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.Cities}" Width="800" Height="650">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <Canvas/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemContainerStyle>
-                        <Style TargetType="ContentPresenter">
-                            <Setter Property="Canvas.Left" Value="{Binding Path=X, Converter={StaticResource MathConverter}, ConverterParameter=@VALUE-8}"/>
-                            <Setter Property="Canvas.Top" Value="{Binding Path=Y, Converter={StaticResource MathConverter}, ConverterParameter=@VALUE-8}"/>
-                        </Style>
-                    </ItemsControl.ItemContainerStyle>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Ellipse Width="15" Height="15" Fill="Red" Stroke="Black" StrokeThickness="1"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-                <!-- Cities names -->
-                <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.Cities}" Width="800" Height="650">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <Canvas/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemContainerStyle>
-                        <Style TargetType="ContentPresenter">
-                            <Setter Property="Canvas.Left" Value="{Binding X, Converter={StaticResource MathConverter}, ConverterParameter=@VALUE-20}"/>
-                            <Setter Property="Canvas.Top" Value="{Binding Y, Converter={StaticResource MathConverter}, ConverterParameter=@VALUE+5}"/>
-                        </Style>
-                    </ItemsControl.ItemContainerStyle>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Name}"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </Grid>
+                    <!-- Connections between cities -->
+                    <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.Connections}" Name="ConnectionsLines" Width="750" Height="650">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Canvas/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Line Tag="{Binding Cities}"
+                                      X1="{Binding Cities[0].X}" Y1="{Binding Cities[0].Y}"
+                                      X2="{Binding Cities[1].X}" Y2="{Binding Cities[1].Y}"
+                                      Stroke="{Binding TrainColor}" StrokeThickness="10"
+                                      MouseUp="LineClicked">
+                                </Line>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <!-- Cities circle -->
+                    <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.Cities}" Width="750" Height="650">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Canvas/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemContainerStyle>
+                            <Style TargetType="ContentPresenter">
+                                <Setter Property="Canvas.Left" Value="{Binding Path=X, Converter={StaticResource MathConverter}, ConverterParameter=@VALUE-8}"/>
+                                <Setter Property="Canvas.Top" Value="{Binding Path=Y, Converter={StaticResource MathConverter}, ConverterParameter=@VALUE-8}"/>
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Ellipse Width="16" Height="16" Fill="Red" Stroke="Black" StrokeThickness="1"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <!-- Cities names -->
+                    <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.Cities}" Width="750" Height="650">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Canvas/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemContainerStyle>
+                            <Style TargetType="ContentPresenter">
+                                <Setter Property="Canvas.Left" Value="{Binding X, Converter={StaticResource MathConverter}, ConverterParameter=@VALUE-20}"/>
+                                <Setter Property="Canvas.Top" Value="{Binding Y, Converter={StaticResource MathConverter}, ConverterParameter=@VALUE+7}"/>
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="4" Background="White" Padding="2 0 2 0" Opacity="0.9">
+                                    <TextBlock Text="{Binding Name}" FontSize="12"/>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <!-- Connections length -->
+                    <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.Connections}" Width="750" Height="650">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Canvas/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemContainerStyle>
+                            <Style TargetType="ContentPresenter">
+                                <Setter Property="Canvas.Left" Value="{Binding LengthPosX}"/>
+                                <Setter Property="Canvas.Top" Value="{Binding LengthPosY}"/>
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="2" Background="White" Padding="1 0 1 0" Opacity="0.6">
+                                    <TextBlock Text="{Binding Length}" FontSize="10"/>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </Border>
 
             <!-- Right Pane -->
             <Grid Grid.Column="2" HorizontalAlignment="Center">
@@ -187,43 +198,57 @@
                 </Grid.RowDefinitions>
 
                 <!-- Players summaries -->
-                <ListView Grid.Row="0" ItemsSource="{Binding Players}">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
-                            <GridViewColumn Header="Score" DisplayMemberBinding="{Binding Score}" />
-                            <GridViewColumn Header="Trains" DisplayMemberBinding="{Binding RemainingTrains}" />
-                            <GridViewColumn Header="Cards" DisplayMemberBinding="{Binding Hand.Count}" />
-                            <GridViewColumn Header="Goals" DisplayMemberBinding="{Binding GoalCards.Count}" />
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                <StackPanel Grid.Row="0" Orientation="Vertical" >
+                    <TextBlock Text="Summaries :" Style="{StaticResource Big}" />
 
+                    <ListView Grid.Row="0" ItemsSource="{Binding Players}" Margin="0 8 0 0">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                                <GridViewColumn Header="Score" DisplayMemberBinding="{Binding Score}" />
+                                <GridViewColumn Header="Trains" DisplayMemberBinding="{Binding RemainingTrains}" />
+                                <GridViewColumn Header="Cards" DisplayMemberBinding="{Binding Hand.Count}" />
+                                <GridViewColumn Header="Goals" DisplayMemberBinding="{Binding GoalCards.Count}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
+                
                 <!-- Buttons -->
                 <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0 24 0 0">
-                    <Button IsEnabled="{Binding NotPickingCards}" Content="Claim connection" Command="{Binding ClaimCommand}"/>
+                    <TextBlock Text="Actions :" Style="{StaticResource Big}" />
+                    
+                    <Button IsEnabled="{Binding NotPickingCards}" Content="Claim connection" Command="{Binding ClaimCommand}" Margin="0 8 0 0"/>
                     <Button IsEnabled="{Binding NotPickingCards}" Content="Take Goal card" Command="{Binding GoalCardCommand}" Margin="0 8 0 0"/>
-                    <TextBlock Text="Selected connection:" Margin="0 32 0 0" VerticalAlignment="Center"/>
+                    
+                    <TextBlock Text="Selected connection :" Style="{StaticResource Big}" Margin="0 24 0 0" VerticalAlignment="Center"/>
                     <TextBlock Text="{Binding SelectedConnection.FullInformations}" Margin="0 4 0 0" VerticalAlignment="Center"/>
                 </StackPanel>
 
                 <!-- Exit -->
-                <Button Grid.Row="2" Content="Exit" Command="{Binding ExitCommand}"/>
+                <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0 24 0 0">
+                    <Button Content="Exit" Command="{Binding ExitCommand}"/>
+                    <Button Content="End" Command="{Binding EndGameCommand}" Margin="0 8 0 0"/> <!--FIXME Remove it-->
+                </StackPanel>
             </Grid>
         </Grid>
 
         <!-- Hand cards -->
-        <ItemsControl Grid.Row="2" ItemsSource="{Binding CurrentPlayer.Hand}" HorizontalAlignment="Center" VerticalAlignment="Top">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" ItemWidth="75" ItemHeight="75"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Image Source="{Binding SourcePath}" HorizontalAlignment="Center" Margin="-20 0 0 0" Tag="{Binding Id}" MouseLeftButtonDown="HandCardClicked"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <StackPanel Grid.Row="2" Orientation="Vertical">
+            <TextBlock Text="Hand" Style="{StaticResource Big}" HorizontalAlignment="Center" />
+
+            <ItemsControl  ItemsSource="{Binding CurrentPlayer.Hand}" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" ItemWidth="75" ItemHeight="75"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding SourcePath}" HorizontalAlignment="Center" Margin="-20 0 0 0" Tag="{Binding Id}" MouseLeftButtonDown="HandCardClicked"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
     </Grid>
 </UserControl>

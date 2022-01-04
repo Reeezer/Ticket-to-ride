@@ -136,7 +136,6 @@ namespace Ticket_to_ride.ViewModel
             NotPickingCards = true;
 
             turnsLeft -= 1;
-            Console.WriteLine(turnsLeft);
             if (turnsLeft == 0)
             {
                 EndGameCommand.Execute(null);

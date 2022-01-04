@@ -14,8 +14,30 @@
             </Style.Resources>
         </Style>
 
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Century Gothic"/>
+        </Style>
+
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Century Gothic"/>
+        </Style>
+
         <Style TargetType="{x:Type TextBlock}" x:Key="Title">
-            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="FontSize" Value="36"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Century Gothic"/>
+        </Style>
+
+        <Style TargetType="{x:Type TextBlock}" x:Key="Big">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontFamily" Value="Century Gothic"/>
+        </Style>
+
+        <Style TargetType="{x:Type TextBlock}" x:Key="Medium">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Century Gothic"/>
         </Style>
     </Application.Resources>
 </Application>

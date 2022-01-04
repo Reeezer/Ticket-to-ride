@@ -24,24 +24,25 @@
             Grid.Row="0"
             HorizontalAlignment="Center"
             Style="{StaticResource Title}"
-            Text="Add players"/>
+            Text="Create the game"/>
 
         <TextBlock
             Grid.Row="1"
             HorizontalAlignment="Center"
+            Style="{StaticResource Big}"
             Margin="0 32 0 0"
             Text="Player names"/>
 
-        <ItemsControl Grid.Row="2" ItemsSource="{Binding Players}" Margin="0 8 0 0" Height="150">
+        <ItemsControl Grid.Row="2" ItemsSource="{Binding Players}" Margin="0 8 0 0" Height="200">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Orientation="Vertical" Width="200"/>
+                    <StackPanel Orientation="Vertical" Width="150"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
 
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <TextBox Text="{Binding Name}"/>
+                    <TextBox Text="{Binding Name}" Margin="0 4 0 0" FontSize="14" MaxLength="15" BorderThickness="1" BorderBrush="#d9d9d9" Background="#f2f2f2" Padding="4"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

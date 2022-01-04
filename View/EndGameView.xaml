@@ -29,6 +29,6 @@
             </ListView.View>
         </ListView>
         
-        <Button Grid.Row="2" Margin="0 16 0 0" Content="Back to menu" Command="{Binding MainMenuCommand}"/>
+        <!--<Button Grid.Row="2" Margin="0 24 0 0" Content="Back to menu" Command="{Binding MainMenuCommand}"/>-->
     </Grid>
 </UserControl>
