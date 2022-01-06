@@ -101,7 +101,7 @@ namespace Ticket_to_ride.ViewModel
 
         public void DistributeCards()
         {
-            const int startCards = 30;
+            const int startCards = 4;
             // Distribute 4 cards to everyone
             for (int i = 0; i < startCards; i++)
             {

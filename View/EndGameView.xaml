@@ -19,10 +19,10 @@
             Style="{StaticResource Title}"
             Text="End of the game"/>
 
-        <ListView Grid.Row="1" ItemsSource="{Binding Players}" Margin="0 32 0 0">
+        <ListView Grid.Row="1" ItemsSource="{Binding Players}" Margin="0 32 0 0" IsEnabled="False">
             <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                <GridView AllowsColumnReorder="False">
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
                     <GridViewColumn Header="Score" DisplayMemberBinding="{Binding Score}" />
                     <GridViewColumn Header="Goals" DisplayMemberBinding="{Binding GoalCards.Count}" />
                 </GridView>

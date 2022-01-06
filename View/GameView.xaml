@@ -42,7 +42,7 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
-                <Image Grid.Column="1" Source="back.png" Margin="12 0 12 0" HorizontalAlignment="Center" MouseLeftButtonDown="DeckClicked"/>
+                <Image Grid.Column="1" Source="pack://siteoforigin:,,,/images/train/back.png" Margin="12 0 12 0" HorizontalAlignment="Center" MouseLeftButtonDown="DeckClicked"/>
             </Grid>
         </StackPanel>
 
@@ -86,24 +86,28 @@
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="Goal cards:" Margin="0 8 8 8"/>
                 </Grid>
 
-                <ItemsControl Grid.Row="3" ItemsSource="{Binding CurrentPlayer.GoalCards}" HorizontalAlignment="Center" VerticalAlignment="Top">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Image Height="90" Source="{Binding SourcePath}" HorizontalAlignment="Center"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <DockPanel Grid.Row="3" MaxHeight="300">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Top">
+                        <ItemsControl ItemsSource="{Binding CurrentPlayer.GoalCards}" HorizontalAlignment="Center" VerticalAlignment="Top">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel CanVerticallyScroll="True" Orientation="Vertical" HorizontalAlignment="Center"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Height="90" Source="{Binding SourcePath}" HorizontalAlignment="Center" Margin="0 0 0 0"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </DockPanel>
             </Grid>
 
-            <!-- Board -->
-            <Border Grid.Column="1" Margin="24 0 24 0" Padding="16 4 0 0" Background="LightBlue" CornerRadius="8" Width="750" Height="500">
-                <Grid>
-                    <Grid.RowDefinitions>
+                <!-- Board -->
+                <Border Grid.Column="1" Margin="24 0 24 0" Padding="16 4 0 0" Background="LightBlue" CornerRadius="8" Width="750" Height="500">
+                    <Grid>
+                        <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
@@ -221,9 +225,9 @@
                 <StackPanel Grid.Row="0" Orientation="Vertical" >
                     <TextBlock Text="Summaries :" Style="{StaticResource Big}" />
 
-                    <ListView Grid.Row="0" ItemsSource="{Binding Players}" Margin="0 8 0 0">
+                    <ListView Grid.Row="0" ItemsSource="{Binding Players}" Margin="0 8 0 0" Focusable="False" IsTextSearchEnabled="False" IsEnabled="False">
                         <ListView.View>
-                            <GridView>
+                            <GridView AllowsColumnReorder="False">
                                 <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
                                 <GridViewColumn Header="Score" DisplayMemberBinding="{Binding Score}" />
                                 <GridViewColumn Header="Trains" DisplayMemberBinding="{Binding RemainingTrains}" />

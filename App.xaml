@@ -22,6 +22,7 @@
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontFamily" Value="Century Gothic"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
 
         <Style TargetType="{x:Type TextBlock}" x:Key="Title">
