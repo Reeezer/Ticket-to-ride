@@ -7,28 +7,29 @@
         xmlns:viewmodels="clr-namespace:Ticket_to_ride.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         mc:Ignorable="d"
         Title="Ticket to ride" Height="850" Width="1250">
+    <DockPanel Background="#9962D696">
+        <Grid Margin="16">
+            <Grid.Resources>
+                <DataTemplate DataType="{x:Type viewmodels:MenuCreateGameViewModel}">
+                    <views:MenuCreateGameView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewmodels:MenuViewModel}">
+                    <views:MenuView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewmodels:GameViewModel}">
+                    <views:GameView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewmodels:EndGameViewModel}">
+                    <views:EndGameView/>
+                </DataTemplate>
+                <!--pout chaque vue à ajouter, il faut mettre une nouvelle balise "DataTemplate" avec le controller correspondant-->
+                <DataTemplate DataType="{x:Type viewmodels:RulesViewModel}">
+                    <views:RulesView/>
+                </DataTemplate>
+            </Grid.Resources>
 
-    <Grid Margin="16">
-        <Grid.Resources>
-            <DataTemplate DataType="{x:Type viewmodels:MenuCreateGameViewModel}">
-                <views:MenuCreateGameView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewmodels:MenuViewModel}">
-                <views:MenuView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewmodels:GameViewModel}">
-                <views:GameView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewmodels:EndGameViewModel}">
-                <views:EndGameView/>
-            </DataTemplate>
-            <!--pout chaque vue à ajouter, il faut mettre une nouvelle balise "DataTemplate" avec le controller correspondant-->
-            <DataTemplate DataType="{x:Type viewmodels:RulesViewModel}">
-                <views:RulesView/>
-            </DataTemplate>
-        </Grid.Resources>
-
-        <ContentControl Content="{Binding CurrentViewModel}"/>
-        <!-- C'est le currentvuemodel qui vérifie quel controlleur est en charge à un moment donné-->
-    </Grid>
+            <ContentControl Content="{Binding CurrentViewModel}"/>
+            <!-- C'est le currentvuemodel qui vérifie quel controlleur est en charge à un moment donné-->
+        </Grid>
+    </DockPanel>
 </Window>

@@ -42,7 +42,7 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
-                <Image Grid.Column="1" Source="back.png" Margin="12 0 12 0" HorizontalAlignment="Center" MouseLeftButtonDown="DeckClicked"/>
+                <Image Grid.Column="1" Source="pack://siteoforigin:,,,/images/train/back.png" Margin="12 0 12 0" HorizontalAlignment="Center" MouseLeftButtonDown="DeckClicked"/>
             </Grid>
         </StackPanel>
 
@@ -103,7 +103,7 @@
             </Grid>
 
             <!-- Board -->
-            <Border Grid.Column="1" Margin="24 0 24 0" Background="LightBlue" CornerRadius="8">
+            <Border Grid.Column="1" Margin="24 0 24 0" Background="#CC62D696" CornerRadius="8">
                 <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>

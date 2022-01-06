@@ -279,16 +279,12 @@
     <Resource Include="images\map\USA-map.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\USA-map.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="TickettoRide.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\train\back.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="View\back.png" />
+    <None Include="images\train\back.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
