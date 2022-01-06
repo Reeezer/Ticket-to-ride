@@ -10,62 +10,64 @@
     <Grid HorizontalAlignment="Center">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="600"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" HorizontalAlignment="Center" Style="{StaticResource Title}" Text="Rules"/>
 
-        <StackPanel Grid.Row="1" Margin="0 32 0 0">
-            <TextBlock 
-                Text="1. Goal of the game:"
-                Margin="0 8 0 0"
-                FontWeight="Bold"/>
-            <TextBlock 
-                Text="The object of the game is to score points by:&#x0d;&#x09;- Claiming a route between two adjacent cities on the map.&#x0d;&#x09;- Completing a continuous path of routes between two cities listed on your Destination Tickets.&#x0d;&#x09;- Completing the Longest Continuous Path of routes.&#x0d;Note: Points are lost if you don't complete the route given on the Destination Tickets you kept."/>
+        <ScrollViewer Grid.Row="1" Margin="32 32 32 0" CanContentScroll="True" VerticalScrollBarVisibility="Visible">
+            <StackPanel>
+                <TextBlock
+                        Text="1. Goal of the game:"
+                        Margin="0 8 0 0"
+                        FontWeight="Bold"/>
+                <TextBlock 
+                        Text="The object of the game is to score points by:&#x0d;&#x09;- Claiming a route between two adjacent cities on the map.&#x0d;&#x09;- Completing a continuous path of routes between two cities listed on your Destination Tickets.&#x0d;&#x09;- Completing the Longest Continuous Path of routes.&#x0d;Note: Points are lost if you don't complete the route given on the Destination Tickets you kept."/>
 
-            <TextBlock 
-                Text="2. Start setup:"
-                Margin="0 8 0 0"
-                FontWeight="Bold"/>
-            <TextBlock 
-                Text="Each player starts with 4 train cards and 3 destination cards."/>
+                <TextBlock 
+                        Text="2. Start setup:"
+                        Margin="0 8 0 0"
+                        FontWeight="Bold"/>
+                <TextBlock 
+                        Text="Each player starts with 4 train cards and 3 destination cards."/>
 
-            <TextBlock 
-                Text="3. Game play:"
-                Margin="0 8 0 0"
-                FontWeight="Bold"/>
-            <TextBlock 
-                Text="On his turn each player must choose to perform one of the following actions:&#x0d;&#x09;- draw Train Car Cards&#x0d;&#x09;- claim a route&#x0d;&#x09;- draw Destination Tickets&#x0d;The player can perform only one of those actions."/>
+                <TextBlock 
+                        Text="3. Game play:"
+                        Margin="0 8 0 0"
+                        FontWeight="Bold"/>
+                <TextBlock 
+                        Text="On his turn each player must choose to perform one of the following actions:&#x0d;&#x09;- draw Train Car Cards&#x0d;&#x09;- claim a route&#x0d;&#x09;- draw Destination Tickets&#x0d;The player can perform only one of those actions."/>
 
-            <TextBlock 
-                Text="4. Draw Train Cards:"
-                Margin="0 8 0 0"
-                FontWeight="Bold"/>
-            <TextBlock 
-                Text="The player can draw two Train cards. He may choose between the face-up cards or he draws the top card from the deck.&#x0d;If he takes a face-up card, he must turn a replacement card face-up from the deck.&#x0d;Then the player draws his second card, either from the face-up cards or from the top of the deck. But when he picks a locomotive card from the face-up cards, he can't.&#x0d;It's allowed to have any number of cards in your hand at any time.&#x0d;There are 8 types of regular Train Car cards, plus Locomotive cars and their colors match various routes between cities on the board.&#x0d;Locomotives are multi-colored and act as a wild card that can be part of any set of cards.&#x0d;If a replacement card is a locomotive, the player can't take it immediately. If at any time, 3 of the 5 face-up cards are Locomotives, all 5 cards are immediately discarded and 5 new ones are turned face-up to replace them.&#x0d;When the deck is exhausted, the discards are reshuffled good and become a new draw pile deck.&#x0d;When the deck gets empty and no discards are available, the player can't draw another Train car card anymore. Instead he may only claim a route or draw Destination Ticket cards."/>
+                <TextBlock 
+                        Text="4. Draw Train Cards:"
+                        Margin="0 8 0 0"
+                        FontWeight="Bold"/>
+                <TextBlock 
+                        Text="The player can draw two Train cards. He may choose between the face-up cards or he draws the top card from the deck.&#x0d;If he takes a face-up card, he must turn a replacement card face-up from the deck.&#x0d;Then the player draws his second card, either from the face-up cards or from the top of the deck. But when he picks a locomotive card from the face-up cards, he can't.&#x0d;It's allowed to have any number of cards in your hand at any time.&#x0d;There are 8 types of regular Train Car cards, plus Locomotive cars and their colors match various routes between cities on the board.&#x0d;Locomotives are multi-colored and act as a wild card that can be part of any set of cards.&#x0d;If a replacement card is a locomotive, the player can't take it immediately. If at any time, 3 of the 5 face-up cards are Locomotives, all 5 cards are immediately discarded and 5 new ones are turned face-up to replace them.&#x0d;When the deck is exhausted, the discards are reshuffled good and become a new draw pile deck.&#x0d;When the deck gets empty and no discards are available, the player can't draw another Train car card anymore. Instead he may only claim a route or draw Destination Ticket cards."/>
 
-            <TextBlock 
-                Text="5. Claiming connections:"
-                Margin="0 8 0 0"
-                FontWeight="Bold"/>
-            <TextBlock 
-                Text="A player must play a set of cards equal to the number of spaces in that route to be able to claim it. The set of cards must be of the same specific type.&#x0d;When a route is claimed, the player can place one of his plastic trains on each of the spaces of the route and all cards used to claim the route are discarded.&#x0d;A player can claim any open route on the board and they don't need to connect to any of his previously played routes.&#x0d;Player can claim maximum one route on his turn. When cities are connected by double-routes, then the player can't claim both routes to the same cities."/>
+                <TextBlock 
+                        Text="5. Claiming connections:"
+                        Margin="0 8 0 0"
+                        FontWeight="Bold"/>
+                <TextBlock 
+                        Text="A player must play a set of cards equal to the number of spaces in that route to be able to claim it. The set of cards must be of the same specific type.&#x0d;When a route is claimed, the player can place one of his plastic trains on each of the spaces of the route and all cards used to claim the route are discarded.&#x0d;A player can claim any open route on the board and they don't need to connect to any of his previously played routes.&#x0d;Player can claim maximum one route on his turn. When cities are connected by double-routes, then the player can't claim both routes to the same cities."/>
 
-            <TextBlock 
-                Text="6. Destination Ticket Cards:"
-                Margin="0 8 0 0"
-                FontWeight="Bold"/>
-            <TextBlock 
-                Text="A player can draw more Destination Ticket cards if he wants by drawing 3 new cards from the top of the Destination Ticket Deck.&#x0d;He keeps at least one of the cards, but may also keep 2 or all 3. The returned cards are placed on the bottom of the Destination Ticket Deck.&#x0d;Each Destination Ticket includes the name of two cities on the map and a point value and when the player can complete a connection between these two cities, he will score those points at the end of the game.&#x0d;If the player fails to connect the cities, then the indicated amount of points will be deducted.&#x0d;Destination Tickets are kept secret and a player may have as many cards as he wants."/>
+                <TextBlock 
+                        Text="6. Destination Ticket Cards:"
+                        Margin="0 8 0 0"
+                        FontWeight="Bold"/>
+                <TextBlock 
+                        Text="A player can draw more Destination Ticket cards if he wants by drawing 3 new cards from the top of the Destination Ticket Deck.&#x0d;He keeps at least one of the cards, but may also keep 2 or all 3. The returned cards are placed on the bottom of the Destination Ticket Deck.&#x0d;Each Destination Ticket includes the name of two cities on the map and a point value and when the player can complete a connection between these two cities, he will score those points at the end of the game.&#x0d;If the player fails to connect the cities, then the indicated amount of points will be deducted.&#x0d;Destination Tickets are kept secret and a player may have as many cards as he wants."/>
 
-            <TextBlock 
-                Text="7. End of the Game:"
-                Margin="0 8 0 0"
-                FontWeight="Bold"/>
-            <TextBlock 
-                Text="When a player's stock of colored plastic trains gets down to 2 or fewer trains at the end of his turn, the final turn will start.&#x0d;After that turn, the game will end and players must calculate their final scores."/>
-        </StackPanel>
+                <TextBlock 
+                        Text="7. End of the Game:"
+                        Margin="0 8 0 0"
+                        FontWeight="Bold"/>
+                <TextBlock 
+                        Text="When a player's stock of colored plastic trains gets down to 2 or fewer trains at the end of his turn, the final turn will start.&#x0d;After that turn, the game will end and players must calculate their final scores."/>
+            </StackPanel>
+        </ScrollViewer>
 
         <Button Grid.Row="2" Margin="0 32 0 0" HorizontalAlignment="Center" Content="Back to menu" Command="{Binding MenuCommand}"/>
     </Grid>
