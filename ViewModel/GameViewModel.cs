@@ -82,17 +82,16 @@ namespace Ticket_to_ride.ViewModel
             board.PopulateShownCards();
 
             Players = players;
+            turn = 0;
             turnsLeft = -1;
 
-            turn = 0;
             cardsToTakeLeft = 2;
             NotPickingCards = true;
             CurrentPlayer = Players[turn];
             SelectedConnection = null;
+            selectedHandCards = new List<TrainCard>();
 
             DistributeCards();
-
-            selectedHandCards = new List<TrainCard>();
 
             ClaimCommand = new FunctionCommand(TryToClaim);
             GoalCardCommand = new FunctionCommand(TakeGoalCard);
@@ -102,7 +101,7 @@ namespace Ticket_to_ride.ViewModel
 
         public void DistributeCards()
         {
-            const int startCards = 4;
+            const int startCards = 30;
             // Distribute 4 cards to everyone
             for (int i = 0; i < startCards; i++)
             {
@@ -129,62 +128,17 @@ namespace Ticket_to_ride.ViewModel
             {
                 turn = 0;
             }
+
             CurrentPlayer = Players[turn];
             SelectedConnection = null;
             selectedHandCards = new List<TrainCard>();
             cardsToTakeLeft = 2;
             NotPickingCards = true;
-
+            
             turnsLeft -= 1;
             if (turnsLeft == 0)
             {
                 EndGameCommand.Execute(null);
-            }
-        }
-
-        private void TryToClaim()
-        {
-            if (selectedConnection == null || selectedHandCards.Count <= 0 || !NotPickingCards)
-            {
-                return;
-            }
-
-            List<TrainCard> usefullCards = new List<TrainCard>();
-            foreach (TrainCard card in selectedHandCards)
-            {
-                if (selectedConnection.Length > usefullCards.Count)
-                {
-                    if (card.Color.Color == selectedConnection.TrainColor.Color || card.Color.Color == Colors.FloralWhite || selectedConnection.TrainColor.Color == Colors.Gray)
-                    {
-                        usefullCards.Add(card);
-                    }
-                }
-            }
-
-            if (selectedConnection.Length == usefullCards.Count)
-            {
-                Console.WriteLine($"[{CurrentPlayer}] Claiming {selectedConnection}");
-
-                foreach (TrainCard card in usefullCards)
-                {
-                    _ = CurrentPlayer.Hand.Remove(card);
-                }
-
-                selectedConnection.IsEmpty = false;
-                selectedConnection.PlayerColor = CurrentPlayer.ColorBrush;
-                CurrentPlayer.Score += selectedConnection.Points;
-                CurrentPlayer.RemainingTrains -= selectedConnection.Length;
-
-                if (CurrentPlayer.RemainingTrains <= 2)
-                {
-                    turnsLeft = Players.Count + 1;
-                }
-
-                NextTurn();
-            }
-            else
-            {
-                Console.WriteLine($"[{CurrentPlayer}] Can't claim this connection");
             }
         }
 
@@ -216,6 +170,122 @@ namespace Ticket_to_ride.ViewModel
             //line.Opacity = 1;
         }
 
+        private void TryToClaim()
+        {
+            if (selectedConnection == null || selectedHandCards.Count <= 0 || !NotPickingCards)
+            {
+                return;
+            }
+
+            // Check if the player has selected enough cards to claim
+            List<TrainCard> usefullCards = new List<TrainCard>();
+            foreach (TrainCard card in selectedHandCards)
+            {
+                if (selectedConnection.Length > usefullCards.Count)
+                {
+                    if (card.Color.Color == selectedConnection.TrainColor.Color || card.Color.Color == Colors.FloralWhite || selectedConnection.TrainColor.Color == Colors.Gray)
+                    {
+                        usefullCards.Add(card);
+                    }
+                }
+            }
+
+            // Claim the connection
+            if (selectedConnection.Length == usefullCards.Count)
+            {
+                Console.WriteLine($"[{CurrentPlayer}] Claiming {selectedConnection}");
+
+                // Remove used card from his hand
+                foreach (TrainCard card in usefullCards)
+                {
+                    CurrentPlayer.Hand.Remove(card);
+                }
+
+                selectedConnection.IsEmpty = false;
+                selectedConnection.PlayerColor = CurrentPlayer.ColorBrush;
+                CurrentPlayer.Score += selectedConnection.Points;
+                CurrentPlayer.RemainingTrains -= selectedConnection.Length;
+                CurrentPlayer.ClaimedConnections.Add(selectedConnection);
+
+                // Check if a goal has been fullfilled
+                List<GoalCard> goalCardToRemove = new List<GoalCard>();
+                foreach (GoalCard goalCard in CurrentPlayer.GoalCards)
+                {
+                    if (IsGoalFullFilled(goalCard))
+                    {
+
+                        Console.WriteLine($"[{CurrentPlayer}] Goal {goalCard} has been fullfilled !"); // FIXME
+
+                        CurrentPlayer.Score += goalCard.PointValue;
+                        goalCardToRemove.Add(goalCard);
+                    }
+                }
+                foreach (GoalCard goalCard in goalCardToRemove)
+                {
+                    CurrentPlayer.GoalCards.Remove(goalCard);
+                }
+
+                // The game has to end
+                if (CurrentPlayer.RemainingTrains <= 2)
+                {
+                    turnsLeft = Players.Count + 1;
+                }
+
+                NextTurn();
+            }
+            else
+            {
+                Console.WriteLine($"[{CurrentPlayer}] Can't claim this connection");
+            }
+        }
+
+        private bool IsGoalFullFilled(GoalCard goalCard)
+        {
+            // Breath first search
+            List<City> visitedCities = new List<City>();
+            List<Connection> connectionsToLook = new List<Connection>();
+
+            City none = new City(CityName.None, 0, 0);
+            Connection init = new Connection(goalCard.Origin, none, Colors.Transparent, 0)
+            {
+                ComesFrom = none
+            };
+            connectionsToLook.Add(init);
+
+            while (connectionsToLook.Any())
+            {
+                Connection connection = connectionsToLook.First();
+                connectionsToLook.Remove(connection);
+
+                if (connection.Contains(goalCard.Destination))
+                {
+                    return true;
+                }
+
+                City actualCity = connection.OppositeCity(connection.ComesFrom);
+                List<Connection> neighborsConnections = CurrentPlayer.ClaimedConnections.Where(c => c.Contains(actualCity)).ToList();
+
+                foreach (Connection neighborConnection in neighborsConnections)
+                {
+                    Connection newConnection = new Connection(neighborConnection.Cities[0], neighborConnection.Cities[1], neighborConnection.TrainColor.Color, neighborConnection.Length)
+                    {
+                        ComesFrom = actualCity
+                    };
+
+                    City oppositeCity = neighborConnection.OppositeCity(actualCity);
+
+                    if (!visitedCities.Contains(oppositeCity))
+                    {
+                        connectionsToLook.Add(newConnection);
+                    }
+                }
+
+                visitedCities.Add(actualCity);
+            };
+
+            return false;
+        }
+
         public void TakeCardFromStack(int trainCardId)
         {
             if (cardsToTakeLeft <= 0)
@@ -223,24 +293,15 @@ namespace Ticket_to_ride.ViewModel
                 return;
             }
 
-            for (int i = 0; i < Board.ShownCards.Count; i++)
+            TrainCard cardToTake = Board.ShownCards.First(c => c.Id == trainCardId);
+            if (cardToTake.Color.Color == Colors.FloralWhite && cardsToTakeLeft <= 1)
             {
-                if (Board.ShownCards[i].Id == trainCardId)
-                {
-                    TrainCard cardToTake = Board.ShownCards[i];
-
-                    if (cardToTake.Color.Color == Colors.FloralWhite && cardsToTakeLeft <= 1)
-                    {
-                        return;
-                    }
-
-                    TakeCard(cardToTake, false);
-                    Board.ShownCards.RemoveAt(i);
-                    Board.AddAShownCard();
-
-                    break;
-                }
+                return;
             }
+
+            TakeCard(cardToTake, false);
+            Board.ShownCards.Remove(cardToTake);
+            Board.AddAShownCard();
         }
 
         public void TakeCardFromDeck()
@@ -289,7 +350,6 @@ namespace Ticket_to_ride.ViewModel
                 return;
             }
 
-            // TODO make the same thing that hand cards, because we actually can't see more than 4 goal cards
             CurrentPlayer.GoalCards.Add(ToolBox.PopOnCollection(Board.GoalCards, 1)[0]);
             NextTurn();
         }
@@ -301,36 +361,18 @@ namespace Ticket_to_ride.ViewModel
                 return;
             }
 
-            for (int i = 0; i < CurrentPlayer.Hand.Count; i++)
+            TrainCard cardClicked = CurrentPlayer.Hand.First(c => c.Id == trainCardId);
+            bool isAlreadySelected = selectedHandCards.Any(c => c.Equals(cardClicked));
+
+            if (isAlreadySelected)
             {
-                if (CurrentPlayer.Hand[i].Id == trainCardId)
-                {
-                    TrainCard cardClicked = CurrentPlayer.Hand[i];
-
-                    bool isAlreadySelected = false;
-
-                    foreach (TrainCard card in selectedHandCards)
-                    {
-                        if (cardClicked.Equals(card))
-                        {
-                            isAlreadySelected = true;
-                            break;
-                        }
-                    }
-
-                    if (isAlreadySelected)
-                    {
-                        _ = selectedHandCards.Remove(cardClicked);
-                        image.Opacity = 1;
-                    }
-                    else
-                    {
-                        selectedHandCards.Add(cardClicked);
-                        image.Opacity = 0.5;
-                    }
-
-                    break;
-                }
+                selectedHandCards.Remove(cardClicked);
+                image.Opacity = 1;
+            }
+            else
+            {
+                selectedHandCards.Add(cardClicked);
+                image.Opacity = 0.5;
             }
 
             Console.WriteLine("Selected hand cards:");
@@ -342,6 +384,14 @@ namespace Ticket_to_ride.ViewModel
 
         private EndGameViewModel EndGame()
         {
+            foreach (Player player in Players)
+            {
+                foreach (GoalCard goalCard in player.GoalCards)
+                {
+                    player.Score -= goalCard.PointValue;
+                }
+            }
+
             return new EndGameViewModel(Players);
         }
 

@@ -20,6 +20,8 @@ namespace Ticket_to_ride.Model
         public int Length { get; }
         public bool IsEmpty { get; set; } = true;
 
+        public City ComesFrom { get; set; } = null;
+
         public int Points
         {
             get
@@ -72,6 +74,16 @@ namespace Ticket_to_ride.Model
 
             PropertyInfo colorProperty = typeof(Colors).GetProperties().FirstOrDefault(p => Color.AreClose((Color)p.GetValue(null), TrainColor.Color));
             colorName = colorProperty != null ? colorProperty.Name : "Unnamed color";
+        }
+
+        public City OppositeCity(City city)
+        {
+            return city.Equals(Cities[0]) ? Cities[1] : Cities[0];
+        }
+
+        public bool Contains(City city)
+        {
+            return city.Equals(Cities[0]) || city.Equals(Cities[1]);
         }
 
         public override string ToString()

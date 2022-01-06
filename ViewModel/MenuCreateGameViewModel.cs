@@ -15,7 +15,7 @@ namespace Ticket_to_ride.ViewModel
 {
     public class MenuCreateGameViewModel : ViewModelBase
     {
-        private static List<Color> playerColors = new List<Color> { Colors.Cyan, Colors.DarkOrange, Colors.Magenta, Colors.GreenYellow, Colors.DarkRed, Colors.DarkGray };
+        private static readonly List<Color> playerColors = new List<Color> { Colors.Cyan, Colors.DarkOrange, Colors.Magenta, Colors.GreenYellow, Colors.DarkRed, Colors.DarkGray };
 
         private readonly ObservableCollection<Player> players;
         public IEnumerable<Player> Players => players;
@@ -65,7 +65,7 @@ namespace Ticket_to_ride.ViewModel
             if (players.Count > 2)
             {
                 Player playerRemoved = players[players.Count - 1];
-                _ = players.Remove(playerRemoved);
+                players.Remove(playerRemoved);
                 nbPlayer--;
 
                 // On a player instantiation, we give him goalCards, so we have to take them back when player is going out

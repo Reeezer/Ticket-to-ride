@@ -12,12 +12,12 @@ namespace Ticket_to_ride.Model
 {
     public class GoalCard
     {
-        public CityName Origin { get; }
-        public CityName Destination { get; }
+        public City Origin { get; }
+        public City Destination { get; }
         public string SourcePath { get; }
         public int PointValue { get; }
 
-        public GoalCard(CityName origin, CityName destination, int points, string sourcePath)
+        public GoalCard(City origin, City destination, int points, string sourcePath)
         {
             Origin = origin;
             Destination = destination;
@@ -25,5 +25,9 @@ namespace Ticket_to_ride.Model
             SourcePath = sourcePath;
         }
 
+        public override string ToString()
+        {
+            return $"{Origin} - {Destination} ({PointValue} points)";
+        }
     }
 }

@@ -47,6 +47,7 @@ namespace Ticket_to_ride.Enums
         Toronto,
         Vancouver,
         Washington,
-        Winnipeg
+        Winnipeg,
+        None
     }
 }

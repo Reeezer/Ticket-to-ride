@@ -22,6 +22,7 @@ namespace Ticket_to_ride.Model
 
         public ObservableCollection<TrainCard> Hand { get; } = new ObservableCollection<TrainCard>();
         public ObservableCollection<GoalCard> GoalCards { get; } = new ObservableCollection<GoalCard>();
+        public List<Connection> ClaimedConnections { get; } = new List<Connection>();
 
         private int remainingTrains;
         public int RemainingTrains
