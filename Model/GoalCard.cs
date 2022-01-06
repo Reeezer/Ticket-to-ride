@@ -12,10 +12,10 @@ namespace Ticket_to_ride.Model
 {
     public class GoalCard
     {
-        public CityName Origin { get; set; }
-        public CityName Destination { get; set; }
-        public string SourcePath { get; set; }
-        public int PointValue { get; set; }
+        public CityName Origin { get; }
+        public CityName Destination { get; }
+        public string SourcePath { get; }
+        public int PointValue { get; }
 
         public GoalCard(CityName origin, CityName destination, int points, string sourcePath)
         {

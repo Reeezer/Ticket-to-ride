@@ -8,18 +8,20 @@ using Ticket_to_ride.Enums;
 using Ticket_to_ride.ViewModel;
 using Ticket_to_ride.Tools;
 using System.Collections.ObjectModel;
+using System.Windows.Media;
 
 namespace Ticket_to_ride.Model
 {
     // FIXME: Not supposed to implement "ViewModelBase" in a model to be able to notify the view
     public class Player : ViewModelBase
     {
-        public Board Board { get; set; }
+        public Board Board { get; }
 
         public string Name { get; set; }
+        public SolidColorBrush ColorBrush { get; }
 
-        public ObservableCollection<TrainCard> Hand { get; set; } = new ObservableCollection<TrainCard>();
-        public ObservableCollection<GoalCard> GoalCards { get; set; } = new ObservableCollection<GoalCard>();
+        public ObservableCollection<TrainCard> Hand { get; } = new ObservableCollection<TrainCard>();
+        public ObservableCollection<GoalCard> GoalCards { get; } = new ObservableCollection<GoalCard>();
 
         private int remainingTrains;
         public int RemainingTrains
@@ -43,10 +45,11 @@ namespace Ticket_to_ride.Model
             }
         }
 
-        public Player(string name, Board board)
+        public Player(string name, Board board, Color color)
         {
             Name = name;
-            GoalCards = ToolBox.PopOnCollection<GoalCard>(board.GoalCards, 3); // TODO Player can choose at least 2 of the 3 cards
+            GoalCards = ToolBox.PopOnCollection(board.GoalCards, 3); // TODO Player can choose at least 2 of the 3 cards
+            ColorBrush = new SolidColorBrush(color);
             Board = board;
             RemainingTrains = 45;
             Score = 0;

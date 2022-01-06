@@ -15,9 +15,9 @@ namespace Ticket_to_ride.Model
     {
         private static int ID = 0;
 
-        public SolidColorBrush Color { get; set; }
-        public string SourcePath { get; set; }
-        public int Id { get; set; }
+        public SolidColorBrush Color { get; }
+        public string SourcePath { get; }
+        public int Id { get; }
 
         public TrainCard(Color color, string sourcePath)
         {

@@ -16,13 +16,13 @@ namespace Ticket_to_ride.Model
 {
     public class Board
     {
-        public List<GoalCard> GoalCards { get; set; } = new List<GoalCard>();
+        public List<GoalCard> GoalCards { get; } = new List<GoalCard>();
         public List<TrainCard> Deck { get; set; } = new List<TrainCard>();
         public List<TrainCard> DiscardCards { get; set; } = new List<TrainCard>();
-        public ObservableCollection<TrainCard> ShownCards { get; set; } = new ObservableCollection<TrainCard>();
+        public ObservableCollection<TrainCard> ShownCards { get; } = new ObservableCollection<TrainCard>();
 
-        public List<Connection> Connections { get; set; } = new List<Connection>();
-        public List<City> Cities { get; set; } = new List<City>();
+        public List<Connection> Connections { get; } = new List<Connection>();
+        public List<City> Cities { get; } = new List<City>();
 
         public Board()
         {

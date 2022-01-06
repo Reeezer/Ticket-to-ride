@@ -13,14 +13,12 @@ using System.Reflection;
 
 namespace Ticket_to_ride.Model
 {
-    public class Connection
+    public class Connection : ViewModelBase
     {
         public List<City> Cities { get; }
         public SolidColorBrush TrainColor { get; }
-        public SolidColorBrush PlayerColor { get; set; } = null;
         public int Length { get; }
         public bool IsEmpty { get; set; } = true;
-        private string colorName;
 
         public int Points
         {
@@ -44,6 +42,18 @@ namespace Ticket_to_ride.Model
             }
         }
 
+        private SolidColorBrush playerColor;
+        public SolidColorBrush PlayerColor
+        {
+            get => playerColor;
+            set
+            {
+                playerColor = value;
+                OnPropertyChanged(nameof(playerColor));
+            }
+        }
+
+        private readonly string colorName;
         public string FullInformations => $"{Cities[0]} - {Cities[1]}\n({Length} {colorName} trains)";
         public double LengthPosX => (Cities[0].X + Cities[1].X - 8) / 2;
         public double LengthPosY => (Cities[0].Y + Cities[1].Y - 16) / 2;
@@ -58,6 +68,7 @@ namespace Ticket_to_ride.Model
 
             TrainColor = new SolidColorBrush(color);
             Length = length;
+            PlayerColor = new SolidColorBrush(Colors.Transparent);
 
             PropertyInfo colorProperty = typeof(Colors).GetProperties().FirstOrDefault(p => Color.AreClose((Color)p.GetValue(null), TrainColor.Color));
             colorName = colorProperty != null ? colorProperty.Name : "Unnamed color";

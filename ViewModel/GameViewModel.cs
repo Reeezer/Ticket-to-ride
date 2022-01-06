@@ -171,7 +171,7 @@ namespace Ticket_to_ride.ViewModel
                 }
 
                 selectedConnection.IsEmpty = false;
-                //selectedConnection.PlayerColor = CurrentPlayer.Color.Color; // TODO
+                selectedConnection.PlayerColor = CurrentPlayer.ColorBrush;
                 CurrentPlayer.Score += selectedConnection.Points;
                 CurrentPlayer.RemainingTrains -= selectedConnection.Length;
 
@@ -234,7 +234,7 @@ namespace Ticket_to_ride.ViewModel
                         return;
                     }
 
-                    TakeCard(cardToTake, true);
+                    TakeCard(cardToTake, false);
                     Board.ShownCards.RemoveAt(i);
                     Board.AddAShownCard();
 
@@ -264,6 +264,8 @@ namespace Ticket_to_ride.ViewModel
             CurrentPlayer.Hand.Add(cardToTake);
             CurrentPlayer.SortCards();
             NotPickingCards = false;
+
+            Console.WriteLine($"from deck: {fromDeck}, FloralWhite: {cardToTake.Color.Color == Colors.FloralWhite}");
 
             if (!fromDeck && cardToTake.Color.Color == Colors.FloralWhite)
             {
