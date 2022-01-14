@@ -24,6 +24,7 @@ namespace Ticket_to_ride.ViewModel
         public ICommand ClaimCommand { get; }
         public ICommand EndGameCommand { get; }
         public ICommand ExitCommand { get; }
+        public ICommand RulesCommand { get; }
         public ICommand GoalCardCommand { get; }
 
         public List<Player> Players { get; }
@@ -97,6 +98,7 @@ namespace Ticket_to_ride.ViewModel
             GoalCardCommand = new FunctionCommand(TakeGoalCard);
             EndGameCommand = new NavigationCommand(EndGame);
             ExitCommand = new NavigationCommand(Exit);
+            RulesCommand = new NavigationCommand(Rules);
         }
 
         public void DistributeCards()
@@ -398,6 +400,11 @@ namespace Ticket_to_ride.ViewModel
         private MenuViewModel Exit()
         {
             return new MenuViewModel();
+        }
+
+        private RulesViewModel Rules()
+        {
+            return new RulesViewModel();
         }
     }
 }
