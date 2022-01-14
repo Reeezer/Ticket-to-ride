@@ -15,36 +15,38 @@
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <!-- Cards to pick up -->
-        <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Center">
-            <TextBlock HorizontalAlignment="Center" Text="Cards to pick up" Style="{StaticResource Big}" Margin="0 0 8 0"/>
-            
-            <Grid Margin="0 8 0 0" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
+        <Border Grid.Row="0" Style="{StaticResource SecondaryBorder}" HorizontalAlignment="Stretch">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <TextBlock HorizontalAlignment="Center" Text="Cards to pick up" Style="{StaticResource Big}"/>
 
-                <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.ShownCards}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Image Source="{Binding SourcePath}" HorizontalAlignment="Center" Margin="12 0 12 0" Tag="{Binding Id}" MouseLeftButtonDown="ShownCardClicked"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <Grid Margin="0 8 0 0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
 
-                <Image Grid.Column="1" Source="pack://siteoforigin:,,,/images/train/back.png" Margin="12 0 12 0" HorizontalAlignment="Center" MouseLeftButtonDown="DeckClicked"/>
-            </Grid>
-        </StackPanel>
+                    <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.ShownCards}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding SourcePath}" HorizontalAlignment="Center" Margin="12 0 12 0" Tag="{Binding Id}" MouseLeftButtonDown="ShownCardClicked"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <Image Grid.Column="1" Source="pack://siteoforigin:,,,/images/train/back.png" Margin="12 0 12 0" HorizontalAlignment="Center" MouseLeftButtonDown="DeckClicked"/>
+                </Grid>
+            </StackPanel>
+        </Border>
 
         <!-- Center pane -->
         <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 24 0 24">
@@ -55,64 +57,66 @@
             </Grid.ColumnDefinitions>
 
             <!-- Player informations -->
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-
-                <TextBlock Grid.Row="0" HorizontalAlignment="Center" Style="{StaticResource Big}" Text="{Binding CurrentPlayer.Name}"/>
-                <Rectangle Grid.Row="1" Fill="{Binding CurrentPlayer.ColorBrush}" Height="3" HorizontalAlignment="Stretch" Margin="0 4 0 0"/>
-
-                <Grid x:Name="PlayerResumeGrid" Grid.Row="2" Margin="0 12 0 0">
+            <Border Grid.Column="0" Style="{StaticResource SecondaryBorder}" HorizontalAlignment="Center">
+                <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="auto"/>
-                    </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Score:" Margin="0 0 8 0"/>
-                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CurrentPlayer.Score}"/>
+                    <TextBlock Grid.Row="0" HorizontalAlignment="Center" Style="{StaticResource Big}" Text="{Binding CurrentPlayer.Name}"/>
+                    <Rectangle Grid.Row="1" Fill="{Binding CurrentPlayer.ColorBrush}" Height="3" HorizontalAlignment="Stretch" Margin="0 4 0 0"/>
 
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Remaining trains:" Margin="0 0 8 0"/>
-                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CurrentPlayer.RemainingTrains}"/>
-
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Goal cards:" Margin="0 8 8 8"/>
-                </Grid>
-
-                <DockPanel Grid.Row="3" MaxHeight="300">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Top">
-                        <ItemsControl ItemsSource="{Binding CurrentPlayer.GoalCards}" HorizontalAlignment="Center" VerticalAlignment="Top">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel CanVerticallyScroll="True" Orientation="Vertical" HorizontalAlignment="Center"/>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Image Height="90" Source="{Binding SourcePath}" HorizontalAlignment="Center" Margin="0 0 0 0"/>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
-                </DockPanel>
-            </Grid>
-
-                <!-- Board -->
-                <Border Grid.Column="1" Margin="24 0 24 0" Padding="16 4 0 0" Background="LightBlue" CornerRadius="8" Width="750" Height="500">
-                    <Grid>
+                    <Grid x:Name="PlayerResumeGrid" Grid.Row="2" Margin="0 12 0 0">
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Score:" Margin="0 0 8 0"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CurrentPlayer.Score}"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Remaining trains:" Margin="0 0 8 0"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CurrentPlayer.RemainingTrains}"/>
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Goal cards:" Margin="0 8 8 8"/>
+                    </Grid>
+
+                    <DockPanel Grid.Row="3" MaxHeight="300">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Top">
+                            <ItemsControl ItemsSource="{Binding CurrentPlayer.GoalCards}" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel CanVerticallyScroll="True" Orientation="Vertical" HorizontalAlignment="Center"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Image Height="90" Source="{Binding SourcePath}" HorizontalAlignment="Center" Margin="0 0 0 0"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </DockPanel>
+                </Grid>
+            </Border>
+
+            <!-- Board -->
+            <Border Grid.Column="1" Margin="24 0 24 0" Padding="16 4 0 0" Background="#f2f2f2" CornerRadius="8" Width="750" Height="500" BorderThickness="1" BorderBrush="#AFAFAF">
+                <Grid>
+                    <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
                     <!--<Image Grid.Column="0" x:Name="MapImage" Source="/Ticket-to-ride;component/images/map/USA-map.png" Width="800" Height="650"/>-->
-                
+
                     <!-- Player color on connection -->
                     <ItemsControl Grid.Column="0" ItemsSource="{Binding Board.Connections}" Width="750" Height="500">
                         <ItemsControl.ItemsPanel>
@@ -123,10 +127,10 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Line Tag="{Binding Cities}"
-                                    X1="{Binding Cities[0].X}" Y1="{Binding Cities[0].Y}"
-                                    X2="{Binding Cities[1].X}" Y2="{Binding Cities[1].Y}"
-                                    Stroke="{Binding PlayerColor}" StrokeThickness="15"
-                                    MouseUp="LineClicked">
+                                        X1="{Binding Cities[0].X}" Y1="{Binding Cities[0].Y}"
+                                        X2="{Binding Cities[1].X}" Y2="{Binding Cities[1].Y}"
+                                        Stroke="{Binding PlayerColor}" StrokeThickness="15"
+                                        MouseUp="LineClicked">
                                 </Line>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -214,65 +218,70 @@
             </Border>
 
             <!-- Right Pane -->
-            <Grid Grid.Column="2" HorizontalAlignment="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
+            <Border Grid.Column="2" Style="{StaticResource SecondaryBorder}">
+                <Grid HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
 
-                <!-- Players summaries -->
-                <StackPanel Grid.Row="0" Orientation="Vertical" >
-                    <TextBlock Text="Summaries :" Style="{StaticResource Big}" />
+                    <!-- Players summaries -->
+                    <StackPanel Grid.Row="0" Orientation="Vertical" >
+                        <TextBlock Text="Summaries :" Style="{StaticResource Big}" />
 
-                    <ListView Grid.Row="0" ItemsSource="{Binding Players}" Margin="0 8 0 0" Focusable="False" IsTextSearchEnabled="False" IsEnabled="False">
-                        <ListView.View>
-                            <GridView AllowsColumnReorder="False">
-                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
-                                <GridViewColumn Header="Score" DisplayMemberBinding="{Binding Score}" />
-                                <GridViewColumn Header="Trains" DisplayMemberBinding="{Binding RemainingTrains}" />
-                                <GridViewColumn Header="Cards" DisplayMemberBinding="{Binding Hand.Count}" />
-                                <GridViewColumn Header="Goals" DisplayMemberBinding="{Binding GoalCards.Count}" />
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </StackPanel>
-                
-                <!-- Buttons -->
-                <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0 24 0 0">
-                    <TextBlock Text="Actions :" Style="{StaticResource Big}" />
-                    
-                    <Button IsEnabled="{Binding NotPickingCards}" Content="Claim connection" Command="{Binding ClaimCommand}" Margin="0 8 0 0"/>
-                    <Button IsEnabled="{Binding NotPickingCards}" Content="Take Goal card" Command="{Binding GoalCardCommand}" Margin="0 8 0 0"/>
-                    
-                    <TextBlock Text="Selected connection :" Style="{StaticResource Big}" Margin="0 24 0 0" VerticalAlignment="Center"/>
-                    <TextBlock Text="{Binding SelectedConnection.FullInformations}" Margin="0 4 0 0" VerticalAlignment="Center"/>
-                </StackPanel>
+                        <ListView Grid.Row="0" ItemsSource="{Binding Players}" Margin="0 8 0 0" Focusable="False" IsTextSearchEnabled="False" IsEnabled="False">
+                            <ListView.View>
+                                <GridView AllowsColumnReorder="False">
+                                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                                    <GridViewColumn Header="Score" DisplayMemberBinding="{Binding Score}" />
+                                    <GridViewColumn Header="Trains" DisplayMemberBinding="{Binding RemainingTrains}" />
+                                    <GridViewColumn Header="Cards" DisplayMemberBinding="{Binding Hand.Count}" />
+                                    <GridViewColumn Header="Goals" DisplayMemberBinding="{Binding GoalCards.Count}" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
 
-                <!-- Exit -->
-                <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0 24 0 0">
-                    <Button Content="Exit" Command="{Binding ExitCommand}"/>
-                    <Button Content="End" Command="{Binding EndGameCommand}" Margin="0 8 0 0"/> <!--FIXME Remove it-->
-                </StackPanel>
-            </Grid>
+                    <!-- Buttons -->
+                    <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0 24 0 0">
+                        <TextBlock Text="Actions :" Style="{StaticResource Big}" />
+
+                        <Button IsEnabled="{Binding NotPickingCards}" Content="Claim connection" Command="{Binding ClaimCommand}" Margin="0 8 0 0"/>
+                        <Button IsEnabled="{Binding NotPickingCards}" Content="Take Goal card" Command="{Binding GoalCardCommand}" Margin="0 8 0 0"/>
+
+                        <TextBlock Text="Selected connection :" Style="{StaticResource Big}" Margin="0 24 0 0" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding SelectedConnection.FullInformations}" Margin="0 4 0 0" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <!-- Exit -->
+                    <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0 24 0 0">
+                        <Button Content="Exit" Command="{Binding ExitCommand}"/>
+                        <Button Content="End" Command="{Binding EndGameCommand}" Margin="0 8 0 0"/>
+                        <!--FIXME Remove it-->
+                    </StackPanel>
+                </Grid>
+            </Border>
         </Grid>
 
         <!-- Hand cards -->
-        <StackPanel Grid.Row="2" Orientation="Vertical" Margin="32 0 32 0">
-            <TextBlock Text="Hand" Style="{StaticResource Big}" HorizontalAlignment="Center" />
+        <Border Grid.Row="2" Style="{StaticResource SecondaryBorder}">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Hand" Style="{StaticResource Big}" HorizontalAlignment="Center" />
 
-            <ItemsControl  ItemsSource="{Binding CurrentPlayer.Hand}" HorizontalAlignment="Center" VerticalAlignment="Top">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" ItemWidth="75" ItemHeight="75"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Image Source="{Binding SourcePath}" HorizontalAlignment="Center" Margin="-20 0 0 0" Tag="{Binding Id}" MouseLeftButtonDown="HandCardClicked"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </StackPanel>
+                <ItemsControl  ItemsSource="{Binding CurrentPlayer.Hand}" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" ItemWidth="75" ItemHeight="75"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding SourcePath}" HorizontalAlignment="Center" Margin="-20 0 0 0" Tag="{Binding Id}" MouseLeftButtonDown="HandCardClicked"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

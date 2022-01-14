@@ -3,10 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Ticket_to_ride">
     <Application.Resources>
+        <!-- Button -->
+
         <Style TargetType="{x:Type Button}">
-            <Setter Property="Padding" Value="8 4"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="#343434" BorderThickness="1" Padding="8 4">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#7e7e7e"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="Foreground" Value="#343434"/>
+                </Trigger>
+            </Style.Triggers>
+            
             <Style.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="3"/>
@@ -14,10 +34,14 @@
             </Style.Resources>
         </Style>
 
+        <!-- TextBox -->
+
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontFamily" Value="Century Gothic"/>
         </Style>
+
+        <!-- TextBlock -->
 
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="FontSize" Value="14"/>
@@ -27,6 +51,7 @@
 
         <Style TargetType="{x:Type TextBlock}" x:Key="Title">
             <Setter Property="FontSize" Value="36"/>
+            <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontFamily" Value="Century Gothic"/>
         </Style>
@@ -39,6 +64,20 @@
         <Style TargetType="{x:Type TextBlock}" x:Key="Medium">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontFamily" Value="Century Gothic"/>
+        </Style>
+
+        <!-- Border -->
+
+        <Style TargetType="{x:Type Border}" x:Key="TitleBorder">
+            <Setter Property="Background" Value="#343434" />
+            <Setter Property="Padding" Value="16 8 16 8" />
+            <Setter Property="CornerRadius" Value="8" />
+        </Style>
+
+        <Style TargetType="{x:Type Border}" x:Key="SecondaryBorder">
+            <Setter Property="Background" Value="#d3d3d3" />
+            <Setter Property="Padding" Value="16" />
+            <Setter Property="CornerRadius" Value="8" />
         </Style>
     </Application.Resources>
 </Application>

@@ -17,37 +17,40 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock 
-            Grid.Row="0"
-            HorizontalAlignment="Center"
-            Style="{StaticResource Title}"
-            Text="Create the game"/>
+        <Border Grid.Row="0" Style="{StaticResource TitleBorder}" HorizontalAlignment="Center">
+            <TextBlock 
+                Grid.Row="0"
+                HorizontalAlignment="Center"
+                Style="{StaticResource Title}"
+                Text="Create the game"/>
+        </Border>
 
-        <TextBlock
-            Grid.Row="1"
-            HorizontalAlignment="Center"
-            Style="{StaticResource Big}"
-            Margin="0 32 0 0"
-            Text="Player names"/>
+        <Border Grid.Row="1" Style="{StaticResource SecondaryBorder}" HorizontalAlignment="Center" Margin="0 32 0 32">
+            <StackPanel>
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    Style="{StaticResource Medium}"
+                    Text="Player names"/>
 
-        <ItemsControl Grid.Row="2" ItemsSource="{Binding Players}" Margin="0 8 0 0" Height="200">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Vertical" Width="150"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
+                <ItemsControl ItemsSource="{Binding Players}" Margin="0 8 0 0" Height="200">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical" Width="150"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
 
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <TextBox Text="{Binding Name}" Margin="0 4 0 0" FontSize="14" MaxLength="15" BorderThickness="1" BorderBrush="#d9d9d9" Background="#f2f2f2" Padding="4"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Name}" Margin="0 4 0 0" FontSize="14" MaxLength="15" BorderThickness="1" BorderBrush="#d9d9d9" Background="#f2f2f2" Padding="4"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Border>
 
-        <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" Margin="0 16 0 0">
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="0 16 0 0">
             <Button 
                 Margin="32 0 0 0"
                 Command="{Binding AddPlayerCommand}"
