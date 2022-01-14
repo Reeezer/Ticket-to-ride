@@ -404,7 +404,7 @@ namespace Ticket_to_ride.ViewModel
 
         private RulesViewModel Rules()
         {
-            return new RulesViewModel();
+            return new RulesViewModel(this);
         }
     }
 }
