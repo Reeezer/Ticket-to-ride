@@ -13,6 +13,9 @@ using Ticket_to_ride.Model;
 
 namespace Ticket_to_ride.ViewModel
 {
+    /// <summary>
+    /// ViewModel of the Game creation: handles the logial behaviour of a game creation.
+    /// </summary>
     public class MenuCreateGameViewModel : ViewModelBase
     {
         private static readonly List<Color> playerColors = new List<Color> { Colors.Cyan, Colors.DarkOrange, Colors.Magenta, Colors.GreenYellow, Colors.DarkRed, Colors.DarkGray };
@@ -28,6 +31,9 @@ namespace Ticket_to_ride.ViewModel
         public ICommand StartGameCommand { get; }
         public ICommand CancelCommand { get; }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public MenuCreateGameViewModel()
         {
             board = new Board();
@@ -41,16 +47,27 @@ namespace Ticket_to_ride.ViewModel
             RemovePlayerCommand = new FunctionCommand(RemovePlayer);
         }
 
+        /// <summary>
+        /// Launches a Game View.
+        /// </summary>
+        /// <returns>A game menu view</returns>
         private GameViewModel CreateGame()
         {
             return new GameViewModel(board, Players.ToList());
         }
 
+        /// <summary>
+        /// Goes back to the main menu
+        /// </summary>
+        /// <returns>The main menu view</returns>
         private MenuViewModel Cancel()
         {
             return new MenuViewModel();
         }
 
+        /// <summary>
+        /// Creates a new player and add it to the player list.
+        /// </summary>
         private void CreatePlayer()
         {
             if (players.Count < 6)
@@ -60,6 +77,9 @@ namespace Ticket_to_ride.ViewModel
             }
         }
 
+        /// <summary>
+        /// Removes a player form the player list
+        /// </summary>
         private void RemovePlayer()
         {
             if (players.Count > 2)

@@ -19,6 +19,9 @@ using System.Windows;
 
 namespace Ticket_to_ride.ViewModel
 {
+    /// <summary>
+    /// ViewModel of the Game class : handles the logial behaviour of a current game.
+    /// </summary>
     public class GameViewModel : ViewModelBase
     {
         public ICommand ClaimCommand { get; }
@@ -34,6 +37,7 @@ namespace Ticket_to_ride.ViewModel
         private List<TrainCard> selectedHandCards;
 
         private Board board;
+        
         public Board Board
         {
             get => board;
@@ -77,6 +81,11 @@ namespace Ticket_to_ride.ViewModel
             }
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="board">The board needed to play</param>
+        /// <param name="players">The list of players</param>
         public GameViewModel(Board board, List<Player> players)
         {
             Board = board;
@@ -100,7 +109,9 @@ namespace Ticket_to_ride.ViewModel
             ExitCommand = new NavigationCommand(Exit);
             RulesCommand = new NavigationCommand(Rules);
         }
-
+        /// <summary>
+        /// Gives the cards to each player a the beginning of a game.
+        /// </summary>
         public void DistributeCards()
         {
             const int startCards = 4;
@@ -122,14 +133,13 @@ namespace Ticket_to_ride.ViewModel
                 Players[i].SortCards();
             }
         }
-
+        /// <summary>
+        /// Handles the game & board behaviour when it's to an other player to play.
+        /// </summary>
         private void NextTurn()
         {
-            turn += 1;
-            if (turn == Players.Count)
-            {
-                turn = 0;
-            }
+            //Go to next player
+            turn = ++turn % Players.Count;
 
             CurrentPlayer = Players[turn];
             SelectedConnection = null;
@@ -144,6 +154,12 @@ namespace Ticket_to_ride.ViewModel
             }
         }
 
+        /// <summary>
+        /// Used to highlight and choose a connection.
+        /// </summary>
+        /// <param name="origin">the start point</param>
+        /// <param name="destination">the end point</param>
+        /// <param name="line">the path between origin & destination</param>
         public void SelectConnection(City origin, City destination, Line line)
         {
             // Check if not already the current selected
@@ -164,6 +180,9 @@ namespace Ticket_to_ride.ViewModel
             Console.WriteLine($"[{CurrentPlayer}] Select: {SelectedConnection}");
         }
 
+        /// <summary>
+        /// Used to claim a connection. If a player fails to claim, nothing happens.
+        /// </summary>
         private void TryToClaim()
         {
             if (selectedConnection == null || selectedHandCards.Count <= 0 || !NotPickingCards)
@@ -231,6 +250,11 @@ namespace Ticket_to_ride.ViewModel
             }
         }
 
+        /// <summary>
+        /// Checks if a goal card as been fufilled.
+        /// </summary>
+        /// <param name="goalCard">The goal card to check</param>
+        /// <returns>true : if fufilled, false if not.</returns>
         private bool IsGoalFullFilled(GoalCard goalCard)
         {
             // Breadth first search
@@ -278,6 +302,10 @@ namespace Ticket_to_ride.ViewModel
             return false;
         }
 
+        /// <summary>
+        /// Gets a card from the stack remaining trains.
+        /// </summary>
+        /// <param name="trainCardId">The id of the train taken</param>
         public void TakeCardFromStack(int trainCardId)
         {
             if (cardsToTakeLeft <= 0)
@@ -296,6 +324,9 @@ namespace Ticket_to_ride.ViewModel
             Board.AddAShownCard();
         }
 
+        /// <summary>
+        /// Gets a card from the trains shown on the board.
+        /// </summary>
         public void TakeCardFromDeck()
         {
             if (cardsToTakeLeft <= 0)
@@ -310,6 +341,11 @@ namespace Ticket_to_ride.ViewModel
             }
         }
 
+        /// <summary>
+        /// Main take card method. Gets a cards (deck or stack)
+        /// </summary>
+        /// <param name="cardToTake">the train card to take</param>
+        /// <param name="fromDeck">take a card from the deck or from the stack.</param>
         private void TakeCard(TrainCard cardToTake, bool fromDeck)
         {
             CurrentPlayer.Hand.Add(cardToTake);
@@ -333,6 +369,9 @@ namespace Ticket_to_ride.ViewModel
             }
         }
 
+        /// <summary>
+        /// Takes a goal card from the goal cards stack.
+        /// </summary>
         private void TakeGoalCard()
         {
             if (Board.GoalCards.Count <= 0 || !NotPickingCards)
@@ -344,6 +383,11 @@ namespace Ticket_to_ride.ViewModel
             NextTurn();
         }
 
+        /// <summary>
+        /// Selects a card from the player hand
+        /// </summary>
+        /// <param name="trainCardId">The id of the card to select.</param>
+        /// <param name="image">The source image of the raken card.</param>
         public void HandCardSelect(int trainCardId, Image image)
         {
             if (!NotPickingCards)
@@ -372,6 +416,10 @@ namespace Ticket_to_ride.ViewModel
             }
         }
 
+        /// <summary>
+        /// Displays an EndGame when the game is over. Or when "End" button is pressed.
+        /// </summary>
+        /// <returns>The End Game View</returns>
         private EndGameViewModel EndGame()
         {
             foreach (Player player in Players)
@@ -388,11 +436,19 @@ namespace Ticket_to_ride.ViewModel
             return new EndGameViewModel(Players);
         }
 
+        /// <summary>
+        /// Goes back to main menu.
+        /// </summary>
+        /// <returns>The Menu View</returns>
         private MenuViewModel Exit()
         {
             return new MenuViewModel();
         }
 
+        /// <summary>
+        /// Displays the rules
+        /// </summary>
+        /// <returns>The Rules View</returns>
         private RulesViewModel Rules()
         {
             return new RulesViewModel(this);
