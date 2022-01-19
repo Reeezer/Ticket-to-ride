@@ -297,9 +297,7 @@
     <Resource Include="TickettoRide.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\train\back.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Resource Include="images\train\back.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
