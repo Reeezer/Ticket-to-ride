@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ticket_to_ride.Tools
 {
@@ -48,7 +46,7 @@ namespace Ticket_to_ride.Tools
                 T selectedCard = list[0];
                 list.RemoveAt(0);
                 poppedElements.Add(selectedCard);
-                
+
                 if (!list.Any())
                 {
                     break;

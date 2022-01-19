@@ -1,21 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Ticket_to_ride.Model;
 using Ticket_to_ride.Enums;
 using Ticket_to_ride.Tools;
 using System.Windows.Input;
 using Ticket_to_ride.Commands;
-using System.Windows.Data;
 using System.Windows.Media;
-using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using System.Windows.Media.Effects;
 using System.Windows.Shapes;
-using System.Windows;
 
 namespace Ticket_to_ride.ViewModel
 {
@@ -37,7 +31,7 @@ namespace Ticket_to_ride.ViewModel
         private List<TrainCard> selectedHandCards;
 
         private Board board;
-        
+
         public Board Board
         {
             get => board;
@@ -146,7 +140,7 @@ namespace Ticket_to_ride.ViewModel
             selectedHandCards = new List<TrainCard>();
             cardsToTakeLeft = 2;
             NotPickingCards = true;
-            
+
             turnsLeft -= 1;
             if (turnsLeft == 0)
             {
