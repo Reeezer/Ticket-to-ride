@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 /// </summary>
 namespace Ticket_to_ride.ViewModel
 {
+    /// <summary>
+    /// All the View Models inherit from this class to help to handle properties changements
+    /// </summary>
     public class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

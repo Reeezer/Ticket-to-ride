@@ -18,6 +18,13 @@ namespace Ticket_to_ride.Model
         public int PointValue { get; }
         public bool IsDone { get; set; } = false;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="origin">Origin city</param>
+        /// <param name="destination">Destinatino city</param>
+        /// <param name="points">Value</param>
+        /// <param name="sourcePath">Image path</param>
         public GoalCard(City origin, City destination, int points, string sourcePath)
         {
             Origin = origin;

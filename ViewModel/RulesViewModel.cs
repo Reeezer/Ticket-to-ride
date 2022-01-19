@@ -11,35 +11,40 @@ using Ticket_to_ride.Model;
 
 namespace Ticket_to_ride.ViewModel
 {
+    /// <summary>
+    /// View Model used for the rules
+    /// </summary>
     public class RulesViewModel : ViewModelBase
     {
         private GameViewModel parent;
 
         public ICommand MenuCommand { get; }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public RulesViewModel()
         {
             parent = null;
-            Console.WriteLine("In Costructor");
             MenuCommand = new NavigationCommand(Menu);
         }
 
+        /// <summary>
+        /// Stores where we come from
+        /// </summary>
+        /// <param name="parent">Parent</param>
         public RulesViewModel(GameViewModel parent) : this()
         {
-            Console.WriteLine("In second constructor");
             this.parent = parent;
         }
 
+        /// <summary>
+        /// Navigate: Rules View -> Menu View | Parent
+        /// </summary>
+        /// <returns>ViewModelBase</returns>
         private ViewModelBase Menu()
         {
-            Console.WriteLine("aeflhgvaczubigbrjf");
-            Console.WriteLine(parent);
-            if (this.parent != null)
-            {
-                Console.WriteLine("I'm in !");
-                return this.parent;
-            }
-            return new MenuViewModel();
+            return parent ?? (ViewModelBase)new MenuViewModel();
         }
     }
 }

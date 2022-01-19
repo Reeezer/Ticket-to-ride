@@ -60,6 +60,13 @@ namespace Ticket_to_ride.Model
         public double LengthPosX => (Cities[0].X + Cities[1].X - 8) / 2;
         public double LengthPosY => (Cities[0].Y + Cities[1].Y - 16) / 2;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="origin">Origin city</param>
+        /// <param name="destination">Destination city</param>
+        /// <param name="color">Color</param>
+        /// <param name="length">Length</param>
         public Connection(City origin, City destination, Color color, int length)
         {
             Cities = new List<City>
@@ -76,11 +83,21 @@ namespace Ticket_to_ride.Model
             colorName = colorProperty != null ? colorProperty.Name : "Unnamed color";
         }
 
+        /// <summary>
+        /// Returns opposite city from the one passed
+        /// </summary>
+        /// <param name="city">City</param>
+        /// <returns>City</returns>
         public City OppositeCity(City city)
         {
             return city.Equals(Cities[0]) ? Cities[1] : Cities[0];
         }
 
+        /// <summary>
+        /// Check if the city passed is contained in the connection
+        /// </summary>
+        /// <param name="city">City</param>
+        /// <returns>Bool</returns>
         public bool Contains(City city)
         {
             return city.Equals(Cities[0]) || city.Equals(Cities[1]);

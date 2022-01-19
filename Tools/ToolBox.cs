@@ -7,8 +7,16 @@ using System.Threading.Tasks;
 
 namespace Ticket_to_ride.Tools
 {
+    /// <summary>
+    /// List of usefull methods to apply on lists
+    /// </summary>
     public static class ToolBox
     {
+        /// <summary>
+        /// Apply a shuffle on a list
+        /// </summary>
+        /// <typeparam name="T">Template</typeparam>
+        /// <param name="list">List</param>
         public static void Shuffle<T>(List<T> list)
         {
             Random random = new Random();
@@ -24,6 +32,13 @@ namespace Ticket_to_ride.Tools
             }
         }
 
+        /// <summary>
+        /// Pop an amount of element in a list
+        /// </summary>
+        /// <typeparam name="T">Template</typeparam>
+        /// <param name="list">List</param>
+        /// <param name="count">Number</param>
+        /// <returns>List</returns>
         public static List<T> Pop<T>(List<T> list, int count)
         {
             List<T> poppedElements = new List<T>();
@@ -43,6 +58,13 @@ namespace Ticket_to_ride.Tools
             return poppedElements;
         }
 
+        /// <summary>
+        /// Pop an amount of element in a ObservableCollection
+        /// </summary>
+        /// <typeparam name="T">Template</typeparam>
+        /// <param name="list">List</param>
+        /// <param name="count">Number</param>
+        /// <returns>ObservableCollection</returns>
         public static ObservableCollection<T> PopOnCollection<T>(List<T> collection, int count)
         {
             ObservableCollection<T> poppedElements = new ObservableCollection<T>();
@@ -62,6 +84,11 @@ namespace Ticket_to_ride.Tools
             return poppedElements;
         }
 
+        /// <summary>
+        /// Sort a list
+        /// </summary>
+        /// <typeparam name="T">Template</typeparam>
+        /// <param name="list">List</param>
         public static void Sort<T>(ObservableCollection<T> collection) where T : IComparable
         {
             List<T> sorted = collection.OrderBy(x => x).ToList();

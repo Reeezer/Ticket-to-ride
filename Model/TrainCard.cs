@@ -19,6 +19,11 @@ namespace Ticket_to_ride.Model
         public string SourcePath { get; }
         public int Id { get; }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="color">Color</param>
+        /// <param name="sourcePath">Image path</param>
         public TrainCard(Color color, string sourcePath)
         {
             Color = new SolidColorBrush(color);

@@ -10,6 +10,9 @@ using Ticket_to_ride.Tools;
 
 namespace Ticket_to_ride.Enums
 {
+    /// <summary>
+    /// All the names of the cities used
+    /// </summary>
     public enum CityName
     {
         Atlanta,

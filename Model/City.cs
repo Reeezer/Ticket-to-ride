@@ -13,6 +13,12 @@ namespace Ticket_to_ride.Model
         public double X { get; }
         public double Y { get; }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="name">Name</param>
+        /// <param name="x">X</param>
+        /// <param name="y">Y</param>
         public City(CityName name, double x, double y)
         {
             Name = name;
