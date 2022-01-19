@@ -266,6 +266,7 @@
 
                     <!-- Exit -->
                     <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0 24 0 0">
+                        <Button Content="Rules" Command="{Binding RulesCommand}"/>
                         <Button Content="Exit" Command="{Binding ExitCommand}"/>
                         <Button Content="End [Debug]" Command="{Binding EndGameCommand}" Margin="0 8 0 0"/>
                     </StackPanel>

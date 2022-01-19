@@ -2,7 +2,7 @@
 
 # Introduction 
 
-'Ticket to Ride' en anglais ou 'Les aventuriers du rail' en français, est un jeu de plateau dans lequel le but est de posséder des lignes de train permettant de relier des villes entre elles. 
+"Ticket to Ride" en anglais ou "Les aventuriers du rail" en français, est un jeu de plateau dans lequel le but est de posséder des lignes de train permettant de relier des villes entre elles. 
 
 Au début du jeu chaque joueur possède des objectifs représentant deux villes à lier, ainsi que quelques trains permettant par la suite d'acquérir des lignes de chemin de fer. Durant chaque tour, les joueurs vont devoir tenter de relier des villes, piocher des cartes trains, ou ajouter à leur collection un nouvel objectif. 
 
@@ -12,7 +12,7 @@ Le jeu a été développé en WPF utilisant C#.
 
 ## Démarrage de l'application
 
-Afin de démarrer l'application, il suffit de lancer l'exécutable, aucune configuration spécifique n'est nécessaire. 
+Afin de démarrer l'application, il suffit de lancer l'exécutable. Aucune configuration spécifique n'est nécessaire. 
 Une fois l'application démarrée, l'utilisateur se trouve sur le menu de démarrage où il a la possibilité de:
 - Démarrer la configuration d'une nouvelle partie
 - Lire les règles du jeu
@@ -22,7 +22,7 @@ Une fois l'application démarrée, l'utilisateur se trouve sur le menu de démar
 
 ## Règles du jeu
 
-L'intégralité des règles du jeu de base se trouve dans le README.md du projet.
+L'intégralité des règles du jeu de base se trouve dans le README.md du projet (en anglais).
 
 Les règles du jeu peuvent aussi être consultées directement dans l'application, que ce soit au lancement ou durant une partie en cours.
 
@@ -30,7 +30,7 @@ Les règles du jeu peuvent aussi être consultées directement dans l'applicatio
 
 ## Configuration d'une partie
 
-L'utilisateur peut, à ce stade, définir le nombre de joueurs ainsi que leurs noms respectifs. Une partie peut se lancer avec au minimum 2 joueurs et au maximum 6 joueurs. Une fois la configuration terminée, la partie peut être créée.
+L'utilisateur peut, à ce stade, définir le nombre de joueurs ainsi que leurs noms respectifs. Une partie peut se lancer avec au minimum 2 joueurs et au maximum avec 6 joueurs. Une fois la configuration terminée, la partie peut se lancer.
 
 ![](https://i.imgur.com/3MxWQoX.png)
 
@@ -47,11 +47,11 @@ Si le joueur choisit une des actions disponibles, il ne peut effectuer que celle
 
 De plus, durant son tour, le joueur peut visualiser certaines informations sur ce qu'il possède, ainsi que quelques informations générales sur ses adversaires.
 
-> À tout moment, le joueur peut quitter la partie en cliquant sur le bouton 'Exit' en bas à droite. Il peut aussi visualiser les règles du jeu en cliquant sur le bouton 'Rules' situé au même endroit.
+> À tout moment, le joueur peut quitter la partie en cliquant sur le bouton 'Exit' en bas à droite. Il peut aussi visualiser les règles du jeu en cliquant sur le bouton 'Rules' situé au même endroit. Le score sera calculé en fonction des objectifs atteints et les valeurs des objectifs restants pénaliseront les joueurs en déduisant leur score.
 
 ### Visualisation d'informations
 
-Durant la partie, le joueur en cours peut visualiser certaines informations sur ce qu'il possède, en effet à gauche de l'écran se trouve une liste d'information le concernant: nom, couleur, score, nombre de trains restants, cartes objectifs. 
+Durant la partie, le joueur en cours peut visualiser certaines informations sur ce qu'il possède, en effet à gauche de l'écran se trouve une liste d'information le concernant: *nom, couleur, score, nombre de trains restants, cartes objectifs*. 
 
 ![](https://i.imgur.com/3KPwDxb.png)
 
@@ -59,7 +59,8 @@ De plus, le joueur peut visualiser les cartes trains qu'il possède en bas de l'
 
 ![](https://i.imgur.com/xNxksn6.png)
 
-Le joueur peut aussi visualiser certaines informations à propos de ses adversaires à droite de l'écran: nom, score, nombres de trains restants, nombre de cartes trains, nombre de cartes objectifs. Ces informations seraient des informations que le joueur peut voir en un coup d'oeil dans une partie avec le plateau de jeu réel.
+Le joueur peut aussi visualiser certaines informations à propos de ses adversaires à droite de l'écran: *nom, score, nombres de trains restants, nombre de cartes trains, nombre de cartes objectifs*. 
+Ces informations seraient des informations que le joueur peut voir en un coup d'oeil dans une partie avec le plateau de jeu réel.
 
 ![](https://i.imgur.com/pya6YjT.png)
 
@@ -79,7 +80,7 @@ Si l'utilisateur ne reconnait pas bien la couleur et le numéro précisé sur la
 
 ### Piocher des cartes trains
 
-Durant son tour, le joueur a la possibilité de piocher des cartes trains lui permettant par la suite d'acquérir des lignes de chemin de fer. Pour ce faire, 5 cartes face visible sont affichées en haut de l'écran, ainsi que la pile restante face cachée. 
+Durant son tour, le joueur a la possibilité de piocher des cartes trains lui permettant par la suite d'acquérir de nouvelles lignes de chemin de fer. Pour ce faire, 5 cartes face visible sont affichées en haut de l'écran, ainsi que la pile restante face cachée. 
 
 ![](https://i.imgur.com/bTP07OE.png)
 
@@ -95,7 +96,7 @@ Durant son tour, le joueur peut acquérir une ligne de chemin de fer en utilisan
 
 ![](https://i.imgur.com/SHGXqPY.png)
 
-Une fois que le joueur a sélectionné la ligne de chemin de fer et assez de cartes pour l'acquérir, il devra appuyer sur le bouton 'Claim connection' à droite de l'écran. 
+Une fois que le joueur a sélectionné la ligne de chemin de fer et possède assez de cartes pour l'acquérir, il devra appuyer sur le bouton "**Claim connection**" à droite de l'écran. 
 
 ![](https://i.imgur.com/y89G6uq.png)
 
@@ -103,11 +104,11 @@ Une fois la ligne de chemin de fer acquise, elle sera entourée par la couleur d
 
 ![](https://i.imgur.com/laoCDbB.png)
 
-> Pour acquérir une ligne de chemin de fer grise, le joueur peut utiliser n'importe quelle carte trains, la couleur n'importe pas. De plus, les cartes locomotives sont équivalentes à des jokers et peuvent donc être de n'importe quelle couleur.
+> Pour acquérir une ligne de chemin de fer grise, le joueur peut utiliser n'importe quelle carte train, la couleur n'a aucune importance. De plus, les cartes locomotives sont équivalentes à des jokers et peuvent donc être de n'importe quelle couleur.
 
 ### Piocher une carte objectif
 
-Durant son tour, le joueur a la possibilité de piocher une nouvelle carte objectif en appuyant sur le bouton 'Take Goal card' à droite de l'écran.
+Durant son tour, le joueur a la possibilité de piocher une nouvelle carte objectif en appuyant sur le bouton "**Take Goal card**"" à droite de l'écran.
 
 ![](https://i.imgur.com/y89G6uq.png)
 
@@ -119,7 +120,7 @@ Lorsqu'un joueur termine un objectif, la carte de l'objectif correspondant devie
 
 ### Fin de la partie
 
-Une fois qu'un joueur n'a plus que 3 trains restants ou moins, la partie se termine. Il reste alors un tour à chaque joueur avant le calcul et l'affichage final des scores. 
+Une fois qu'un joueur n'a plus que 2 trains restants ou moins, la partie se termine. Il reste alors un tour à chaque joueur avant le calcul et l'affichage final des scores. 
 
 ## Menu des scores
 
@@ -137,6 +138,7 @@ Sur ce menu s'affichent les différents participants, ainsi que leurs scores, il
 
 - Cacher les cartes (la main, et les objectifs) pour éviter qu'un adversaire ne regarde.
 - Adapter l'interface du jeu à des résolutions plus petites que 1920x1080px.
+- Interface plus intuitive
 
 # Conclusion
 
