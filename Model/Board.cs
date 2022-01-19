@@ -24,6 +24,9 @@ namespace Ticket_to_ride.Model
         public List<Connection> Connections { get; } = new List<Connection>();
         public List<City> Cities { get; } = new List<City>();
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public Board()
         {
             InitCities();
@@ -32,6 +35,9 @@ namespace Ticket_to_ride.Model
             InitDeck();
         }
 
+        /// <summary>
+        /// Create all the cities
+        /// </summary>
         private void InitCities()
         {
             #region Create cities
@@ -74,6 +80,9 @@ namespace Ticket_to_ride.Model
             #endregion
         }
 
+        /// <summary>
+        /// Create all the connections between cities
+        /// </summary>
         private void InitConnections()
         {
             #region Create connections
@@ -182,6 +191,9 @@ namespace Ticket_to_ride.Model
             #endregion
         }
 
+        /// <summary>
+        /// Create and shuffle all the goal cards
+        /// </summary>
         private void InitGoalCards()
         {
             #region Create goal cards
@@ -220,6 +232,9 @@ namespace Ticket_to_ride.Model
             #endregion
         }
 
+        /// <summary>
+        /// Create and shuffle all the train cards
+        /// </summary>
         private void InitDeck()
         {
             #region Create train cards
@@ -237,6 +252,13 @@ namespace Ticket_to_ride.Model
             #endregion
         }
 
+        /// <summary>
+        /// Populate deck of a number of same train cards
+        /// </summary>
+        /// <param name="color">Color</param>
+        /// <param name="sourcePathColor">Image path</param>
+        /// <param name="count">Number</param>
+        /// <returns>List of same train cards</returns>
         private List<TrainCard> FillColorTrainCards(Color color, string sourcePathColor, int count)
         {
             List<TrainCard> cards = new List<TrainCard>();
@@ -247,21 +269,47 @@ namespace Ticket_to_ride.Model
             return cards;
         }
 
+        /// <summary>
+        /// Create a connection between two cities
+        /// </summary>
+        /// <param name="origin">Origin city</param>
+        /// <param name="destination">Destination city</param>
+        /// <param name="color">Color</param>
+        /// <param name="length">Length</param>
+        /// <returns>Connection</returns>
         private Connection CreateConnection(CityName origin, CityName destination, Color color, int length)
         {
             return new Connection(Cities.First(c => c.Name == origin), Cities.First(c => c.Name == destination), color, length);
         }
 
+        /// <summary>
+        /// Create a city 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns>City</returns>
         private City CreateCity(CityName name, double x, double y)
         {
             return new City(name, (x * 12) + 10, (y * 13) + 10); // Tricks to display correctly on canvas
         }
 
+        /// <summary>
+        /// Create a goal card
+        /// </summary>
+        /// <param name="origin">Origin city</param>
+        /// <param name="destination">Destination city</param>
+        /// <param name="points">Value</param>
+        /// <param name="path">Image path</param>
+        /// <returns>GoalCard</returns>
         private GoalCard CreateGoalCard(CityName origin, CityName destination, int points, string path)
         {
             return new GoalCard(Cities.First(c => c.Name == origin), Cities.First(c => c.Name == destination), points, $"/Ticket-to-ride;component/images/goal/{path}.png");
         }
 
+        /// <summary>
+        /// Repopulate all the train cards that are able to be picked up
+        /// </summary>
         private void ChangeAllShownCards()
         {
             while (ShownCards.Count < 5)
@@ -279,9 +327,11 @@ namespace Ticket_to_ride.Model
             }
         }
 
+        /// <summary>
+        /// Verify if there are 3 or more than 3 locomotive in the shown cards: not allowed. Otherwise repopulate shown cards
+        /// </summary>
         private void CheckShownCards()
         {
-            // Verify if there are 3 or more than 3 locomotive in the shown cards: not allowed
             int locomotiveCount = ShownCards.Count(x => x.Color.Color == Colors.FloralWhite);
             while (locomotiveCount >= 3)
             {
@@ -293,12 +343,18 @@ namespace Ticket_to_ride.Model
             }
         }
 
+        /// <summary>
+        /// Populate all the train cards that are able to be picked up
+        /// </summary>
         public void PopulateShownCards()
         {
             ChangeAllShownCards();
             CheckShownCards();
         }
 
+        /// <summary>
+        /// Add a card to the shown ones
+        /// </summary>
         public void AddAShownCard()
         {
             if (ShownCards.Count >= 5 || Deck.Count <= 0)

@@ -8,7 +8,10 @@ using System.Windows.Data;
 
 namespace Ticket_to_ride.Tools
 {
-    // https://stackoverflow.com/questions/125536/wpf-databinding-with-simple-arithmetic-operation
+    /// <summary>
+    /// Class used to make operations on the main canvas
+    /// https://stackoverflow.com/questions/125536/wpf-databinding-with-simple-arithmetic-operation
+    /// </summary>
     public class MathConverter : IValueConverter
     {
         private static readonly char[] _allOperators = new[] { '+', '-', '*', '/', '%', '(', ')' };

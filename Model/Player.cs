@@ -45,6 +45,12 @@ namespace Ticket_to_ride.Model
             }
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="name">Name</param>
+        /// <param name="board">Board</param>
+        /// <param name="color">Color</param>
         public Player(string name, Board board, Color color)
         {
             Name = name;
@@ -60,6 +66,9 @@ namespace Ticket_to_ride.Model
             return $"{Name}";
         }
 
+        /// <summary>
+        /// Sort hand train cards
+        /// </summary>
         public void SortCards()
         {
             ToolBox.Sort(Hand);

@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-/// <summary>
-/// Tous les boutons héritent de cette classe.
-/// </summary>
 namespace Ticket_to_ride.Commands
 {
+    /// <summary>
+    /// All the buttons inherit from this class to help to handle the click event
+    /// </summary>
     public abstract class CommandBase : ICommand
     {
         public event EventHandler CanExecuteChanged;

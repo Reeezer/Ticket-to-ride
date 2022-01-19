@@ -5,15 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using Ticket_to_ride.Stores;
 
-/// <summary>
-/// VueModel pour la mainWindow
-/// </summary>
 namespace Ticket_to_ride.ViewModel
 {
+    /// <summary>
+    /// View Model used for the MainWindow.xaml
+    /// </summary>
     public class MainViewModel : ViewModelBase
     {
         public ViewModelBase CurrentViewModel => NavigationStore.GetInstance().CurrentViewModel;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public MainViewModel()
         {
             NavigationStore.GetInstance().CurrentViewModelChanged += OnCurrentViewModelChanged;
