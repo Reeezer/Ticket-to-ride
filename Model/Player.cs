@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Ticket_to_ride.Enums;
+﻿using System.Collections.Generic;
 using Ticket_to_ride.ViewModel;
 using Ticket_to_ride.Tools;
 using System.Collections.ObjectModel;
