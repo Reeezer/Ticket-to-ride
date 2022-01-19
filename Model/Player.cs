@@ -12,7 +12,6 @@ using System.Windows.Media;
 
 namespace Ticket_to_ride.Model
 {
-    // FIXME: Not supposed to implement "ViewModelBase" in a model to be able to notify the view
     public class Player : ViewModelBase
     {
         public Board Board { get; }

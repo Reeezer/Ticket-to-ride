@@ -160,14 +160,6 @@ namespace Ticket_to_ride.ViewModel
 
             SelectedConnection = connectionToBeSelected;
             Console.WriteLine($"[{CurrentPlayer}] Select: {SelectedConnection}");
-
-            // TODO change connection opacity on selection
-            //foreach (UIElement l in lines)
-            //{
-            //    l.Opacity = 0.1;
-            //    Console.WriteLine(l);
-            //}
-            //line.Opacity = 1;
         }
 
         private void TryToClaim()
@@ -191,7 +183,7 @@ namespace Ticket_to_ride.ViewModel
             }
 
             // Claim the connection
-            if (selectedConnection.Length == usefullCards.Count)
+            if (selectedConnection.Length == usefullCards.Count && CurrentPlayer.RemainingTrains >= selectedConnection.Length)
             {
                 Console.WriteLine($"[{CurrentPlayer}] Claiming {selectedConnection}");
 
@@ -208,22 +200,20 @@ namespace Ticket_to_ride.ViewModel
                 CurrentPlayer.ClaimedConnections.Add(selectedConnection);
 
                 // Check if a goal has been fullfilled
-                List<GoalCard> goalCardToRemove = new List<GoalCard>();
                 foreach (GoalCard goalCard in CurrentPlayer.GoalCards)
                 {
                     if (IsGoalFullFilled(goalCard))
                     {
 
-                        Console.WriteLine($"[{CurrentPlayer}] Goal {goalCard} has been fullfilled !"); // FIXME
+                        Console.WriteLine($"[{CurrentPlayer}] Goal {goalCard} has been fullfilled !");
 
                         CurrentPlayer.Score += goalCard.PointValue;
-                        goalCardToRemove.Add(goalCard);
+
+                        goalCard.IsDone = true;
                     }
                 }
-                foreach (GoalCard goalCard in goalCardToRemove)
-                {
-                    CurrentPlayer.GoalCards.Remove(goalCard);
-                }
+
+                ToolBox.Sort(CurrentPlayer.GoalCards);
 
                 // The game has to end
                 if (CurrentPlayer.RemainingTrains <= 2)
@@ -241,7 +231,7 @@ namespace Ticket_to_ride.ViewModel
 
         private bool IsGoalFullFilled(GoalCard goalCard)
         {
-            // Breath first search
+            // Breadth first search
             List<City> visitedCities = new List<City>();
             List<Connection> connectionsToLook = new List<Connection>();
 
@@ -320,8 +310,6 @@ namespace Ticket_to_ride.ViewModel
 
         private void TakeCard(TrainCard cardToTake, bool fromDeck)
         {
-            // TODO change hand card opacity (to 1) on card taking
-
             CurrentPlayer.Hand.Add(cardToTake);
             CurrentPlayer.SortCards();
             NotPickingCards = false;
@@ -388,7 +376,10 @@ namespace Ticket_to_ride.ViewModel
             {
                 foreach (GoalCard goalCard in player.GoalCards)
                 {
-                    player.Score -= goalCard.PointValue;
+                    if (!goalCard.IsDone)
+                    {
+                        player.Score -= goalCard.PointValue;
+                    }
                 }
             }
 

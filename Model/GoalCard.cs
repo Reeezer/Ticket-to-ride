@@ -10,12 +10,13 @@ using Ticket_to_ride.Tools;
 
 namespace Ticket_to_ride.Model
 {
-    public class GoalCard
+    public class GoalCard : IComparable
     {
         public City Origin { get; }
         public City Destination { get; }
         public string SourcePath { get; }
         public int PointValue { get; }
+        public bool IsDone { get; set; } = false;
 
         public GoalCard(City origin, City destination, int points, string sourcePath)
         {
@@ -28,6 +29,12 @@ namespace Ticket_to_ride.Model
         public override string ToString()
         {
             return $"{Origin} - {Destination} ({PointValue} points)";
+        }
+
+        public int CompareTo(object obj)
+        {
+            GoalCard c2 = obj as GoalCard;
+            return IsDone.CompareTo(c2.IsDone);
         }
     }
 }

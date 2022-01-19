@@ -99,7 +99,17 @@
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Image Height="90" Source="{Binding SourcePath}" HorizontalAlignment="Center" Margin="0 0 0 0"/>
+                                        <Image Height="110" Source="{Binding SourcePath}" HorizontalAlignment="Center" Margin="0 0 0 8">
+                                            <Image.Style>
+                                                <Style TargetType="{x:Type Image}">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Value="True" Binding="{Binding IsDone}">
+                                                            <Setter Property="Opacity" Value="0.5"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
@@ -257,8 +267,7 @@
                     <!-- Exit -->
                     <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0 24 0 0">
                         <Button Content="Exit" Command="{Binding ExitCommand}"/>
-                        <Button Content="End" Command="{Binding EndGameCommand}" Margin="0 8 0 0"/>
-                        <!--FIXME Remove it-->
+                        <Button Content="End [Debug]" Command="{Binding EndGameCommand}" Margin="0 8 0 0"/>
                     </StackPanel>
                 </Grid>
             </Border>
