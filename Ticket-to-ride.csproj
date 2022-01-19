@@ -282,9 +282,7 @@
     <Resource Include="TickettoRide.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\train\back.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Resource Include="images\train\back.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

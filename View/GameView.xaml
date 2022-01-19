@@ -43,7 +43,7 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
 
-                    <Image Grid.Column="1" Source="pack://siteoforigin:,,,/images/train/back.png" Margin="12 0 12 0" HorizontalAlignment="Center" MouseLeftButtonDown="DeckClicked"/>
+                    <Image Grid.Column="1" Margin="12 0 12 0" HorizontalAlignment="Center" MouseLeftButtonDown="DeckClicked" Source="/Ticket-to-ride;component/images/train/back.png"/>
                 </Grid>
             </StackPanel>
         </Border>
