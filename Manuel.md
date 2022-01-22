@@ -139,4 +139,9 @@ Sur ce menu s'affichent les différents participants, ainsi que leurs scores, il
 - Cacher les cartes (la main, et les objectifs) pour éviter qu'un adversaire ne regarde.
 - Adapter l'interface du jeu à des résolutions plus petites que 1920x1080px.
 - Interface plus intuitive
-- Mettre en place la possibilité de jouer en réseau.
+
+# Sources
+
+Pour ce projet, nous nous sommes basés sur une partie d'un projet existant à cette adresse: https://exceptionnotfound.net/ticket-to-ride-csharp-modeling-practice-part-1-intro-and-game-rules/.
+
+Ce projet met en place l'application ticket to ride en console, nous l'avons donc repris et adapté afin d'en faire une application WPF. Nous n'avons utilisé, dans ce code, que certains models, ainsi qu'une partie de la logique du jeu nous ayant permis de mettre plus rapidement en place les règles de celui-ci.
